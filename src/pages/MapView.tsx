@@ -160,6 +160,7 @@ export function MapView() {
                   <span className="text-sm font-medium">Show Nearest</span>
                   <button
                     onClick={() => setShowNearest(!showNearest)}
+                    aria-label="Toggle nearest destinations"
                     className={`w-12 h-6 rounded-full transition-colors relative ${
                       showNearest ? 'bg-[#ff7f50]' : 'bg-gray-300'
                     }`}
@@ -333,7 +334,7 @@ export function MapView() {
                 </MapContainer>
 
                 {/* Map Overlay Info */}
-                <div className="absolute bottom-4 left-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg z-[400]">
+                <div className="absolute bottom-55  center- 20 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg z-[400] max-w-xs">
                   <div className="flex items-center gap-4 text-sm">
                     <div className="flex items-center gap-2">
                       <div className="w-4 h-4 rounded-full bg-[#ff7f50]" />
