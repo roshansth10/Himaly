@@ -18,18 +18,22 @@ export function SearchBar({ variant = 'page', onSearch }: SearchBarProps) {
   const navigate = useNavigate();
 
   useEffect(() => {
-    if (query.length > 1) {
-      const filtered = destinations.filter(
-        dest =>
-          dest.name.toLowerCase().includes(query.toLowerCase()) ||
-          dest.location.toLowerCase().includes(query.toLowerCase()) ||
-          dest.category.toLowerCase().includes(query.toLowerCase()) ||
-          dest.attractions.some(attr => attr.toLowerCase().includes(query.toLowerCase()))
-      ).slice(0, 5);
-      setSuggestions(filtered);
-    } else {
-      setSuggestions([]);
-    }
+    const timeoutId = setTimeout(() => {
+      if (query.length > 1) {
+        const filtered = destinations.filter(
+          dest =>
+            dest.name.toLowerCase().includes(query.toLowerCase()) ||
+            dest.location.toLowerCase().includes(query.toLowerCase()) ||
+            dest.category.toLowerCase().includes(query.toLowerCase()) ||
+            dest.attractions.some(attr => attr.toLowerCase().includes(query.toLowerCase()))
+        ).slice(0, 5);
+        setSuggestions(filtered);
+      } else {
+        setSuggestions([]);
+      }
+    }, 100);
+
+    return () => clearTimeout(timeoutId);
   }, [query]);
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -88,6 +92,7 @@ export function SearchBar({ variant = 'page', onSearch }: SearchBarProps) {
               <button
                 type="button"
                 onClick={clearSearch}
+                aria-label="Clear search"
                 className="p-2 hover:bg-white/10 rounded-full transition-colors"
               >
                 <X className="w-5 h-5 text-white/70" />
@@ -188,6 +193,7 @@ export function SearchBar({ variant = 'page', onSearch }: SearchBarProps) {
             <button
               type="button"
               onClick={clearSearch}
+              aria-label="Clear search"
               className="absolute right-4 p-1 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-full transition-colors"
             >
               <X className="w-4 h-4 text-gray-400" />

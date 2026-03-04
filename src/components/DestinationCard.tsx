@@ -209,11 +209,11 @@ export function DestinationCard({
               <span>{destination.location}, {destination.province}</span>
             </div>
 
-            <h3 className="text-xl font-bold mb-2 group-hover:text-[#ff7f50] transition-colors line-clamp-1">
+            <h3 className="text-xl sm:text-2xl font-bold mb-2 group-hover:text-[#ff7f50] transition-colors line-clamp-1">
               {destination.name}
             </h3>
 
-            <p className="text-gray-600 dark:text-gray-400 text-sm mb-4 line-clamp-2">
+            <p className="text-gray-600 dark:text-gray-400 text-sm sm:text-base mb-4 line-clamp-2">
               {destination.description}
             </p>
 

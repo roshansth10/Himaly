@@ -1,0 +1,34 @@
+
+BOOKING RECEIPT
+===============
+
+Booking ID: BKMMC8OJO15BP
+Transaction ID: TXNMMC8OJO14ZHW
+Date: 3/4/2026
+
+DESTINATION
+-----------
+Name: Annapurna Base Camp
+Location: Gandaki Province
+Duration: 7-10 days
+
+CUSTOMER DETAILS
+----------------
+Name: Himaly 
+Email: barcleo.10@gmail.com
+Phone: 9764775438
+
+BOOKING DETAILS
+---------------
+Travel Date: 3/30/2026
+Number of People: 7
+Payment Method: KHALTI
+Status: CONFIRMED
+
+PAYMENT
+-------
+Amount per person: NPR 899
+Total Amount: NPR 6,293
+
+Thank you for booking with Nepal Tourism!
+    

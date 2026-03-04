@@ -128,7 +128,7 @@ export function Home() {
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-5xl md:text-7xl lg:text-8xl font-bold text-white mb-6 leading-tight"
+            className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-tight"
           >
             <span className="block">Discover</span>
             <span className="block text-[#ff7f50]">Nepal's</span>
@@ -157,23 +157,23 @@ export function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1 }}
-            className="flex flex-col sm:flex-row items-center justify-center gap-4"
+            className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6"
           >
             <Link to="/destinations">
               <Button 
                 size="lg"
-                className="bg-[#ff7f50] hover:bg-[#e86a3a] text-white px-8 py-6 rounded-full text-lg font-medium transition-all hover:shadow-xl hover:shadow-[#ff7f50]/30 hover:-translate-y-1"
+                className="bg-[#ff7f50] hover:bg-[#e86a3a] text-white px-6 sm:px-8 py-4 sm:py-6 rounded-full text-base sm:text-lg font-medium transition-all hover:shadow-xl hover:shadow-[#ff7f50]/30 hover:-translate-y-1"
               >
                 Explore Destinations
-                <ArrowRight className="w-5 h-5 ml-2" />
+                <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 ml-2" />
               </Button>
             </Link>
             <Button 
               size="lg"
               variant="outline"
-              className="border-white/30 text-white hover:bg-white/10 px-8 py-6 rounded-full text-lg font-medium backdrop-blur-sm"
+              className="border-white/30 text-white hover:bg-white/10 px-6 sm:px-8 py-4 sm:py-6 rounded-full text-base sm:text-lg font-medium backdrop-blur-sm"
             >
-              <Play className="w-5 h-5 mr-2" />
+              <Play className="w-4 sm:w-5 h-4 sm:h-5 mr-2" />
               Watch Video
             </Button>
           </motion.div>
@@ -183,7 +183,7 @@ export function Home() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-8"
+            className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6 sm:gap-8"
           >
             {[
               { value: '50+', label: 'Destinations' },
@@ -196,10 +196,10 @@ export function Home() {
                 initial={{ opacity: 0, scale: 0.8 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 1.4 + index * 0.1 }}
-                className="text-center"
+                className="text-center bg-white/10 backdrop-blur-sm rounded-xl p-4 sm:p-6 border border-white/20"
               >
-                <div className="text-3xl md:text-4xl font-bold text-white">{stat.value}</div>
-                <div className="text-white/60 text-sm">{stat.label}</div>
+                <div className="text-2xl sm:text-3xl md:text-4xl font-bold text-white mb-2">{stat.value}</div>
+                <div className="text-white/70 text-sm sm:text-base">{stat.label}</div>
               </motion.div>
             ))}
           </motion.div>
@@ -328,16 +328,20 @@ export function Home() {
               viewport={{ once: true }}
               className="mb-12"
             >
-              <div className="flex items-center gap-3 mb-4">
-                <div className="w-10 h-10 bg-[#ff7f50] rounded-full flex items-center justify-center">
-                  <MapPin className="w-5 h-5 text-white" />
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
+                <div className="flex items-center gap-3">
+                  <div className="w-12 h-12 bg-[#ff7f50] rounded-full flex items-center justify-center shadow-lg">
+                    <MapPin className="w-6 h-6 text-white" />
+                  </div>
+                  <div>
+                    <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
+                      Nearest to You
+                    </h2>
+                  </div>
                 </div>
-                <div>
-                  <h2 className="text-3xl md:text-4xl font-bold">
-                    Near You
-                  </h2>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Destinations closest to your location
+                <div className="flex-1">
+                  <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg leading-relaxed">
+                    Discover destinations closest to your current location for spontaneous adventures and weekend getaways
                   </p>
                 </div>
               </div>
