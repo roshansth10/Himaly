@@ -253,88 +253,91 @@ export function MapView() {
               animate={{ opacity: 1, scale: 1 }}
               className="lg:col-span-3"
             >
-              <div className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden h-[600px] lg:h-[700px]">
-                <MapContainer
-                  center={mapCenter}
-                  zoom={mapZoom}
-                  className="h-full w-full"
-                >
-                  <MapController center={mapCenter} zoom={mapZoom} />
-                  
-                  {mapType === 'standard' ? (
-                    <TileLayer
-                      attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
-                      url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-                    />
-                  ) : (
-                    <TileLayer
-                      attribution='&copy; Esri'
-                      url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
-                    />
-                  )}
-
-                  {/* User Location Marker */}
-                  {userLocation && (
-                    <Marker
-                      position={[userLocation.latitude, userLocation.longitude]}
-                      icon={userIcon}
-                    >
-                      <Popup>
-                        <div className="text-center">
-                          <p className="font-bold">Your Location</p>
-                        </div>
-                      </Popup>
-                    </Marker>
-                  )}
-
-                  {/* Destination Markers */}
-                  {destinations.map((dest) => {
-                    const isNearest = nearestDestinations.some(n => n.id === dest.id);
+              {/* Wrapper with relative positioning for overlay */}
+              <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg h-[600px] lg:h-[700px]">
+                <div className="absolute inset-0 rounded-2xl overflow-hidden">
+                  <MapContainer
+                    center={mapCenter}
+                    zoom={mapZoom}
+                    className="h-full w-full"
+                  >
+                    <MapController center={mapCenter} zoom={mapZoom} />
                     
-                    return (
+                    {mapType === 'standard' ? (
+                      <TileLayer
+                        attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a>'
+                        url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                      />
+                    ) : (
+                      <TileLayer
+                        attribution='&copy; Esri'
+                        url="https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}"
+                      />
+                    )}
+
+                    {/* User Location Marker */}
+                    {userLocation && (
                       <Marker
-                        key={dest.id}
-                        position={[dest.latitude, dest.longitude]}
-                        icon={isNearest && showNearest ? nearestIcon : destinationIcon}
-                        eventHandlers={{
-                          click: () => setSelectedDestination(dest.id),
-                        }}
+                        position={[userLocation.latitude, userLocation.longitude]}
+                        icon={userIcon}
                       >
                         <Popup>
-                          <div className="min-w-[200px]">
-                            <img
-                              src={dest.images[0]}
-                              alt={dest.name}
-                              className="w-full h-32 object-cover rounded-lg mb-3"
-                            />
-                            <Badge className={`${categoryColors[dest.category]} text-white mb-2`}>
-                              {dest.category}
-                            </Badge>
-                            <h3 className="font-bold text-lg mb-1">{dest.name}</h3>
-                            <p className="text-sm text-gray-600 mb-2">{dest.location}</p>
-                            <div className="flex items-center gap-2 mb-3">
-                              <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
-                              <span className="text-sm">{dest.rating}</span>
-                            </div>
-                            <div className="flex items-center justify-between">
-                              <span className="font-bold text-[#ff7f50]">
-                                {dest.price === 0 ? 'Free' : `NPR ${dest.price.toLocaleString()}`}
-                              </span>
-                              <Link to={`/destination/${dest.id}`}>
-                                <Button size="sm" className="bg-[#ff7f50] text-white">
-                                  View
-                                </Button>
-                              </Link>
-                            </div>
+                          <div className="text-center">
+                            <p className="font-bold">Your Location</p>
                           </div>
                         </Popup>
                       </Marker>
-                    );
-                  })}
-                </MapContainer>
+                    )}
 
-                {/* Map Overlay Info */}
-                <div className="absolute bottom-55  center- 20 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg z-[400] max-w-xs">
+                    {/* Destination Markers */}
+                    {destinations.map((dest) => {
+                      const isNearest = nearestDestinations.some(n => n.id === dest.id);
+                      
+                      return (
+                        <Marker
+                          key={dest.id}
+                          position={[dest.latitude, dest.longitude]}
+                          icon={isNearest && showNearest ? nearestIcon : destinationIcon}
+                          eventHandlers={{
+                            click: () => setSelectedDestination(dest.id),
+                          }}
+                        >
+                          <Popup>
+                            <div className="min-w-[200px]">
+                              <img
+                                src={dest.images[0]}
+                                alt={dest.name}
+                                className="w-full h-32 object-cover rounded-lg mb-3"
+                              />
+                              <Badge className={`${categoryColors[dest.category]} text-white mb-2`}>
+                                {dest.category}
+                              </Badge>
+                              <h3 className="font-bold text-lg mb-1">{dest.name}</h3>
+                              <p className="text-sm text-gray-600 mb-2">{dest.location}</p>
+                              <div className="flex items-center gap-2 mb-3">
+                                <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                                <span className="text-sm">{dest.rating}</span>
+                              </div>
+                              <div className="flex items-center justify-between">
+                                <span className="font-bold text-[#ff7f50]">
+                                  {dest.price === 0 ? 'Free' : `NPR ${dest.price.toLocaleString()}`}
+                                </span>
+                                <Link to={`/destination/${dest.id}`}>
+                                  <Button size="sm" className="bg-[#ff7f50] text-white">
+                                    View
+                                  </Button>
+                                </Link>
+                              </div>
+                            </div>
+                          </Popup>
+                        </Marker>
+                      );
+                    })}
+                  </MapContainer>
+                </div>
+
+                {/* Map Overlay Legend - outside overflow-hidden */}
+                <div className="absolute bottom-4 right-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg z-[400] max-w-xs">
                   <div className="flex items-center gap-4 text-sm">
                     <div className="flex items-center gap-2">
                       <div className="w-4 h-4 rounded-full bg-[#ff7f50]" />
