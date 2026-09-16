@@ -138,7 +138,7 @@ PAYMENT
 Amount per person: NPR ${destination.price.toLocaleString()}
 Total Amount: NPR ${totalAmount.toLocaleString()}
 
-Thank you for booking with Nepal Tourism!
+Thank you for booking with Himaly!
     `;
     
     const blob = new Blob([receiptData], { type: 'text/plain' });
