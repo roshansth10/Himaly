@@ -150,33 +150,37 @@ export function DestinationDetail() {
         <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
 
         {/* Navigation */}
-        <div className="absolute inset-0 flex items-center justify-between px-4">
-          <button
-            onClick={prevImage}
-            className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
-          >
-            <ChevronLeft className="w-6 h-6 text-white" />
-          </button>
-          <button
-            onClick={nextImage}
-            className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
-          >
-            <ChevronRight className="w-6 h-6 text-white" />
-          </button>
-        </div>
+        {destination.images.length > 1 && (
+          <div className="absolute inset-0 flex items-center justify-between px-4">
+            <button
+              onClick={prevImage}
+              className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+            >
+              <ChevronLeft className="w-6 h-6 text-white" />
+            </button>
+            <button
+              onClick={nextImage}
+              className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-colors"
+            >
+              <ChevronRight className="w-6 h-6 text-white" />
+            </button>
+          </div>
+        )}
 
         {/* Thumbnails */}
-        <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
-          {destination.images.map((_, index) => (
-            <button
-              key={index}
-              onClick={() => setCurrentImageIndex(index)}
-              className={`w-2 h-2 rounded-full transition-all ${
-                currentImageIndex === index ? 'w-8 bg-[#ff7f50]' : 'bg-white/50'
-              }`}
-            />
-          ))}
-        </div>
+        {destination.images.length > 1 && (
+          <div className="absolute bottom-8 left-1/2 -translate-x-1/2 flex gap-2">
+            {destination.images.map((_, index) => (
+              <button
+                key={index}
+                onClick={() => setCurrentImageIndex(index)}
+                className={`w-2 h-2 rounded-full transition-all ${
+                  currentImageIndex === index ? 'w-8 bg-[#ff7f50]' : 'bg-white/50'
+                }`}
+              />
+            ))}
+          </div>
+        )}
 
         {/* Zoom Button */}
         <button
@@ -513,25 +517,29 @@ export function DestinationDetail() {
               <X className="w-6 h-6 text-white" />
             </button>
             
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setLightboxIndex((prev) => (prev - 1 + destination.images.length) % destination.images.length);
-              }}
-              className="absolute left-4 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center"
-            >
-              <ChevronLeft className="w-6 h-6 text-white" />
-            </button>
-            
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setLightboxIndex((prev) => (prev + 1) % destination.images.length);
-              }}
-              className="absolute right-4 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center"
-            >
-              <ChevronRight className="w-6 h-6 text-white" />
-            </button>
+            {destination.images.length > 1 && (
+              <>
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxIndex((prev) => (prev - 1 + destination.images.length) % destination.images.length);
+                  }}
+                  className="absolute left-4 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center"
+                >
+                  <ChevronLeft className="w-6 h-6 text-white" />
+                </button>
+                
+                <button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    setLightboxIndex((prev) => (prev + 1) % destination.images.length);
+                  }}
+                  className="absolute right-4 w-12 h-12 bg-white/20 rounded-full flex items-center justify-center"
+                >
+                  <ChevronRight className="w-6 h-6 text-white" />
+                </button>
+              </>
+            )}
 
             <motion.img
               key={lightboxIndex}
