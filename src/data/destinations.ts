@@ -226,8 +226,8 @@ export const destinations: Destination[] = [
     rating: 4.7,
     reviewCount: 1234,
     images: [
+      "/img/destinations/Bhaktapur_Durbar_Square.jpg",
       "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800",
-      "/img/destinations/kathmandu.jpg",
       "https://images.unsplash.com/photo-1571401835393-8c5f35328320?w=800"
     ],
     attractions: ["55-Window Palace", "Nyatapola Temple", "Pottery Square", "Dattatreya Square", "Golden Gate"],
@@ -253,9 +253,9 @@ export const destinations: Destination[] = [
     rating: 4.6,
     reviewCount: 876,
     images: [
-      "https://images.unsplash.com/photo-1571401835393-8c5f35328320?w=800",
+      "/img/destinations/Patan-Durbar-Square.png",
       "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800",
-      "/img/destinations/kathmandu.jpg"
+      "https://images.unsplash.com/photo-1571401835393-8c5f35328320?w=800"
     ],
     attractions: ["Patan Durbar Square", "Hiranya Varna Mahavihar", "Mahabouddha Temple", "Patan Museum", "Golden Temple"],
     activities: ["Art gallery visits", "Heritage walks", "Shopping for handicrafts", "Photography"],
@@ -280,7 +280,7 @@ export const destinations: Destination[] = [
     rating: 4.8,
     reviewCount: 2134,
     images: [
-      "/img/hero.jpeg",
+      "/img/destinations/Swayambhunath.jpg",
       "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800",
       "https://images.unsplash.com/photo-1571401835393-8c5f35328320?w=800"
     ],
@@ -307,9 +307,9 @@ export const destinations: Destination[] = [
     rating: 4.7,
     reviewCount: 1876,
     images: [
-      "https://images.unsplash.com/photo-1571401835393-8c5f35328320?w=800",
-      "/img/destinations/kathmandu.jpg",
-      "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800"
+      "/img/destinations/Pashupatinath.jpg",
+      "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800",
+      "https://images.unsplash.com/photo-1571401835393-8c5f35328320?w=800"
     ],
     attractions: ["Main Temple", "Cremation Ghats", "Guhyeshwari Temple", "Virupaksha Temple", "Bagmati River"],
     activities: ["Evening aarti", "Temple viewing", "Spiritual experience", "Photography"],
@@ -361,7 +361,7 @@ export const destinations: Destination[] = [
     rating: 4.7,
     reviewCount: 1123,
     images: [
-      "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800",
+      "/img/destinations/Peace pagoda.jpg",
       "/img/destinations/pokhara.jpg",
       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800"
     ],
@@ -388,7 +388,7 @@ export const destinations: Destination[] = [
     rating: 4.9,
     reviewCount: 654,
     images: [
-      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800",
+      "/img/destinations/Rara lake.jpg",
       "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800",
       "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800"
     ],
@@ -415,7 +415,7 @@ export const destinations: Destination[] = [
     rating: 4.5,
     reviewCount: 1234,
     images: [
-      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800",
+      "/img/destinations/Mankamana.jpg",
       "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800",
       "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800"
     ],
@@ -442,7 +442,7 @@ export const destinations: Destination[] = [
     rating: 4.8,
     reviewCount: 876,
     images: [
-      "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=800",
+      "/img/destinations/Gosaikunda.jpg",
       "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800",
       "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800"
     ],
@@ -469,7 +469,7 @@ export const destinations: Destination[] = [
     rating: 4.6,
     reviewCount: 543,
     images: [
-      "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=800",
+      "/img/destinations/Ilam.jpg",
       "https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?w=800",
       "https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=800"
     ],
@@ -496,7 +496,7 @@ export const destinations: Destination[] = [
     rating: 4.5,
     reviewCount: 678,
     images: [
-      "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800",
+      "/img/destinations/JANAKPUR.jpg",
       "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800",
       "https://images.unsplash.com/photo-1571401835393-8c5f35328320?w=800"
     ],
@@ -523,7 +523,7 @@ export const destinations: Destination[] = [
     rating: 4.7,
     reviewCount: 765,
     images: [
-      "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800",
+      "/img/destinations/Bandipur.jpg",
       "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800",
       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800"
     ],
@@ -550,7 +550,7 @@ export const destinations: Destination[] = [
     rating: 4.9,
     reviewCount: 432,
     images: [
-      "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800",
+      "/img/destinations/UpperMustang.jpg",
       "/img/hero.jpeg",
       "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800"
     ],
@@ -577,7 +577,7 @@ export const destinations: Destination[] = [
     rating: 4.7,
     reviewCount: 987,
     images: [
-      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800",
+      "/img/destinations/Langtang.jpg",
       "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800",
       "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800"
     ],
@@ -604,7 +604,7 @@ export const destinations: Destination[] = [
     rating: 5.0,
     reviewCount: 2156,
     images: [
-      "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800",
+      "/img/destinations/Mt everest.webp",
       "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800",
       "/img/destinations/everest_base_camp.jpg"
     ],
