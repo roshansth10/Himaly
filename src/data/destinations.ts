@@ -37,9 +37,9 @@ export const destinations: Destination[] = [
     rating: 4.6,
     reviewCount: 2847,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
+      "/img/destinations/kathmandu.jpg",
       "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800",
-      "https://images.unsplash.com/photo-1599992693648-c3a0a8776bf1?w=800"
+      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800"
     ],
     attractions: ["Pashupatinath Temple", "Swayambhunath Stupa", "Boudhanath Stupa", "Kathmandu Durbar Square", "Patan Durbar Square"],
     activities: ["Heritage walks", "Cultural tours", "Temple visits", "Photography", "Local cuisine tasting"],
@@ -64,9 +64,9 @@ export const destinations: Destination[] = [
     rating: 4.7,
     reviewCount: 3156,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
-      "https://images.unsplash.com/photo-1623589764629-1d86f3b3e1d4?w=800",
-      "https://images.unsplash.com/photo-1605209684169-43e5549a79df?w=800"
+      "/img/destinations/pokhara.jpg",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800",
+      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800"
     ],
     attractions: ["Phewa Lake", "World Peace Pagoda", "Davis Falls", "Gupteshwor Cave", "Sarangkot"],
     activities: ["Paragliding", "Boating", "Trekking", "Zip-lining", "Ultralight flight"],
@@ -91,9 +91,9 @@ export const destinations: Destination[] = [
     rating: 5.0,
     reviewCount: 1892,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
-      "https://images.unsplash.com/photo-1513023840371-dd774fcaee9b?w=800",
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800"
+      "/img/destinations/everest_base_camp.jpg",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800"
     ],
     attractions: ["Kala Patthar", "Tengboche Monastery", "Namche Bazaar", "Khumbu Icefall", "Gorak Shep"],
     activities: ["High-altitude trekking", "Photography", "Cultural immersion", "Mountain viewing"],
@@ -118,9 +118,9 @@ export const destinations: Destination[] = [
     rating: 4.9,
     reviewCount: 2234,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
-      "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800"
+      "/img/destinations/annapurna_base_camp.jpg",
+      "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800",
+      "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800"
     ],
     attractions: ["Annapurna Sanctuary", "Machhapuchhre Base Camp", "Hot Springs", "Bamboo Forests", "Deurali"],
     activities: ["Trekking", "Photography", "Village visits", "Hot spring bath"],
@@ -145,9 +145,9 @@ export const destinations: Destination[] = [
     rating: 4.8,
     reviewCount: 1654,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
-      "https://images.unsplash.com/photo-1564349683136-77e08dba1ef7?w=800",
-      "https://images.unsplash.com/photo-1549366021-9f761d450615?w=800"
+      "/img/destinations/chitwan.jpg",
+      "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=800",
+      "https://images.unsplash.com/photo-1426604966848-d7adac402bff?w=800"
     ],
     attractions: ["Elephant Breeding Center", "Crocodile Breeding Center", "Tharu Village", "Rapti River", "Bis Hazari Lake"],
     activities: ["Jungle safari", "Elephant ride", "Canoeing", "Bird watching", "Tharu cultural dance"],
@@ -172,9 +172,9 @@ export const destinations: Destination[] = [
     rating: 4.9,
     reviewCount: 1456,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
-      "https://images.unsplash.com/photo-1599992693648-c3a0a8776bf1?w=800",
-      "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800"
+      "/img/destinations/lumbini.jpg",
+      "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800",
+      "https://images.unsplash.com/photo-1571401835393-8c5f35328320?w=800"
     ],
     attractions: ["Maya Devi Temple", "Sacred Garden", "Ashoka Pillar", "World Peace Pagoda", "Monastic Zone"],
     activities: ["Meditation", "Pilgrimage", "Monastery visits", "Peace walk", "Spiritual learning"],
@@ -199,9 +199,9 @@ export const destinations: Destination[] = [
     rating: 4.5,
     reviewCount: 987,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
       "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800"
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800",
+      "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800"
     ],
     attractions: ["Sunrise Viewpoint", "Nagarkot Tower", "Hiking Trails", "Village Walks"],
     activities: ["Sunrise viewing", "Photography", "Hiking", "Mountain biking", "Village tours"],
@@ -226,9 +226,9 @@ export const destinations: Destination[] = [
     rating: 4.7,
     reviewCount: 1234,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
       "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800",
-      "https://images.unsplash.com/photo-1599992693648-c3a0a8776bf1?w=800"
+      "/img/destinations/kathmandu.jpg",
+      "https://images.unsplash.com/photo-1571401835393-8c5f35328320?w=800"
     ],
     attractions: ["55-Window Palace", "Nyatapola Temple", "Pottery Square", "Dattatreya Square", "Golden Gate"],
     activities: ["Heritage walks", "Pottery making", "Photography", "Local cuisine", "Museum visits"],
@@ -253,9 +253,9 @@ export const destinations: Destination[] = [
     rating: 4.6,
     reviewCount: 876,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
+      "https://images.unsplash.com/photo-1571401835393-8c5f35328320?w=800",
       "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800",
-      "https://images.unsplash.com/photo-1599992693648-c3a0a8776bf1?w=800"
+      "/img/destinations/kathmandu.jpg"
     ],
     attractions: ["Patan Durbar Square", "Hiranya Varna Mahavihar", "Mahabouddha Temple", "Patan Museum", "Golden Temple"],
     activities: ["Art gallery visits", "Heritage walks", "Shopping for handicrafts", "Photography"],
@@ -280,9 +280,9 @@ export const destinations: Destination[] = [
     rating: 4.8,
     reviewCount: 2134,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
+      "/img/hero.jpeg",
       "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800",
-      "https://images.unsplash.com/photo-1599992693648-c3a0a8776bf1?w=800"
+      "https://images.unsplash.com/photo-1571401835393-8c5f35328320?w=800"
     ],
     attractions: ["Great Stupa", "Harati Temple", "Shantipur", "Dorje Phagmo Chapel", "World Peace Pond"],
     activities: ["Sunrise viewing", "Photography", "Meditation", "Kora (circumambulation)"],
@@ -307,9 +307,9 @@ export const destinations: Destination[] = [
     rating: 4.7,
     reviewCount: 1876,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
-      "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800",
-      "https://images.unsplash.com/photo-1599992693648-c3a0a8776bf1?w=800"
+      "https://images.unsplash.com/photo-1571401835393-8c5f35328320?w=800",
+      "/img/destinations/kathmandu.jpg",
+      "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800"
     ],
     attractions: ["Main Temple", "Cremation Ghats", "Guhyeshwari Temple", "Virupaksha Temple", "Bagmati River"],
     activities: ["Evening aarti", "Temple viewing", "Spiritual experience", "Photography"],
@@ -334,9 +334,9 @@ export const destinations: Destination[] = [
     rating: 4.6,
     reviewCount: 1432,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
-      "https://images.unsplash.com/photo-1623589764629-1d86f3b3e1d4?w=800",
-      "https://images.unsplash.com/photo-1605209684169-43e5549a79df?w=800"
+      "https://images.unsplash.com/photo-1533240332313-0db49b459ad6?w=800",
+      "/img/destinations/pokhara.jpg",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800"
     ],
     attractions: ["View Tower", "Paragliding Launch", "Sunrise Point", "Village"],
     activities: ["Paragliding", "Sunrise viewing", "Hiking", "Photography"],
@@ -361,9 +361,9 @@ export const destinations: Destination[] = [
     rating: 4.7,
     reviewCount: 1123,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
-      "https://images.unsplash.com/photo-1623589764629-1d86f3b3e1d4?w=800",
-      "https://images.unsplash.com/photo-1605209684169-43e5549a79df?w=800"
+      "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=800",
+      "/img/destinations/pokhara.jpg",
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800"
     ],
     attractions: ["White Stupa", "Buddha Statues", "Viewpoint", "Japanese Monastery"],
     activities: ["Hiking", "Meditation", "Photography", "Sunset viewing"],
@@ -388,8 +388,8 @@ export const destinations: Destination[] = [
     rating: 4.9,
     reviewCount: 654,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
+      "https://images.unsplash.com/photo-1501785888041-af3ef285b470?w=800",
+      "https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800",
       "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800"
     ],
     attractions: ["Rara Lake", "Rara National Park", "Muru Hill", "Chuchemara Peak"],
@@ -415,9 +415,9 @@ export const destinations: Destination[] = [
     rating: 4.5,
     reviewCount: 1234,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
+      "https://images.unsplash.com/photo-1518709268805-4e9042af9f23?w=800",
       "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800",
-      "https://images.unsplash.com/photo-1599992693648-c3a0a8776bf1?w=800"
+      "https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=800"
     ],
     attractions: ["Manakamana Temple", "Cable Car Ride", "Viewpoint", "Bhairav Temple"],
     activities: ["Cable car ride", "Pilgrimage", "Photography", "Valley viewing"],
@@ -442,8 +442,8 @@ export const destinations: Destination[] = [
     rating: 4.8,
     reviewCount: 876,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
+      "https://images.unsplash.com/photo-1508739773434-c26b3d09e071?w=800",
+      "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800",
       "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800"
     ],
     attractions: ["Gosaikunda Lake", "Bhairav Kunda", "Surya Kunda", "Laurebina Pass"],
@@ -469,9 +469,9 @@ export const destinations: Destination[] = [
     rating: 4.6,
     reviewCount: 543,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
       "https://images.unsplash.com/photo-1564890369478-c89ca6d9cde9?w=800",
-      "https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?w=800"
+      "https://images.unsplash.com/photo-1594631252845-29fc4cc8cde9?w=800",
+      "https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=800"
     ],
     attractions: ["Tea Gardens", "Mai Pokhari", "Antu Danda", "Kanyam"],
     activities: ["Tea estate tours", "Trekking", "Photography", "Bird watching"],
@@ -496,9 +496,9 @@ export const destinations: Destination[] = [
     rating: 4.5,
     reviewCount: 678,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
+      "https://images.unsplash.com/photo-1589182373726-e4f658ab50f0?w=800",
       "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800",
-      "https://images.unsplash.com/photo-1599992693648-c3a0a8776bf1?w=800"
+      "https://images.unsplash.com/photo-1571401835393-8c5f35328320?w=800"
     ],
     attractions: ["Janaki Temple", "Ram Mandir", "Dhanush Sagar", "Ganga Sagar", "Mithila Art Center"],
     activities: ["Temple visits", "Cultural tours", "Mithila art viewing", "Festival participation"],
@@ -523,9 +523,9 @@ export const destinations: Destination[] = [
     rating: 4.7,
     reviewCount: 765,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
+      "https://images.unsplash.com/photo-1526772662000-3f88f10405ff?w=800",
       "https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800",
-      "https://images.unsplash.com/photo-1599992693648-c3a0a8776bf1?w=800"
+      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800"
     ],
     attractions: ["Main Bazaar", "Bindabasini Temple", "Tundikhel", "Siddha Cave", "Ramkot Village"],
     activities: ["Heritage walks", "Hiking", "Cave exploration", "Village tours", "Photography"],
@@ -550,9 +550,9 @@ export const destinations: Destination[] = [
     rating: 4.9,
     reviewCount: 432,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800"
+      "https://images.unsplash.com/photo-1534447677768-be436bb09401?w=800",
+      "/img/hero.jpeg",
+      "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800"
     ],
     attractions: ["Lo Manthang", "Choser Caves", "Ghar Gompa", "Chhoser Village", "Kora La Pass"],
     activities: ["Trekking", "Cultural exploration", "Cave visits", "Monastery tours", "Photography"],
@@ -577,8 +577,8 @@ export const destinations: Destination[] = [
     rating: 4.7,
     reviewCount: 987,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
-      "https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=800",
+      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=800",
+      "https://images.unsplash.com/photo-1519681393784-d120267933ba?w=800",
       "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800"
     ],
     attractions: ["Kyanjin Gompa", "Langtang Village", "Kyanjin Ri", "Langtang Glacier", "Chandan Bari"],
@@ -604,9 +604,9 @@ export const destinations: Destination[] = [
     rating: 5.0,
     reviewCount: 2156,
     images: [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=800",
-      "https://images.unsplash.com/photo-1513023840371-dd774fcaee9b?w=800",
-      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800"
+      "https://images.unsplash.com/photo-1486870591958-9b9d0d1dda99?w=800",
+      "https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?w=800",
+      "/img/destinations/everest_base_camp.jpg"
     ],
     attractions: ["South Col", "Hillary Step", "Khumbu Icefall", "Everest Base Camp", "Kala Patthar"],
     activities: ["Mountaineering", "Trekking", "Photography", "Helicopter tours"],
