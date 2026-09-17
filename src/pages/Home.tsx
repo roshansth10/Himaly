@@ -19,6 +19,7 @@ import { DestinationCard } from '@/components/DestinationCard';
 import { destinations, getTopRatedDestinations, categories } from '@/data/destinations';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { getUserLocation, getDistance } from '@/utils/haversine';
+import heroImg from '/img/hero.jpeg';
 
 export function Home() {
   const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number } | null>(null);
@@ -27,7 +28,7 @@ export function Home() {
 
   const heroImages = [
     'https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1920',
-    'https://images.unsplash.com/photo-1513023840371-dd774fcaee9b?w=1920',
+    heroImg,
     'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1920',
   ];
 
