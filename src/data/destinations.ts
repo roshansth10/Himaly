@@ -562,7 +562,7 @@ export const destinations: Destination[] = [
     rating: 5.0,
     reviewCount: 2156,
     images: [
-      "/img/destinations/Mt everest.webp"
+      "/img/destinations/Mt everest.jpg"
     ],
     attractions: ["South Col", "Hillary Step", "Khumbu Icefall", "Everest Base Camp", "Kala Patthar"],
     activities: ["Mountaineering", "Trekking", "Photography", "Helicopter tours"],
