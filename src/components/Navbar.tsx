@@ -15,6 +15,7 @@ import {
 import { useTheme } from '@/hooks/useTheme';
 import { Button } from '@/components/ui/button';
 import logoUrl from '/img/himaly.jpg';
+import logoDarkUrl from '/img/himaly-dark.png';
 
 const navLinks = [
   { name: 'Home', path: '/', icon: Compass },
@@ -44,6 +45,8 @@ export function Navbar() {
 
   if (!mounted) return null;
 
+  const isDarkMode = theme === 'dark' || !isScrolled;
+
   return (
     <>
       <motion.nav
@@ -61,28 +64,16 @@ export function Navbar() {
             {/* Logo */}
             <Link to="/" className="flex items-center gap-3 group">
               <motion.div
-                whileHover={{ rotate: 10 }}
-                className="w-14 h-14 flex items-center justify-center"
+                whileHover={{ rotate: 5, scale: 1.05 }}
+                className="h-14 flex items-center justify-center"
               >
                 <img
-                  src={logoUrl}
+                  src={isDarkMode ? logoDarkUrl : logoUrl}
                   alt="Himaly logo"
                   loading="lazy"
-                  className="w-14 h-14 object-contain"
+                  className="h-12 w-auto max-w-[80px] object-contain"
                 />
               </motion.div>
-              <div className="flex flex-col">
-                <span className={`font-bold text-xl transition-colors ${
-                  isScrolled ? 'text-gray-900 dark:text-white' : 'text-white'
-                }`}>
-                  
-                </span>
-                <span className={`text-xs -mt-1 transition-colors ${
-                  isScrolled ? 'text-[#ff7f50]' : 'text-white/80'
-                }`}>
-                  Himaly
-                </span>
-              </div>
             </Link>
 
             {/* Desktop Navigation */}

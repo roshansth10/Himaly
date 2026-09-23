@@ -14,7 +14,7 @@ import {
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { useState } from 'react';
-import logoUrl from '/img/himaly.jpg';
+import logoUrl from '/img/himaly-dark.png';
 
 const quickLinks = [
   { name: 'Home', path: '/' },
@@ -133,17 +133,13 @@ export function Footer() {
               className="lg:col-span-1"
             >
               <Link to="/" className="flex items-center gap-3 mb-6">
-                <div className="w-16 h-16 flex items-center justify-center">
+                <div className="h-16 flex items-center justify-center">
                   <img
                     src={logoUrl}
                     alt="Himaly logo"
                     loading="lazy"
-                    className="w-16 h-16 object-contain"
+                    className="h-14 w-auto max-w-[90px] object-contain"
                   />
-                </div>
-                <div>
-                  <span className="font-bold text-2xl"></span>
-                  <span className="block text-sm text-[#ff7f50]">Himaly</span>
                 </div>
               </Link>
               <p className="text-gray-400 mb-6 leading-relaxed">
