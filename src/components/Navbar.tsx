@@ -45,7 +45,10 @@ export function Navbar() {
 
   if (!mounted) return null;
 
-  const isDarkMode = theme === 'dark' || !isScrolled;
+  // The home page has a dark hero section when not scrolled; other pages have light backgrounds
+  const isHomePage = location.pathname === '/';
+  const isTransparentOnDark = isHomePage && !isScrolled;
+  const isDarkMode = theme === 'dark' || isTransparentOnDark;
 
   return (
     <>
@@ -56,7 +59,9 @@ export function Navbar() {
         className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
           isScrolled
             ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg shadow-lg'
-            : 'bg-transparent'
+            : isHomePage
+            ? 'bg-transparent'
+            : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-800/50'
         }`}
       >
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -86,12 +91,12 @@ export function Navbar() {
                     to={link.path}
                     className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${
                       isActive(link.path)
-                        ? isScrolled
-                          ? 'text-[#ff7f50] bg-[#ff7f50]/10'
-                          : 'text-white bg-white/20'
-                        : isScrolled
-                        ? 'text-gray-700 dark:text-gray-300 hover:text-[#ff7f50] hover:bg-gray-100 dark:hover:bg-gray-800'
-                        : 'text-white/90 hover:text-white hover:bg-white/10'
+                        ? isTransparentOnDark
+                          ? 'text-white bg-white/20'
+                          : 'text-[#ff7f50] bg-[#ff7f50]/10'
+                        : isTransparentOnDark
+                        ? 'text-white/90 hover:text-white hover:bg-white/10'
+                        : 'text-gray-700 dark:text-gray-300 hover:text-[#ff7f50] hover:bg-gray-100 dark:hover:bg-gray-800'
                     }`}
                   >
                     <span className="flex items-center gap-2">
@@ -117,9 +122,9 @@ export function Navbar() {
                 size="icon"
                 onClick={toggleTheme}
                 className={`rounded-full transition-all ${
-                  isScrolled
-                    ? 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
-                    : 'text-white hover:bg-white/20'
+                  isTransparentOnDark
+                    ? 'text-white hover:bg-white/20'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
                 }`}
               >
                 <AnimatePresence mode="wait">
@@ -161,9 +166,9 @@ export function Navbar() {
                 size="icon"
                 onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                 className={`lg:hidden rounded-full ${
-                  isScrolled
-                    ? 'text-gray-700 dark:text-gray-300'
-                    : 'text-white'
+                  isTransparentOnDark
+                    ? 'text-white'
+                    : 'text-gray-700 dark:text-gray-300'
                 }`}
               >
                 {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
