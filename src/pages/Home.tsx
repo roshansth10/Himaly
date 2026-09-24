@@ -278,9 +278,7 @@ export function Home() {
 
                       {/* Content within rectangle */}
                       <div className="relative z-10 flex flex-col items-center">
-                        <div className="w-12 h-12 mb-2.5 rounded-xl bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-[#ff7f50] group-hover:border-[#ff7f50] group-hover:scale-105 transition-all duration-300 shadow-md">
-                          <Icon className="w-6 h-6 text-white" />
-                        </div>
+                        <Icon className="w-8 h-8 mb-2 text-white group-hover:text-[#ff7f50] group-hover:scale-110 transition-all duration-300 drop-shadow-md" />
                         <h3 className="font-bold text-lg text-white group-hover:text-[#ff7f50] transition-colors drop-shadow-sm">
                           {category.name}
                         </h3>
@@ -475,12 +473,12 @@ export function Home() {
       </section>
 
       {/* CTA Section */}
-      <section className="py-20 relative overflow-hidden">
+      <section className="py-24 relative overflow-hidden">
         <div 
           className="absolute inset-0 bg-cover bg-center bg-fixed"
-          style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1513023840371-dd774fcaee9b?w=1920)' }}
+          style={{ backgroundImage: 'url(/img/categories/adventure.jpg)' }}
         />
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/80" />
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -508,7 +506,7 @@ export function Home() {
                 <Button 
                   size="lg"
                   variant="outline"
-                  className="border-white text-white hover:bg-white hover:text-gray-900 px-8 py-6 rounded-full text-lg"
+                  className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-gray-900 dark:bg-transparent dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-gray-900 px-8 py-6 rounded-full text-lg font-medium transition-all shadow-md"
                 >
                   Contact Us
                 </Button>
