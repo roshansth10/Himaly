@@ -258,18 +258,38 @@ export function Home() {
                   viewport={{ once: true }}
                   transition={{ delay: index * 0.1 }}
                 >
-                  <Link to={`/destinations?category=${category.id}`}>
+                  <Link to={`/destinations?category=${category.id}`} className="block h-full">
                     <motion.div
-                      whileHover={{ y: -8, scale: 1.02 }}
+                      whileHover={{ y: -6, scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="group bg-white dark:bg-gray-800 rounded-2xl p-6 text-center shadow-lg hover:shadow-xl transition-all cursor-pointer"
+                      className="group relative h-48 sm:h-52 w-full rounded-2xl overflow-hidden p-5 flex flex-col justify-end text-center shadow-lg hover:shadow-2xl border border-white/10 dark:border-gray-700/50 cursor-pointer transition-all duration-300"
                     >
-                      <div className="w-16 h-16 mx-auto mb-4 bg-gradient-to-br from-[#ff7f50]/20 to-[#ff7f50]/5 rounded-2xl flex items-center justify-center group-hover:from-[#ff7f50] group-hover:to-[#ff6b35] transition-all duration-300">
-                        <Icon className="w-8 h-8 text-[#ff7f50] group-hover:text-white transition-colors" />
+                      {/* Category Image strictly within this rectangle */}
+                      {category.image && (
+                        <img
+                          src={category.image}
+                          alt={category.name}
+                          className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
+                        />
+                      )}
+
+                      {/* Gradient Overlay for optimal readability */}
+                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/20 group-hover:from-black/90 group-hover:via-black/55 transition-colors duration-300" />
+
+                      {/* Content within rectangle */}
+                      <div className="relative z-10 flex flex-col items-center">
+                        <div className="w-12 h-12 mb-2.5 rounded-xl bg-black/40 backdrop-blur-md border border-white/20 flex items-center justify-center group-hover:bg-[#ff7f50] group-hover:border-[#ff7f50] group-hover:scale-105 transition-all duration-300 shadow-md">
+                          <Icon className="w-6 h-6 text-white" />
+                        </div>
+                        <h3 className="font-bold text-lg text-white group-hover:text-[#ff7f50] transition-colors drop-shadow-sm">
+                          {category.name}
+                        </h3>
+                        {category.tagline && (
+                          <span className="text-xs text-gray-200/90 font-medium group-hover:text-white transition-colors mt-0.5 line-clamp-1">
+                            {category.tagline}
+                          </span>
+                        )}
                       </div>
-                      <h3 className="font-semibold text-gray-900 dark:text-white group-hover:text-[#ff7f50] transition-colors">
-                        {category.name}
-                      </h3>
                     </motion.div>
                   </Link>
                 </motion.div>

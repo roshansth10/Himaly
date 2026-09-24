@@ -575,13 +575,51 @@ export const destinations: Destination[] = [
   }
 ];
 
-export const categories = [
+export interface CategoryItem {
+  id: string;
+  name: string;
+  icon: string;
+  image?: string;
+  tagline?: string;
+}
+
+export const categories: CategoryItem[] = [
   { id: 'all', name: 'All Destinations', icon: 'Compass' },
-  { id: 'Adventure', name: 'Adventure', icon: 'Mountain' },
-  { id: 'Cultural', name: 'Cultural', icon: 'Landmark' },
-  { id: 'Nature', name: 'Nature', icon: 'Trees' },
-  { id: 'Pilgrimage', name: 'Pilgrimage', icon: 'Pray' },
-  { id: 'Wildlife', name: 'Wildlife', icon: 'Bird' }
+  { 
+    id: 'Adventure', 
+    name: 'Adventure', 
+    icon: 'Mountain', 
+    image: '/img/categories/adventure.jpg',
+    tagline: 'Rock Climbing & Peaks'
+  },
+  { 
+    id: 'Cultural', 
+    name: 'Cultural', 
+    icon: 'Landmark', 
+    image: '/img/categories/cultural.jpg',
+    tagline: 'Durbar Squares & Heritage'
+  },
+  { 
+    id: 'Nature', 
+    name: 'Nature', 
+    icon: 'Trees', 
+    image: '/img/categories/nature.jpg',
+    tagline: 'Lakes & Alpine Valleys'
+  },
+  { 
+    id: 'Pilgrimage', 
+    name: 'Pilgrimage', 
+    icon: 'Pray', 
+    image: '/img/categories/pilgrimage.jpg',
+    tagline: 'Sacred Temples & Stupas'
+  },
+  { 
+    id: 'Wildlife', 
+    name: 'Wildlife', 
+    icon: 'Bird', 
+    image: '/img/categories/wildlife.jpg',
+    tagline: 'Rhinos & Jungle Safaris'
+  }
 ];
 
 export const getDestinationById = (id: string): Destination | undefined => {
