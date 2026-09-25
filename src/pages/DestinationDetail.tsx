@@ -103,7 +103,7 @@ export function DestinationDetail() {
   if (!destination) {
     return (
       <div className="min-h-screen flex items-center justify-center">
-        <div className="animate-spin w-12 h-12 border-4 border-[#ff7f50] border-t-transparent rounded-full" />
+        <div className="animate-spin w-12 h-12 border-4 border-[#E8672A] border-t-transparent rounded-full" />
       </div>
     );
   }
@@ -147,7 +147,7 @@ export function DestinationDetail() {
         </AnimatePresence>
         
         {/* Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1B2A4A]/80 via-[#1B2A4A]/20 to-transparent" />
 
         {/* Navigation */}
         {destination.images.length > 1 && (
@@ -175,7 +175,7 @@ export function DestinationDetail() {
                 key={index}
                 onClick={() => setCurrentImageIndex(index)}
                 className={`w-2 h-2 rounded-full transition-all ${
-                  currentImageIndex === index ? 'w-8 bg-[#ff7f50]' : 'bg-white/50'
+                  currentImageIndex === index ? 'w-8 bg-[#E8672A]' : 'bg-white/50'
                 }`}
               />
             ))}
@@ -267,17 +267,17 @@ export function DestinationDetail() {
 
                     <div className="grid md:grid-cols-3 gap-4 mt-6">
                       <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
-                        <Clock className="w-6 h-6 text-[#ff7f50] mb-2" />
+                        <Clock className="w-6 h-6 text-[#E8672A] mb-2" />
                         <p className="text-sm text-gray-500">Duration</p>
                         <p className="font-semibold">{destination.duration}</p>
                       </div>
                       <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
-                        <TrendingUp className="w-6 h-6 text-[#ff7f50] mb-2" />
+                        <TrendingUp className="w-6 h-6 text-[#E8672A] mb-2" />
                         <p className="text-sm text-gray-500">Difficulty</p>
                         <p className="font-semibold">{destination.difficulty}</p>
                       </div>
                       <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4">
-                        <Calendar className="w-6 h-6 text-[#ff7f50] mb-2" />
+                        <Calendar className="w-6 h-6 text-[#E8672A] mb-2" />
                         <p className="text-sm text-gray-500">Best Time</p>
                         <p className="font-semibold">{destination.bestTimeToVisit}</p>
                       </div>
@@ -296,7 +296,7 @@ export function DestinationDetail() {
                       {destination.highlights.map((highlight, index) => (
                         <div
                           key={index}
-                          className="flex items-center gap-2 bg-[#ff7f50]/10 text-[#ff7f50] px-4 py-2 rounded-full"
+                          className="flex items-center gap-2 bg-[#E8672A]/10 text-[#E8672A] px-4 py-2 rounded-full"
                         >
                           <Check className="w-4 h-4" />
                           <span className="font-medium">{highlight}</span>
@@ -322,7 +322,7 @@ export function DestinationDetail() {
                           transition={{ delay: index * 0.1 }}
                           className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-xl"
                         >
-                          <div className="w-12 h-12 bg-[#ff7f50] rounded-xl flex items-center justify-center flex-shrink-0">
+                          <div className="w-12 h-12 bg-[#E8672A] rounded-xl flex items-center justify-center flex-shrink-0">
                             <Mountain className="w-6 h-6 text-white" />
                           </div>
                           <span className="font-medium">{attraction}</span>
@@ -348,7 +348,7 @@ export function DestinationDetail() {
                           transition={{ delay: index * 0.1 }}
                           className="flex items-center gap-4 p-4 bg-gray-50 dark:bg-gray-700 rounded-xl"
                         >
-                          <div className="w-12 h-12 bg-gradient-to-br from-[#ff7f50] to-[#ff6b35] rounded-xl flex items-center justify-center flex-shrink-0">
+                          <div className="w-12 h-12 bg-gradient-to-br from-[#E8672A] to-[#D4551A] rounded-xl flex items-center justify-center flex-shrink-0">
                             <Compass className="w-6 h-6 text-white" />
                           </div>
                           <span className="font-medium">{activity}</span>
@@ -401,7 +401,7 @@ export function DestinationDetail() {
                     </div>
                     <div className="mt-4 flex items-center gap-6">
                       <div className="flex items-center gap-2">
-                        <div className="w-4 h-4 rounded-full bg-[#ff7f50]" />
+                        <div className="w-4 h-4 rounded-full bg-[#E8672A]" />
                         <span className="text-sm">{destination.name}</span>
                       </div>
                       {userLocation && (
@@ -428,7 +428,7 @@ export function DestinationDetail() {
                   <div className="flex items-center justify-between mb-6">
                     <div>
                       <p className="text-sm text-gray-500">Starting from</p>
-                      <p className="text-3xl font-bold text-[#ff7f50]">
+                      <p className="text-3xl font-bold text-[#E8672A]">
                         {destination.price === 0 ? 'Free' : `NPR ${destination.price.toLocaleString()}`}
                       </p>
                     </div>
@@ -447,7 +447,7 @@ export function DestinationDetail() {
 
                   <Link to={`/booking/${destination.id}`}>
                     <Button 
-                      className="w-full bg-[#ff7f50] hover:bg-[#e86a3a] text-white py-6 rounded-xl text-lg font-medium mb-4"
+                      className="w-full bg-[#E8672A] hover:bg-[#c85a22] text-white py-6 rounded-xl text-lg font-medium mb-4"
                     >
                       Book Now
                     </Button>

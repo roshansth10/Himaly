@@ -21,6 +21,14 @@ import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { getUserLocation, getDistance } from '@/utils/haversine';
 import heroImg from '/img/hero.jpeg';
 
+// Pre-defined static particle positions to preserve React purity during render
+const PARTICLES = Array.from({ length: 20 }, (_, i) => ({
+  id: i,
+  x: `${(i * 19 + 7) % 100}%`,
+  duration: 10 + (i % 5) * 2,
+  delay: (i * 0.4) % 5,
+}));
+
 export function Home() {
   const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number } | null>(null);
   const [nearestDestinations, setNearestDestinations] = useState<typeof destinations>([]);
@@ -37,7 +45,7 @@ export function Home() {
       setHeroImageIndex((prev) => (prev + 1) % heroImages.length);
     }, 6000);
     return () => clearInterval(interval);
-  }, []);
+  }, [heroImages.length]);
 
   useEffect(() => {
     const fetchLocation = async () => {
@@ -84,18 +92,18 @@ export function Home() {
               className="absolute inset-0 bg-cover bg-center bg-no-repeat"
               style={{ backgroundImage: `url(${img})` }}
             />
-            <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/40 to-black/70" />
+            <div className="absolute inset-0 bg-gradient-to-b from-[#1B2A4A]/60 via-[#1B2A4A]/40 to-[#1B2A4A]/70" />
           </motion.div>
         ))}
 
         {/* Animated Particles */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {[...Array(20)].map((_, i) => (
+          {PARTICLES.map((p) => (
             <motion.div
-              key={i}
+              key={p.id}
               className="absolute w-1 h-1 bg-white/30 rounded-full"
               initial={{ 
-                x: Math.random() * 100 + '%', 
+                x: p.x, 
                 y: '100%',
                 opacity: 0 
               }}
@@ -104,9 +112,9 @@ export function Home() {
                 opacity: [0, 1, 0]
               }}
               transition={{ 
-                duration: Math.random() * 10 + 10,
+                duration: p.duration,
                 repeat: Infinity,
-                delay: Math.random() * 5
+                delay: p.delay
               }}
             />
           ))}
@@ -120,7 +128,7 @@ export function Home() {
             transition={{ duration: 0.8, delay: 0.2 }}
           >
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-full px-4 py-2 mb-8">
-              <Compass className="w-4 h-4 text-[#ff7f50]" />
+              <Compass className="w-4 h-4 text-[#E8672A]" />
               <span className="text-white/90 text-sm">Himaly – Discover the Soul of Nepal</span>
             </div>
           </motion.div>
@@ -132,7 +140,7 @@ export function Home() {
             className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold text-white mb-6 leading-tight"
           >
             <span className="block">Discover</span>
-            <span className="block text-[#ff7f50]">Nepal's</span>
+            <span className="block text-[#E8672A]">Nepal's</span>
             <span className="block">Majestic Beauty</span>
           </motion.h1>
 
@@ -163,7 +171,7 @@ export function Home() {
             <Link to="/destinations">
               <Button 
                 size="lg"
-                className="bg-[#ff7f50] hover:bg-[#e86a3a] text-white px-6 sm:px-8 py-4 sm:py-6 rounded-full text-base sm:text-lg font-medium transition-all hover:shadow-xl hover:shadow-[#ff7f50]/30 hover:-translate-y-1"
+                className="bg-[#E8672A] hover:bg-[#c85a22] text-white px-6 sm:px-8 py-4 sm:py-6 rounded-full text-base sm:text-lg font-medium transition-all hover:shadow-xl hover:shadow-[#E8672A]/30 hover:-translate-y-1"
               >
                 Explore Destinations
                 <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 ml-2" />
@@ -224,7 +232,7 @@ export function Home() {
       </section>
 
       {/* Categories Section */}
-      <section className="py-20 bg-gray-50 dark:bg-gray-800/50">
+      <section className="py-20 bg-[#FBF7F2] dark:bg-gray-800/50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -233,7 +241,7 @@ export function Home() {
             className="text-center mb-16"
           >
             <h2 className="text-4xl md:text-5xl font-bold mb-4">
-              Explore by <span className="text-[#ff7f50]">Category</span>
+              Explore by <span className="text-[#E8672A]">Category</span>
             </h2>
             <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
               Find your perfect adventure from our diverse range of travel experiences
@@ -274,12 +282,12 @@ export function Home() {
                       )}
 
                       {/* Gradient Overlay for optimal readability */}
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/45 to-black/20 group-hover:from-black/90 group-hover:via-black/55 transition-colors duration-300" />
+                      <div className="absolute inset-0 bg-gradient-to-t from-[#1B2A4A]/85 via-[#1B2A4A]/45 to-[#1B2A4A]/20 group-hover:from-[#1B2A4A]/90 group-hover:via-[#1B2A4A]/55 transition-colors duration-300" />
 
                       {/* Content within rectangle */}
                       <div className="relative z-10 flex flex-col items-center">
-                        <Icon className="w-8 h-8 mb-2 text-white group-hover:text-[#ff7f50] group-hover:scale-110 transition-all duration-300 drop-shadow-md" />
-                        <h3 className="font-bold text-lg text-white group-hover:text-[#ff7f50] transition-colors drop-shadow-sm">
+                        <Icon className="w-8 h-8 mb-2 text-white group-hover:text-[#E8672A] group-hover:scale-110 transition-all duration-300 drop-shadow-md" />
+                        <h3 className="font-bold text-lg text-white group-hover:text-[#E8672A] transition-colors drop-shadow-sm">
                           {category.name}
                         </h3>
                         {category.tagline && (
@@ -308,7 +316,7 @@ export function Home() {
           >
             <div>
               <h2 className="text-4xl md:text-5xl font-bold mb-4">
-                Popular <span className="text-[#ff7f50]">Destinations</span>
+                Popular <span className="text-[#E8672A]">Destinations</span>
               </h2>
               <p className="text-gray-600 dark:text-gray-400 text-lg max-w-xl">
                 Explore Nepal's most beloved travel experiences, handpicked for unforgettable adventures
@@ -317,7 +325,7 @@ export function Home() {
             <Link to="/destinations">
               <Button 
                 variant="outline" 
-                className="mt-4 md:mt-0 border-[#ff7f50] text-[#ff7f50] hover:bg-[#ff7f50] hover:text-white rounded-full px-6"
+                className="mt-4 md:mt-0 border-[#E8672A] text-[#E8672A] hover:bg-[#E8672A] hover:text-white rounded-full px-6"
               >
                 View All Destinations
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -339,7 +347,7 @@ export function Home() {
 
       {/* Nearest Destinations Section */}
       {nearestDestinations.length > 0 && userLocation && (
-        <section className="py-20 bg-gradient-to-b from-[#ff7f50]/5 to-transparent">
+        <section className="py-20 bg-gradient-to-b from-[#E8672A]/5 to-transparent">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
@@ -349,7 +357,7 @@ export function Home() {
             >
               <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
                 <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-[#ff7f50] rounded-full flex items-center justify-center shadow-lg">
+                  <div className="w-12 h-12 bg-[#E8672A] rounded-full flex items-center justify-center shadow-lg">
                     <MapPin className="w-6 h-6 text-white" />
                   </div>
                   <div>
@@ -396,7 +404,7 @@ export function Home() {
                   alt="Nepal Temple"
                   className="w-full h-[500px] object-cover"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#1B2A4A]/50 to-transparent" />
               </div>
               
               {/* Floating Badge */}
@@ -405,7 +413,7 @@ export function Home() {
                 whileInView={{ scale: 1, rotate: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, type: 'spring' }}
-                className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#ff7f50] rounded-2xl flex flex-col items-center justify-center text-white shadow-xl"
+                className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#E8672A] rounded-2xl flex flex-col items-center justify-center text-white shadow-xl"
               >
                 <span className="text-4xl font-bold">25+</span>
                 <span className="text-sm">Years</span>
@@ -415,7 +423,7 @@ export function Home() {
               <motion.div
                 animate={{ rotate: 360 }}
                 transition={{ duration: 20, repeat: Infinity, ease: 'linear' }}
-                className="absolute -top-4 -left-4 w-24 h-24 border-2 border-dashed border-[#ff7f50]/30 rounded-full"
+                className="absolute -top-4 -left-4 w-24 h-24 border-2 border-dashed border-[#E8672A]/30 rounded-full"
               />
             </motion.div>
 
@@ -425,7 +433,7 @@ export function Home() {
               viewport={{ once: true }}
             >
               <h2 className="text-4xl md:text-5xl font-bold mb-6">
-                Why Choose <span className="text-[#ff7f50]">Nepal Travel</span>
+                Why Choose <span className="text-[#E8672A]">Nepal Travel</span>
               </h2>
               <p className="text-gray-600 dark:text-gray-400 text-lg mb-8">
                 With over 25 years of experience, we craft unforgettable journeys through the Himalayas. 
@@ -450,8 +458,8 @@ export function Home() {
                       transition={{ delay: index * 0.1 }}
                       className="flex items-center gap-4 group"
                     >
-                      <div className="w-12 h-12 bg-[#ff7f50]/10 rounded-xl flex items-center justify-center group-hover:bg-[#ff7f50] transition-colors">
-                        <Icon className="w-6 h-6 text-[#ff7f50] group-hover:text-white transition-colors" />
+                      <div className="w-12 h-12 bg-[#E8672A]/10 rounded-xl flex items-center justify-center group-hover:bg-[#E8672A] transition-colors">
+                        <Icon className="w-6 h-6 text-[#E8672A] group-hover:text-white transition-colors" />
                       </div>
                       <span className="text-lg font-medium">{item.text}</span>
                     </motion.div>
@@ -461,7 +469,7 @@ export function Home() {
 
               <Link to="/destinations">
                 <Button 
-                  className="mt-8 bg-[#ff7f50] hover:bg-[#e86a3a] text-white rounded-full px-8 py-6"
+                  className="mt-8 bg-[#E8672A] hover:bg-[#c85a22] text-white rounded-full px-8 py-6"
                 >
                   Learn More About Us
                   <ArrowRight className="w-5 h-5 ml-2" />
@@ -478,7 +486,7 @@ export function Home() {
           className="absolute inset-0 bg-cover bg-center bg-fixed"
           style={{ backgroundImage: 'url(/img/categories/adventure.jpg)' }}
         />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/60 to-black/80" />
+        <div className="absolute inset-0 bg-gradient-to-t from-[#1B2A4A]/80 via-[#1B2A4A]/60 to-[#1B2A4A]/80" />
         
         <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -487,7 +495,7 @@ export function Home() {
             viewport={{ once: true }}
           >
             <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
-              Ready to Start Your <span className="text-[#ff7f50]">Adventure?</span>
+              Ready to Start Your <span className="text-[#E8672A]">Adventure?</span>
             </h2>
             <p className="text-white/80 text-xl mb-8 max-w-2xl mx-auto">
               Book your dream trip to Nepal today and create memories that will last a lifetime.
@@ -496,7 +504,7 @@ export function Home() {
               <Link to="/destinations">
                 <Button 
                   size="lg"
-                  className="bg-[#ff7f50] hover:bg-[#e86a3a] text-white px-8 py-6 rounded-full text-lg"
+                  className="bg-[#E8672A] hover:bg-[#c85a22] text-white px-8 py-6 rounded-full text-lg"
                 >
                   Book Now
                   <ArrowRight className="w-5 h-5 ml-2" />

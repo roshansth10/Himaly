@@ -159,7 +159,7 @@ Thank you for booking with Himaly!
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <Link to={`/destination/${id}`} className="inline-flex items-center text-gray-500 hover:text-[#ff7f50] mb-4">
+          <Link to={`/destination/${id}`} className="inline-flex items-center text-gray-500 hover:text-[#E8672A] mb-4">
             <ArrowLeft className="w-4 h-4 mr-2" />
             Back to Destination
           </Link>
@@ -179,7 +179,7 @@ Thank you for booking with Himaly!
                 <div key={s} className="flex items-center">
                   <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
                     isCurrent 
-                      ? 'bg-[#ff7f50] text-white' 
+                      ? 'bg-[#E8672A] text-white' 
                       : isActive 
                         ? 'bg-green-500 text-white' 
                         : 'bg-gray-200 dark:bg-gray-700 text-gray-500'
@@ -187,7 +187,7 @@ Thank you for booking with Himaly!
                     {isActive && stepNum < currentStepNum ? <Check className="w-5 h-5" /> : stepNum}
                   </div>
                   <span className={`ml-2 font-medium hidden sm:block ${
-                    isCurrent ? 'text-[#ff7f50]' : isActive ? 'text-green-500' : 'text-gray-400'
+                    isCurrent ? 'text-[#E8672A]' : isActive ? 'text-green-500' : 'text-gray-400'
                   }`}>
                     {s}
                   </span>
@@ -228,7 +228,7 @@ Thank you for booking with Himaly!
                             name="name"
                             value={formData.name}
                             onChange={handleInputChange}
-                            placeholder="John Doe"
+                            placeholder="Sujan Shrestha"
                             className="pl-10"
                             required
                           />
@@ -245,7 +245,7 @@ Thank you for booking with Himaly!
                             type="email"
                             value={formData.email}
                             onChange={handleInputChange}
-                            placeholder="john@example.com"
+                            placeholder="sujan@example.com"
                             className="pl-10"
                             required
                           />
@@ -307,7 +307,7 @@ Thank you for booking with Himaly!
 
                     <Button 
                       type="submit"
-                      className="w-full bg-[#ff7f50] hover:bg-[#e86a3a] text-white py-6"
+                      className="w-full bg-[#E8672A] hover:bg-[#c85a22] text-white py-6"
                     >
                       Continue to Payment
                     </Button>
@@ -332,7 +332,7 @@ Thank you for booking with Himaly!
                       onClick={() => setPaymentMethod('esewa')}
                       className={`w-full p-4 rounded-xl border-2 transition-all flex items-center gap-4 ${
                         paymentMethod === 'esewa'
-                          ? 'border-[#ff7f50] bg-[#ff7f50]/5'
+                          ? 'border-[#E8672A] bg-[#E8672A]/5'
                           : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
                       }`}
                     >
@@ -344,7 +344,7 @@ Thank you for booking with Himaly!
                         <p className="text-sm text-gray-500">Pay with eSewa wallet</p>
                       </div>
                       {paymentMethod === 'esewa' && (
-                        <div className="w-6 h-6 bg-[#ff7f50] rounded-full flex items-center justify-center">
+                        <div className="w-6 h-6 bg-[#E8672A] rounded-full flex items-center justify-center">
                           <Check className="w-4 h-4 text-white" />
                         </div>
                       )}
@@ -355,7 +355,7 @@ Thank you for booking with Himaly!
                       onClick={() => setPaymentMethod('khalti')}
                       className={`w-full p-4 rounded-xl border-2 transition-all flex items-center gap-4 ${
                         paymentMethod === 'khalti'
-                          ? 'border-[#ff7f50] bg-[#ff7f50]/5'
+                          ? 'border-[#E8672A] bg-[#E8672A]/5'
                           : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
                       }`}
                     >
@@ -367,7 +367,7 @@ Thank you for booking with Himaly!
                         <p className="text-sm text-gray-500">Pay with Khalti wallet</p>
                       </div>
                       {paymentMethod === 'khalti' && (
-                        <div className="w-6 h-6 bg-[#ff7f50] rounded-full flex items-center justify-center">
+                        <div className="w-6 h-6 bg-[#E8672A] rounded-full flex items-center justify-center">
                           <Check className="w-4 h-4 text-white" />
                         </div>
                       )}
@@ -378,7 +378,7 @@ Thank you for booking with Himaly!
                       onClick={() => setPaymentMethod('cash')}
                       className={`w-full p-4 rounded-xl border-2 transition-all flex items-center gap-4 ${
                         paymentMethod === 'cash'
-                          ? 'border-[#ff7f50] bg-[#ff7f50]/5'
+                          ? 'border-[#E8672A] bg-[#E8672A]/5'
                           : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
                       }`}
                     >
@@ -390,7 +390,7 @@ Thank you for booking with Himaly!
                         <p className="text-sm text-gray-500">Pay cash when you arrive</p>
                       </div>
                       {paymentMethod === 'cash' && (
-                        <div className="w-6 h-6 bg-[#ff7f50] rounded-full flex items-center justify-center">
+                        <div className="w-6 h-6 bg-[#E8672A] rounded-full flex items-center justify-center">
                           <Check className="w-4 h-4 text-white" />
                         </div>
                       )}
@@ -407,7 +407,7 @@ Thank you for booking with Himaly!
                     </Button>
                     <Button
                       onClick={handlePayment}
-                      className="flex-1 bg-[#ff7f50] hover:bg-[#e86a3a] text-white"
+                      className="flex-1 bg-[#E8672A] hover:bg-[#c85a22] text-white"
                     >
                       Pay NPR {totalAmount.toLocaleString()}
                     </Button>
@@ -430,7 +430,7 @@ Thank you for booking with Himaly!
                       transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
                       className="w-full h-full"
                     >
-                      <Loader2 className="w-20 h-20 text-[#ff7f50]" />
+                      <Loader2 className="w-20 h-20 text-[#E8672A]" />
                     </motion.div>
                   </div>
                   <h2 className="text-2xl font-bold mb-2">Processing Payment...</h2>
@@ -470,7 +470,7 @@ Thank you for booking with Himaly!
                       </div>
                       <div>
                         <p className="text-sm text-gray-500">Amount Paid</p>
-                        <p className="font-bold text-[#ff7f50]">NPR {totalAmount.toLocaleString()}</p>
+                        <p className="font-bold text-[#E8672A]">NPR {totalAmount.toLocaleString()}</p>
                       </div>
                       <div>
                         <p className="text-sm text-gray-500">Payment Method</p>
@@ -490,7 +490,7 @@ Thank you for booking with Himaly!
                     </Button>
                     <Button
                       onClick={() => navigate('/bookings')}
-                      className="flex-1 bg-[#ff7f50] hover:bg-[#e86a3a] text-white"
+                      className="flex-1 bg-[#E8672A] hover:bg-[#c85a22] text-white"
                     >
                       View My Bookings
                     </Button>
@@ -544,7 +544,7 @@ Thank you for booking with Himaly!
                 <div className="border-t border-gray-200 dark:border-gray-700 pt-3">
                   <div className="flex justify-between text-lg font-bold">
                     <span>Total</span>
-                    <span className="text-[#ff7f50]">NPR {totalAmount.toLocaleString()}</span>
+                    <span className="text-[#E8672A]">NPR {totalAmount.toLocaleString()}</span>
                   </div>
                 </div>
               </div>

@@ -71,7 +71,7 @@ export function SearchBar({ variant = 'page', onSearch }: SearchBarProps) {
             transition={{ delay: 0.5, duration: 0.6 }}
             className={`relative flex items-center bg-white/10 backdrop-blur-md rounded-2xl border transition-all duration-300 ${
               isFocused 
-                ? 'border-[#ff7f50] shadow-lg shadow-[#ff7f50]/20 bg-white/20' 
+                ? 'border-[#E8672A] shadow-lg shadow-[#E8672A]/20 bg-white/20' 
                 : 'border-white/30 hover:border-white/50'
             }`}
           >
@@ -102,7 +102,7 @@ export function SearchBar({ variant = 'page', onSearch }: SearchBarProps) {
               type="submit"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="mr-2 px-6 py-3 bg-[#ff7f50] hover:bg-[#e86a3a] text-white rounded-xl font-medium transition-colors flex items-center gap-2"
+              className="mr-2 px-6 py-3 bg-[#E8672A] hover:bg-[#c85a22] text-white rounded-xl font-medium transition-colors flex items-center gap-2"
             >
               <Search className="w-5 h-5" />
               <span className="hidden sm:inline">Search</span>
@@ -140,7 +140,7 @@ export function SearchBar({ variant = 'page', onSearch }: SearchBarProps) {
                       {dest.location}
                     </p>
                   </div>
-                  <span className="text-sm text-[#ff7f50] font-medium">{dest.category}</span>
+                  <span className="text-sm text-[#E8672A] font-medium">{dest.category}</span>
                 </motion.button>
               ))}
             </motion.div>
@@ -154,7 +154,7 @@ export function SearchBar({ variant = 'page', onSearch }: SearchBarProps) {
     return (
       <form onSubmit={handleSubmit} className="hidden md:block">
         <div className={`relative flex items-center bg-gray-100 dark:bg-gray-800 rounded-full transition-all duration-300 ${
-          isFocused ? 'ring-2 ring-[#ff7f50]' : ''
+          isFocused ? 'ring-2 ring-[#E8672A]' : ''
         }`}>
           <Search className="absolute left-4 w-4 h-4 text-gray-400" />
           <Input
@@ -176,7 +176,7 @@ export function SearchBar({ variant = 'page', onSearch }: SearchBarProps) {
     <div className="relative w-full max-w-xl">
       <form onSubmit={handleSubmit}>
         <div className={`relative flex items-center bg-white dark:bg-gray-800 rounded-xl border-2 transition-all duration-300 ${
-          isFocused ? 'border-[#ff7f50] shadow-lg shadow-[#ff7f50]/10' : 'border-gray-200 dark:border-gray-700'
+          isFocused ? 'border-[#E8672A] shadow-lg shadow-[#E8672A]/10' : 'border-gray-200 dark:border-gray-700'
         }`}>
           <Search className="absolute left-4 w-5 h-5 text-gray-400" />
           <Input

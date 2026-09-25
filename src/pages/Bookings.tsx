@@ -122,7 +122,7 @@ Thank you for booking with Himaly!
   return (
     <div className="min-h-screen pt-24 pb-20 bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <section className="bg-gradient-to-b from-[#ff7f50]/10 to-transparent py-12">
+      <section className="bg-gradient-to-b from-[#E8672A]/10 to-transparent py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -130,7 +130,7 @@ Thank you for booking with Himaly!
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              My <span className="text-[#ff7f50]">Bookings</span>
+              My <span className="text-[#E8672A]">Bookings</span>
             </h1>
             <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
               View and manage all your upcoming adventures
@@ -177,7 +177,7 @@ Thank you for booking with Himaly!
 
                           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
                             <div className="flex items-center gap-2">
-                              <Calendar className="w-4 h-4 text-[#ff7f50]" />
+                              <Calendar className="w-4 h-4 text-[#E8672A]" />
                               <div>
                                 <p className="text-xs text-gray-500">Travel Date</p>
                                 <p className="font-medium text-sm">
@@ -186,21 +186,21 @@ Thank you for booking with Himaly!
                               </div>
                             </div>
                             <div className="flex items-center gap-2">
-                              <Users className="w-4 h-4 text-[#ff7f50]" />
+                              <Users className="w-4 h-4 text-[#E8672A]" />
                               <div>
                                 <p className="text-xs text-gray-500">People</p>
                                 <p className="font-medium text-sm">{booking.numberOfPeople}</p>
                               </div>
                             </div>
                             <div className="flex items-center gap-2">
-                              <CreditCard className="w-4 h-4 text-[#ff7f50]" />
+                              <CreditCard className="w-4 h-4 text-[#E8672A]" />
                               <div>
                                 <p className="text-xs text-gray-500">Payment</p>
                                 <p className="font-medium text-sm uppercase">{booking.paymentMethod}</p>
                               </div>
                             </div>
                             <div className="flex items-center gap-2">
-                              <Package className="w-4 h-4 text-[#ff7f50]" />
+                              <Package className="w-4 h-4 text-[#E8672A]" />
                               <div>
                                 <p className="text-xs text-gray-500">Booking ID</p>
                                 <p className="font-medium text-sm">{booking.id}</p>
@@ -210,7 +210,7 @@ Thank you for booking with Himaly!
                         </div>
 
                         <div className="text-right">
-                          <p className="text-2xl font-bold text-[#ff7f50]">
+                          <p className="text-2xl font-bold text-[#E8672A]">
                             NPR {booking.amount.toLocaleString()}
                           </p>
                           <p className="text-sm text-gray-500">
@@ -299,7 +299,7 @@ Thank you for booking with Himaly!
                                   </div>
                                   <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
                                     <span className="text-lg font-bold">Total Amount</span>
-                                    <span className="text-2xl font-bold text-[#ff7f50]">
+                                    <span className="text-2xl font-bold text-[#E8672A]">
                                       NPR {selectedBooking.amount.toLocaleString()}
                                     </span>
                                   </div>
@@ -356,7 +356,7 @@ Thank you for booking with Himaly!
                 Start exploring and book your first adventure!
               </p>
               <Link to="/destinations">
-                <Button className="bg-[#ff7f50] hover:bg-[#e86a3a] text-white">
+                <Button className="bg-[#E8672A] hover:bg-[#c85a22] text-white">
                   Explore Destinations
                   <ArrowRight className="w-4 h-4 ml-2" />
                 </Button>

@@ -104,7 +104,7 @@ export function MapView() {
   return (
     <div className="min-h-screen pt-20 bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <section className="bg-gradient-to-b from-[#ff7f50]/10 to-transparent py-8">
+      <section className="bg-gradient-to-b from-[#E8672A]/10 to-transparent py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -112,7 +112,7 @@ export function MapView() {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl font-bold mb-4">
-              Explore <span className="text-[#ff7f50]">Nepal Map</span>
+              Explore <span className="text-[#E8672A]">Nepal Map</span>
             </h1>
             <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
               Discover all destinations across Nepal. Find the nearest attractions to your location.
@@ -138,7 +138,7 @@ export function MapView() {
                     onClick={() => setMapType('standard')}
                     className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
                       mapType === 'standard' 
-                        ? 'bg-[#ff7f50] text-white' 
+                        ? 'bg-[#E8672A] text-white' 
                         : 'bg-gray-100 dark:bg-gray-700'
                     }`}
                   >
@@ -148,7 +148,7 @@ export function MapView() {
                     onClick={() => setMapType('satellite')}
                     className={`flex-1 py-2 px-4 rounded-lg text-sm font-medium transition-colors ${
                       mapType === 'satellite' 
-                        ? 'bg-[#ff7f50] text-white' 
+                        ? 'bg-[#E8672A] text-white' 
                         : 'bg-gray-100 dark:bg-gray-700'
                     }`}
                   >
@@ -162,7 +162,7 @@ export function MapView() {
                     onClick={() => setShowNearest(!showNearest)}
                     aria-label="Toggle nearest destinations"
                     className={`w-12 h-6 rounded-full transition-colors relative ${
-                      showNearest ? 'bg-[#ff7f50]' : 'bg-gray-300'
+                      showNearest ? 'bg-[#E8672A]' : 'bg-gray-300'
                     }`}
                   >
                     <div className={`absolute top-1 w-4 h-4 bg-white rounded-full transition-transform ${
@@ -176,7 +176,7 @@ export function MapView() {
               {userLocation && showNearest && (
                 <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg">
                   <div className="flex items-center gap-2 mb-4">
-                    <Navigation className="w-5 h-5 text-[#ff7f50]" />
+                    <Navigation className="w-5 h-5 text-[#E8672A]" />
                     <h3 className="font-bold">Nearest to You</h3>
                   </div>
                   
@@ -190,7 +190,7 @@ export function MapView() {
                         onClick={() => handleDestinationClick(dest)}
                         className={`w-full text-left p-3 rounded-xl transition-all ${
                           selectedDestination === dest.id
-                            ? 'bg-[#ff7f50]/10 border-2 border-[#ff7f50]'
+                            ? 'bg-[#E8672A]/10 border-2 border-[#E8672A]'
                             : 'bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600'
                         }`}
                       >
@@ -207,7 +207,7 @@ export function MapView() {
                               {dest.location}
                             </p>
                             {dest.distance && (
-                              <p className="text-sm text-[#ff7f50] font-medium">
+                              <p className="text-sm text-[#E8672A] font-medium">
                                 {formatDistance(dest.distance)}
                               </p>
                             )}
@@ -229,7 +229,7 @@ export function MapView() {
                       onClick={() => handleDestinationClick(dest)}
                       className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
                         selectedDestination === dest.id
-                          ? 'bg-[#ff7f50] text-white'
+                          ? 'bg-[#E8672A] text-white'
                           : 'hover:bg-gray-100 dark:hover:bg-gray-700'
                       }`}
                     >
@@ -319,11 +319,11 @@ export function MapView() {
                                 <span className="text-sm">{dest.rating}</span>
                               </div>
                               <div className="flex items-center justify-between">
-                                <span className="font-bold text-[#ff7f50]">
+                                <span className="font-bold text-[#E8672A]">
                                   {dest.price === 0 ? 'Free' : `NPR ${dest.price.toLocaleString()}`}
                                 </span>
                                 <Link to={`/destination/${dest.id}`}>
-                                  <Button size="sm" className="bg-[#ff7f50] text-white">
+                                  <Button size="sm" className="bg-[#E8672A] text-white">
                                     View
                                   </Button>
                                 </Link>
@@ -340,7 +340,7 @@ export function MapView() {
                 <div className="absolute bottom-4 right-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg z-[400] max-w-xs">
                   <div className="flex items-center gap-4 text-sm">
                     <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 rounded-full bg-[#ff7f50]" />
+                      <div className="w-4 h-4 rounded-full bg-[#E8672A]" />
                       <span>Destinations</span>
                     </div>
                     <div className="flex items-center gap-2">

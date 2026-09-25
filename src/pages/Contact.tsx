@@ -102,7 +102,7 @@ export function Contact() {
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: 'url(https://images.unsplash.com/photo-1544735716-392fe2489ffa?w=1920)' }}
         />
-        <div className="absolute inset-0 bg-black/60" />
+        <div className="absolute inset-0 bg-[#1B2A4A]/70" />
         
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
@@ -110,7 +110,7 @@ export function Contact() {
             animate={{ opacity: 1, y: 0 }}
           >
             <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
-              Get in <span className="text-[#ff7f50]">Touch</span>
+              Get in <span className="text-[#E8672A]">Touch</span>
             </h1>
             <p className="text-xl text-white/80 max-w-2xl mx-auto">
               Have questions about your trip? We're here to help you plan the perfect Nepal adventure.
@@ -188,7 +188,7 @@ export function Contact() {
                           name="name"
                           value={formData.name}
                           onChange={handleInputChange}
-                          placeholder="John Doe"
+                          placeholder="Sujan Shrestha"
                           className="pl-10"
                           required
                         />
@@ -204,7 +204,7 @@ export function Contact() {
                           type="email"
                           value={formData.email}
                           onChange={handleInputChange}
-                          placeholder="john@example.com"
+                          placeholder="sujan@example.com"
                           className="pl-10"
                           required
                         />
@@ -243,7 +243,7 @@ export function Contact() {
                   <Button
                     type="submit"
                     disabled={isSubmitting}
-                    className="w-full bg-[#ff7f50] hover:bg-[#e86a3a] text-white py-6"
+                    className="w-full bg-[#E8672A] hover:bg-[#c85a22] text-white py-6"
                   >
                     {isSubmitting ? (
                       <>
@@ -307,7 +307,7 @@ export function Contact() {
               </div>
 
               {/* Quick Support */}
-              <div className="bg-gradient-to-r from-[#ff7f50] to-[#ff6b35] rounded-2xl p-8 text-white">
+              <div className="bg-gradient-to-r from-[#E8672A] to-[#D4551A] rounded-2xl p-8 text-white">
                 <h3 className="font-bold text-xl mb-2">Need Immediate Help?</h3>
                 <p className="text-white/80 mb-4">
                   Our support team is available 24/7 for urgent inquiries.

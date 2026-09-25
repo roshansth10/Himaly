@@ -93,10 +93,10 @@ export function Navbar() {
                       isActive(link.path)
                         ? isTransparentOnDark
                           ? 'text-white bg-white/20'
-                          : 'text-[#ff7f50] bg-[#ff7f50]/10'
+                          : 'text-[#E8672A] bg-[#E8672A]/10'
                         : isTransparentOnDark
                         ? 'text-white/90 hover:text-white hover:bg-white/10'
-                        : 'text-gray-700 dark:text-gray-300 hover:text-[#ff7f50] hover:bg-gray-100 dark:hover:bg-gray-800'
+                        : 'text-gray-700 dark:text-gray-300 hover:text-[#E8672A] hover:bg-gray-100 dark:hover:bg-gray-800'
                     }`}
                   >
                     <span className="flex items-center gap-2">
@@ -106,7 +106,7 @@ export function Navbar() {
                     {isActive(link.path) && (
                       <motion.div
                         layoutId="activeNav"
-                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#ff7f50]"
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#E8672A]"
                       />
                     )}
                   </Link>
@@ -155,7 +155,7 @@ export function Navbar() {
               {/* Book Now Button - Desktop */}
               <Button
                 onClick={() => navigate('/destinations')}
-                className="hidden md:flex bg-gradient-to-r from-[#ff7f50] to-[#ff6b35] hover:from-[#e86a3a] hover:to-[#d45a2a] text-white rounded-full px-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+                className="hidden md:flex bg-gradient-to-r from-[#E8672A] to-[#D4551A] hover:from-[#c85a22] hover:to-[#b04a18] text-white rounded-full px-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
               >
                 Book Now
               </Button>
@@ -215,7 +215,7 @@ export function Navbar() {
                           onClick={() => setIsMobileMenuOpen(false)}
                           className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
                             isActive(link.path)
-                              ? 'bg-[#ff7f50]/10 text-[#ff7f50]'
+                              ? 'bg-[#E8672A]/10 text-[#E8672A]'
                               : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
                           }`}
                         >
@@ -233,7 +233,7 @@ export function Navbar() {
                       setIsMobileMenuOpen(false);
                       navigate('/destinations');
                     }}
-                    className="w-full bg-gradient-to-r from-[#ff7f50] to-[#ff6b35] text-white rounded-xl py-6"
+                    className="w-full bg-gradient-to-r from-[#E8672A] to-[#D4551A] text-white rounded-xl py-6"
                   >
                     Book Your Adventure
                   </Button>

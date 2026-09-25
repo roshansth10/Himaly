@@ -56,11 +56,11 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-gradient-to-b from-gray-900 to-black text-white relative overflow-hidden">
+    <footer className="bg-gradient-to-b from-gray-900 to-[#1B2A4A] text-white relative overflow-hidden">
       {/* Decorative Elements */}
       <div className="absolute inset-0 overflow-hidden">
-        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#ff7f50]/5 rounded-full blur-3xl" />
-        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#ff7f50]/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 left-1/4 w-96 h-96 bg-[#E8672A]/5 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 right-1/4 w-96 h-96 bg-[#E8672A]/5 rounded-full blur-3xl" />
       </div>
 
       {/* Main Footer Content */}
@@ -76,7 +76,7 @@ export function Footer() {
                 transition={{ duration: 0.6 }}
               >
                 <h3 className="text-3xl md:text-4xl font-bold mb-4">
-                  Join Our <span className="text-[#ff7f50]">Adventure</span> Community
+                  Join Our <span className="text-[#E8672A]">Adventure</span> Community
                 </h3>
                 <p className="text-gray-400 text-lg">
                   Get exclusive travel deals, insider tips, and inspiration delivered to your inbox.
@@ -97,12 +97,12 @@ export function Footer() {
                       placeholder="Enter your email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="pl-12 py-6 bg-white/10 border-white/20 text-white placeholder:text-gray-500 rounded-xl focus:border-[#ff7f50] focus:ring-[#ff7f50]/20"
+                      className="pl-12 py-6 bg-white/10 border-white/20 text-white placeholder:text-gray-500 rounded-xl focus:border-[#E8672A] focus:ring-[#E8672A]/20"
                     />
                   </div>
                   <Button
                     type="submit"
-                    className="bg-gradient-to-r from-[#ff7f50] to-[#ff6b35] hover:from-[#e86a3a] hover:to-[#d45a2a] text-white px-8 py-6 rounded-xl font-medium transition-all hover:shadow-lg hover:shadow-[#ff7f50]/25"
+                    className="bg-gradient-to-r from-[#E8672A] to-[#D4551A] hover:from-[#c85a22] hover:to-[#b04a18] text-white px-8 py-6 rounded-xl font-medium transition-all hover:shadow-lg hover:shadow-[#E8672A]/25"
                   >
                     <Send className="w-5 h-5" />
                   </Button>
@@ -154,7 +154,7 @@ export function Footer() {
                       href={social.url}
                       whileHover={{ scale: 1.1, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#ff7f50] transition-colors duration-300"
+                      className="w-10 h-10 rounded-full bg-white/10 flex items-center justify-center hover:bg-[#E8672A] transition-colors duration-300"
                     >
                       <Icon className="w-5 h-5" />
                     </motion.a>
@@ -176,9 +176,9 @@ export function Footer() {
                   <li key={link.name}>
                     <Link
                       to={link.path}
-                      className="text-gray-400 hover:text-[#ff7f50] transition-colors duration-300 flex items-center gap-2 group"
+                      className="text-gray-400 hover:text-[#E8672A] transition-colors duration-300 flex items-center gap-2 group"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#ff7f50] opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#E8672A] opacity-0 group-hover:opacity-100 transition-opacity" />
                       {link.name}
                     </Link>
                   </li>
@@ -199,9 +199,9 @@ export function Footer() {
                   <li key={link.name}>
                     <Link
                       to={link.path}
-                      className="text-gray-400 hover:text-[#ff7f50] transition-colors duration-300 flex items-center gap-2 group"
+                      className="text-gray-400 hover:text-[#E8672A] transition-colors duration-300 flex items-center gap-2 group"
                     >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#ff7f50] opacity-0 group-hover:opacity-100 transition-opacity" />
+                      <span className="w-1.5 h-1.5 rounded-full bg-[#E8672A] opacity-0 group-hover:opacity-100 transition-opacity" />
                       {link.name}
                     </Link>
                   </li>
@@ -219,18 +219,18 @@ export function Footer() {
               <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
               <ul className="space-y-4">
                 <li className="flex items-start gap-3">
-                  <MapPin className="w-5 h-5 text-[#ff7f50] mt-0.5 flex-shrink-0" />
+                  <MapPin className="w-5 h-5 text-[#E8672A] mt-0.5 flex-shrink-0" />
                   <span className="text-gray-400">
                     Thamel, Kathmandu<br />
                     Nepal 44600
                   </span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Phone className="w-5 h-5 text-[#ff7f50] flex-shrink-0" />
+                  <Phone className="w-5 h-5 text-[#E8672A] flex-shrink-0" />
                   <span className="text-gray-400">+977 1 4XXXXXX</span>
                 </li>
                 <li className="flex items-center gap-3">
-                  <Mail className="w-5 h-5 text-[#ff7f50] flex-shrink-0" />
+                  <Mail className="w-5 h-5 text-[#E8672A] flex-shrink-0" />
                   <span className="text-gray-400">info@himaly.com</span>
                 </li>
               </ul>
@@ -249,10 +249,10 @@ export function Footer() {
                 onClick={scrollToTop}
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 text-gray-400 hover:text-[#ff7f50] transition-colors group"
+                className="flex items-center gap-2 text-gray-400 hover:text-[#E8672A] transition-colors group"
               >
                 <span className="text-sm">Back to Top</span>
-                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#ff7f50] transition-colors">
+                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#E8672A] transition-colors">
                   <ArrowUp className="w-4 h-4" />
                 </div>
               </motion.button>

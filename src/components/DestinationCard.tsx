@@ -88,7 +88,7 @@ export function DestinationCard({
                 whileHover="hover"
                 transition={{ duration: 0.4 }}
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+              <div className="absolute inset-0 bg-gradient-to-t from-[#1B2A4A]/60 via-transparent to-transparent" />
               <Badge 
                 className={`absolute top-3 left-3 ${categoryColors[destination.category]} text-white border-0`}
               >
@@ -96,7 +96,7 @@ export function DestinationCard({
               </Badge>
             </div>
             <div className="p-4">
-              <h3 className="font-bold text-lg mb-1 group-hover:text-[#ff7f50] transition-colors">
+              <h3 className="font-bold text-lg mb-1 group-hover:text-[#E8672A] transition-colors">
                 {destination.name}
               </h3>
               <div className="flex items-center gap-1 text-gray-500 text-sm mb-2">
@@ -108,7 +108,7 @@ export function DestinationCard({
                   <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
                   <span className="font-medium">{destination.rating}</span>
                 </div>
-                <span className="text-[#ff7f50] font-bold">
+                <span className="text-[#E8672A] font-bold">
                   {destination.price === 0 ? 'Free' : `NPR ${destination.price.toLocaleString()}`}
                 </span>
               </div>
@@ -156,7 +156,7 @@ export function DestinationCard({
             
             {/* Overlay */}
             <motion.div
-              className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent"
+              className="absolute inset-0 bg-gradient-to-t from-[#1B2A4A]/80 via-[#1B2A4A]/20 to-transparent"
               variants={overlayVariants}
               initial="rest"
               animate={isHovered ? 'hover' : 'rest'}
@@ -186,7 +186,7 @@ export function DestinationCard({
 
             {/* Price Tag */}
             <div className="absolute bottom-4 left-4">
-              <div className="bg-[#ff7f50] text-white px-4 py-2 rounded-full font-bold shadow-lg">
+              <div className="bg-[#E8672A] text-white px-4 py-2 rounded-full font-bold shadow-lg">
                 {destination.price === 0 ? 'Free Entry' : `NPR ${destination.price.toLocaleString()}`}
               </div>
             </div>
@@ -195,7 +195,7 @@ export function DestinationCard({
             {distance !== undefined && (
               <div className="absolute bottom-4 right-4">
                 <div className="bg-white/90 dark:bg-gray-900/90 backdrop-blur-sm text-gray-800 dark:text-white px-3 py-1.5 rounded-full text-sm font-medium flex items-center gap-1">
-                  <MapPin className="w-4 h-4 text-[#ff7f50]" />
+                  <MapPin className="w-4 h-4 text-[#E8672A]" />
                   {formatDistance(distance)}
                 </div>
               </div>
@@ -209,7 +209,7 @@ export function DestinationCard({
               <span>{destination.location}, {destination.province}</span>
             </div>
 
-            <h3 className="text-xl sm:text-2xl font-bold mb-2 group-hover:text-[#ff7f50] transition-colors line-clamp-1">
+            <h3 className="text-xl sm:text-2xl font-bold mb-2 group-hover:text-[#E8672A] transition-colors line-clamp-1">
               {destination.name}
             </h3>
 
@@ -240,7 +240,7 @@ export function DestinationCard({
               </div>
 
               <motion.div
-                className="flex items-center gap-2 text-[#ff7f50] font-medium"
+                className="flex items-center gap-2 text-[#E8672A] font-medium"
                 variants={arrowVariants}
                 initial="rest"
                 animate={isHovered ? 'hover' : 'rest'}
@@ -257,7 +257,7 @@ export function DestinationCard({
             animate={isHovered ? { opacity: 1 } : { opacity: 0 }}
             transition={{ duration: 0.3 }}
             style={{
-              boxShadow: 'inset 0 0 0 2px rgba(255, 127, 80, 0.3)'
+              boxShadow: 'inset 0 0 0 2px rgba(232, 103, 42, 0.3)'
             }}
           />
         </motion.div>

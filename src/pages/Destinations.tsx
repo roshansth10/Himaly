@@ -115,7 +115,7 @@ export function Destinations() {
   return (
     <div className="min-h-screen pt-24 pb-20 bg-gray-50 dark:bg-gray-900">
       {/* Header */}
-      <section className="bg-gradient-to-b from-[#ff7f50]/10 to-transparent py-12">
+      <section className="bg-gradient-to-b from-[#E8672A]/10 to-transparent py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -123,7 +123,7 @@ export function Destinations() {
             className="text-center"
           >
             <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
-              Explore <span className="text-[#ff7f50]">Destinations</span>
+              Explore <span className="text-[#E8672A]">Destinations</span>
             </h1>
             <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
               Discover Nepal's most incredible places, from towering peaks to ancient temples
@@ -162,7 +162,7 @@ export function Destinations() {
                     onClick={() => setSelectedCategory(cat.id)}
                     className={`px-4 py-3 rounded-xl whitespace-nowrap transition-all ${
                       selectedCategory === cat.id
-                        ? 'bg-[#ff7f50] text-white'
+                        ? 'bg-[#E8672A] text-white'
                         : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
                     }`}
                   >
@@ -180,7 +180,7 @@ export function Destinations() {
                 <SlidersHorizontal className="w-5 h-5 mr-2" />
                 Filters
                 {activeFiltersCount > 0 && (
-                  <Badge className="absolute -top-2 -right-2 bg-[#ff7f50] text-white">
+                  <Badge className="absolute -top-2 -right-2 bg-[#E8672A] text-white">
                     {activeFiltersCount}
                   </Badge>
                 )}
@@ -215,7 +215,7 @@ export function Destinations() {
                                 onClick={() => setSortBy(option.value as SortOption)}
                                 className={`flex items-center gap-2 px-4 py-2 rounded-lg transition-all ${
                                   sortBy === option.value
-                                    ? 'bg-[#ff7f50] text-white'
+                                    ? 'bg-[#E8672A] text-white'
                                     : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300'
                                 }`}
                               >
@@ -268,13 +268,13 @@ export function Destinations() {
             <div className="flex items-center gap-2">
               <button
                 onClick={() => setViewMode('grid')}
-                className={`p-2 rounded-lg transition-colors ${viewMode === 'grid' ? 'bg-[#ff7f50] text-white' : 'bg-gray-200 dark:bg-gray-700'}`}
+                className={`p-2 rounded-lg transition-colors ${viewMode === 'grid' ? 'bg-[#E8672A] text-white' : 'bg-gray-200 dark:bg-gray-700'}`}
               >
                 <LayoutGrid className="w-5 h-5" />
               </button>
               <button
                 onClick={() => setViewMode('compact')}
-                className={`p-2 rounded-lg transition-colors ${viewMode === 'compact' ? 'bg-[#ff7f50] text-white' : 'bg-gray-200 dark:bg-gray-700'}`}
+                className={`p-2 rounded-lg transition-colors ${viewMode === 'compact' ? 'bg-[#E8672A] text-white' : 'bg-gray-200 dark:bg-gray-700'}`}
               >
                 <Grid3X3 className="w-5 h-5" />
               </button>

@@ -48,6 +48,15 @@ module.exports = {
           border: "hsl(var(--sidebar-border))",
           ring: "hsl(var(--sidebar-ring))",
         },
+        /* Himalayan Sunrise brand tokens */
+        terracotta: {
+          DEFAULT: '#E8672A',
+          hover: '#c85a22',
+        },
+        'dusk-indigo': '#1B2A4A',
+        'monastery-gold': '#D9A441',
+        'off-white': '#FBF7F2',
+        'warm-charcoal': '#2A2622',
       },
       borderRadius: {
         xl: "calc(var(--radius) + 4px)",
