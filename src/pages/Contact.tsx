@@ -78,7 +78,8 @@ export function Contact() {
       icon: Mail,
       title: 'Email Us',
       details: ['info@nepaltourism.com', 'support@nepaltourism.com'],
-      color: 'bg-blue-500'
+      color: 'bg-blue-500',
+      smallText: true
     },
     {
       icon: Clock,
@@ -129,7 +130,7 @@ export function Contact() {
       {/* Contact Info Cards */}
       <section className="py-16 -mt-10">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
+          <div className="grid grid-cols-2 gap-4 sm:gap-5 lg:grid-cols-4">
             {contactInfo.map((item, index) => {
               const Icon = item.icon;
               return (
@@ -138,15 +139,15 @@ export function Contact() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-lg hover:shadow-xl transition-shadow flex flex-col h-full min-h-[190px]"
+                  className="bg-white dark:bg-gray-800 rounded-2xl p-4 sm:p-5 shadow-lg hover:shadow-xl transition-shadow flex flex-col items-center text-center h-full min-h-[180px] sm:min-h-[190px]"
                 >
-                  <div className={`w-11 h-11 ${item.color} rounded-xl flex items-center justify-center mb-4`}>
+                  <div className={`w-11 h-11 ${item.color} rounded-xl flex items-center justify-center mb-4 shrink-0`}>
                     <Icon className="w-5 h-5 text-white" />
                   </div>
                   <h3 className="font-bold text-base mb-1.5">{item.title}</h3>
-                  <div className="mt-auto">
+                  <div className="mt-auto w-full">
                     {item.details.map((detail, i) => (
-                      <p key={i} className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">{detail}</p>
+                      <p key={i} className={`leading-relaxed text-gray-600 dark:text-gray-400 break-words ${item.smallText ? 'text-[10px] sm:text-[11px] lg:text-sm' : 'text-xs sm:text-sm'}`}>{detail}</p>
                     ))}
                   </div>
                 </motion.div>

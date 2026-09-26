@@ -39,9 +39,25 @@ const userIcon = new L.Icon({
 // Map controller component
 function MapController({ center, zoom }: { center: [number, number]; zoom: number }) {
   const map = useMap();
+
   useEffect(() => {
     map.setView(center, zoom);
   }, [center, zoom, map]);
+
+  // Leaflet caches its container size. Without this, resizing across a
+  // breakpoint or rotating the phone leaves stale/blank tile gaps.
+  useEffect(() => {
+    const handleResize = () => map.invalidateSize();
+    const timer = window.setTimeout(handleResize, 150);
+    window.addEventListener('resize', handleResize);
+    window.addEventListener('orientationchange', handleResize);
+    return () => {
+      window.clearTimeout(timer);
+      window.removeEventListener('resize', handleResize);
+      window.removeEventListener('orientationchange', handleResize);
+    };
+  }, [map]);
+
   return null;
 }
 
@@ -103,7 +119,7 @@ export function MapView() {
   };
 
   return (
-    <div className="min-h-screen pt-20 bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen pt-20 overflow-x-hidden bg-gray-50 dark:bg-gray-900">
       <SEO
         title="Map of Nepal Destinations | Himaly"
         description="See where every Himaly trip is on the map. Plot trekking routes, heritage sites, lakes and national parks across Nepal and find destinations near you."
@@ -136,7 +152,7 @@ export function MapView() {
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              className="lg:col-span-1 space-y-4"
+              className="lg:col-span-1 space-y-4 order-2 lg:order-1"
             >
               {/* Controls */}
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg">
@@ -187,7 +203,7 @@ export function MapView() {
                     <h3 className="font-bold">Nearest to You</h3>
                   </div>
                   
-                  <div className="space-y-3 max-h-[400px] overflow-y-auto">
+                  <div className="space-y-2 max-h-[320px] sm:max-h-[400px] overflow-y-auto">
                     {nearestDestinations.map((dest, index) => (
                       <motion.button
                         key={dest.id}
@@ -195,26 +211,27 @@ export function MapView() {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.1 }}
                         onClick={() => handleDestinationClick(dest)}
-                        className={`w-full text-left p-3 rounded-xl transition-all ${
+                        className={`w-full text-left p-2.5 sm:p-3 rounded-xl transition-all ${
                           selectedDestination === dest.id
                             ? 'bg-[#E8672A]/10 border-2 border-[#E8672A]'
                             : 'bg-gray-50 dark:bg-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600'
                         }`}
                       >
-                        <div className="flex items-start gap-3">
+                        <div className="flex items-center gap-2.5 sm:gap-3">
                           <img
                             src={dest.images[0]}
                             alt={`${dest.name} in ${dest.province}, Nepal`}
-                            className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
+                            loading="lazy"
+                            className="w-12 h-12 sm:w-14 sm:h-14 rounded-lg object-cover flex-shrink-0"
                           />
                           <div className="flex-1 min-w-0">
-                            <p className="font-medium truncate">{dest.name}</p>
-                            <p className="text-sm text-gray-500 flex items-center gap-1">
-                              <MapPin className="w-3 h-3" />
-                              {dest.location}
+                            <p className="font-medium text-sm truncate">{dest.name}</p>
+                            <p className="text-xs sm:text-sm text-gray-500 flex items-center gap-1">
+                              <MapPin className="w-3 h-3 flex-shrink-0" />
+                              <span className="truncate">{dest.location}</span>
                             </p>
                             {dest.distance && (
-                              <p className="text-sm text-[#E8672A] font-medium">
+                              <p className="text-xs sm:text-sm text-[#E8672A] font-medium">
                                 {formatDistance(dest.distance)}
                               </p>
                             )}
@@ -229,12 +246,12 @@ export function MapView() {
               {/* All Destinations List */}
               <div className="bg-white dark:bg-gray-800 rounded-2xl p-4 shadow-lg">
                 <h3 className="font-bold mb-4">All Destinations</h3>
-                <div className="space-y-2 max-h-[300px] overflow-y-auto">
+                <div className="space-y-2 max-h-[50vh] lg:max-h-[300px] overflow-y-auto">
                   {destinationsWithDistance.map((dest) => (
                     <button
                       key={dest.id}
                       onClick={() => handleDestinationClick(dest)}
-                      className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors ${
+                      className={`w-full text-left px-2.5 py-1.5 sm:px-3 sm:py-2 rounded-lg text-xs sm:text-sm transition-colors ${
                         selectedDestination === dest.id
                           ? 'bg-[#E8672A] text-white'
                           : 'hover:bg-gray-100 dark:hover:bg-gray-700'
@@ -258,11 +275,11 @@ export function MapView() {
             <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
-              className="lg:col-span-3"
+              className="lg:col-span-3 order-1 lg:order-2"
             >
               {/* Wrapper with relative positioning for overlay */}
-              <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg h-[600px] lg:h-[700px]">
-                <div className="absolute inset-0 rounded-2xl overflow-hidden">
+              <div className="relative bg-white dark:bg-gray-800 rounded-2xl shadow-lg h-[340px] sm:h-[420px] lg:h-[560px]">
+                <div className="absolute inset-0 rounded-2xl overflow-hidden z-0">
                   <MapContainer
                     center={mapCenter}
                     zoom={mapZoom}
@@ -343,19 +360,19 @@ export function MapView() {
                   </MapContainer>
                 </div>
 
-                {/* Map Overlay Legend - outside overflow-hidden */}
-                <div className="absolute bottom-4 right-4 bg-white dark:bg-gray-800 rounded-xl p-4 shadow-lg z-[400] max-w-xs">
-                  <div className="flex items-center gap-4 text-sm">
-                    <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 rounded-full bg-[#E8672A]" />
+                {/* Map Overlay Legend - outside overflow-hidden, kept below the Navbar's z-50 */}
+                <div className="absolute bottom-3 right-3 sm:bottom-4 sm:right-4 bg-white dark:bg-gray-800 rounded-lg sm:rounded-xl p-2.5 sm:p-3 shadow-lg z-10 max-w-[calc(100%-1.5rem)]">
+                  <div className="flex flex-wrap items-center gap-x-3 sm:gap-x-4 gap-y-1.5 text-[10px] sm:text-xs">
+                    <div className="flex items-center gap-1.5 sm:gap-2">
+                      <div className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-[#E8672A] shrink-0" />
                       <span>Destinations</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 rounded-full bg-green-500" />
+                    <div className="flex items-center gap-1.5 sm:gap-2">
+                      <div className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-green-500 shrink-0" />
                       <span>Nearest</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <div className="w-4 h-4 rounded-full bg-blue-500" />
+                    <div className="flex items-center gap-1.5 sm:gap-2">
+                      <div className="w-2.5 h-2.5 sm:w-3.5 sm:h-3.5 rounded-full bg-blue-500 shrink-0" />
                       <span>You</span>
                     </div>
                   </div>
