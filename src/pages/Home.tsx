@@ -69,7 +69,7 @@ export function Home() {
   const { ref: sectionRef } = useScrollAnimation({ threshold: 0.1 });
 
   return (
-    <div className="min-h-screen">
+    <div className="min-h-screen overflow-x-hidden">
       <SEO
         title="Himaly | Nepal Tour Packages, Himalayan Treks & Adventure Destinations"
         description="Plan your Nepal trip with Himaly. Browse trekking routes, UNESCO heritage sites, wildlife safaris and mountain adventures across all seven provinces, with local guides and custom itineraries."
@@ -284,7 +284,7 @@ export function Home() {
             <Link to="/destinations">
               <Button 
                 variant="outline" 
-                className="mt-4 md:mt-0 border-[#E8672A] text-[#E8672A] hover:bg-[#E8672A] hover:text-white rounded-full px-6"
+                className="mt-4 md:mt-0 border-[#E8672A] text-[#E8672A] hover:bg-[#E8672A] hover:text-white rounded-full px-6 has-[>svg]:px-6"
               >
                 View All Destinations
                 <ArrowRight className="w-4 h-4 ml-2" />
@@ -355,7 +355,7 @@ export function Home() {
                 <img
                   src="https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800"
                   alt="Ornate Newari temple with carved wooden windows and tiered pagoda roofs in the Kathmandu Valley, Nepal"
-                  className="w-full h-[500px] object-cover"
+                  className="w-full h-[320px] sm:h-[420px] lg:h-[500px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1B2A4A]/50 to-transparent" />
               </div>
@@ -366,10 +366,10 @@ export function Home() {
                 whileInView={{ scale: 1, rotate: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: 0.5, type: 'spring' }}
-                className="absolute -bottom-6 -right-6 w-32 h-32 bg-[#E8672A] rounded-2xl flex flex-col items-center justify-center text-white shadow-xl"
+                className="absolute -bottom-4 -right-2 sm:-bottom-6 sm:-right-6 w-24 h-24 sm:w-32 sm:h-32 bg-[#E8672A] rounded-2xl flex flex-col items-center justify-center text-white shadow-xl"
               >
-                <span className="text-4xl font-bold">25+</span>
-                <span className="text-sm">Years</span>
+                <span className="text-3xl sm:text-4xl font-bold">25+</span>
+                <span className="text-xs sm:text-sm">Years</span>
               </motion.div>
 
               {/* Orbital Ring */}
@@ -422,7 +422,7 @@ export function Home() {
 
               <Link to="/destinations">
                 <Button 
-                  className="mt-8 bg-[#E8672A] hover:bg-[#c85a22] text-white rounded-full px-8 py-6"
+                  className="mt-8 h-auto bg-[#E8672A] hover:bg-[#c85a22] text-white rounded-full px-8 has-[>svg]:px-8 py-6"
                 >
                   Learn More About Us
                   <ArrowRight className="w-5 h-5 ml-2" />
@@ -457,7 +457,7 @@ export function Home() {
               <Link to="/destinations">
                 <Button 
                   size="lg"
-                  className="h-auto bg-[#E8672A] hover:bg-[#c85a22] text-white px-8 has-[>svg]:px-8 py-6 rounded-full text-lg"
+                  className="h-auto bg-[#E8672A] hover:bg-[#c85a22] text-white px-6 sm:px-8 has-[>svg]:px-6 sm:has-[>svg]:px-8 py-4 sm:py-6 rounded-full text-base sm:text-lg"
                 >
                   Book Now
                   <ArrowRight className="w-5 h-5 ml-2" />

@@ -134,14 +134,14 @@ export function Footer() {
 
         {/* Links Section */}
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-12">
+          <div className="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-8 md:gap-12">
             {/* Brand Column */}
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6 }}
-              className="lg:col-span-1"
+              className="col-span-2 lg:col-span-1 flex flex-col items-center text-center lg:items-start lg:text-left"
             >
               <Link to="/" className="flex items-center gap-3 mb-6">
                 <div className="h-16 flex items-center justify-center">
@@ -153,10 +153,10 @@ export function Footer() {
                   />
                 </div>
               </Link>
-              <p className="text-gray-400 mb-6 leading-relaxed">
+              <p className="text-gray-400 mb-6 leading-relaxed w-full max-w-sm text-justify lg:max-w-none lg:text-left">
                 Your gateway to extraordinary Himalayan adventures. Discover the magic of Nepal with us since 1999.
               </p>
-              <div className="flex gap-3">
+              <div className="flex gap-3 justify-center lg:justify-start">
                 {socialLinks.map((social) => {
                   const Icon = social.icon;
                   return (
@@ -226,6 +226,7 @@ export function Footer() {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ duration: 0.6, delay: 0.3 }}
+              className="col-span-2 lg:col-span-1"
             >
               <h4 className="text-lg font-semibold mb-6">Contact Us</h4>
               <ul className="space-y-4">
