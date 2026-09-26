@@ -451,53 +451,88 @@ Thank you for booking with Himaly!
                   key="success"
                   initial={{ opacity: 0, scale: 0.9 }}
                   animate={{ opacity: 1, scale: 1 }}
-                  className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg text-center"
+                  className="bg-white dark:bg-gray-800 rounded-2xl p-5 sm:p-8 shadow-lg text-center"
                 >
                   <motion.div
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     transition={{ type: 'spring', delay: 0.2 }}
-                    className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6"
+                    className="relative w-20 h-20 mx-auto mb-5"
                   >
-                    <Check className="w-10 h-10 text-white" />
+                    <div className="absolute inset-0 rounded-full bg-green-500/20 animate-ping" />
+                    <div className="relative w-20 h-20 bg-green-500 rounded-full flex items-center justify-center ring-4 ring-green-500/15">
+                      <Check className="w-10 h-10 text-white" />
+                    </div>
                   </motion.div>
                   
-                  <h2 className="text-2xl font-bold mb-2">Booking Confirmed!</h2>
-                  <p className="text-gray-500 mb-6">Your adventure awaits. Check your email for details.</p>
-                  
-                  <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-6 mb-6 text-left">
-                    <div className="grid grid-cols-2 gap-4">
-                      <div>
-                        <p className="text-sm text-gray-500">Booking ID</p>
-                        <p className="font-bold">{bookingId}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-500">Transaction ID</p>
-                        <p className="font-bold">{transactionId}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-500">Amount Paid</p>
-                        <p className="font-bold text-[#E8672A]">NPR {totalAmount.toLocaleString()}</p>
-                      </div>
-                      <div>
-                        <p className="text-sm text-gray-500">Payment Method</p>
-                        <p className="font-bold uppercase">{paymentMethod}</p>
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-2">Booking Confirmed!</h2>
+                  <p className="text-gray-500 mb-6 text-sm sm:text-base">
+                    Your adventure awaits. A confirmation has been sent to{' '}
+                    <span className="font-medium text-gray-700 dark:text-gray-300 break-words">{formData.email}</span>.
+                  </p>
+
+                  {/* Trip recap */}
+                  <div className="flex items-center gap-3 sm:gap-4 text-left bg-gray-50 dark:bg-gray-700 rounded-xl p-3 sm:p-4 mb-4">
+                    <img
+                      src={destination.images[0]}
+                      alt={`${destination.name} in ${destination.province}, Nepal`}
+                      className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover flex-shrink-0"
+                    />
+                    <div className="min-w-0">
+                      <h3 className="font-bold text-sm sm:text-base break-words">{destination.name}</h3>
+                      <p className="flex items-center gap-1 text-xs sm:text-sm text-gray-500 mb-1">
+                        <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+                        <span className="truncate">{destination.location}</span>
+                      </p>
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs sm:text-sm">
+                        <span className="flex items-center gap-1 text-gray-500">
+                          <Calendar className="w-3.5 h-3.5 text-[#E8672A] flex-shrink-0" />
+                          {formData.travelDate
+                            ? new Date(formData.travelDate).toLocaleDateString()
+                            : 'Flexible'}
+                        </span>
+                        <span className="flex items-center gap-1 text-gray-500">
+                          <Users className="w-3.5 h-3.5 text-[#E8672A] flex-shrink-0" />
+                          {formData.numberOfPeople}{' '}
+                          {formData.numberOfPeople === 1 ? 'person' : 'people'}
+                        </span>
                       </div>
                     </div>
                   </div>
 
-                  <div className="flex gap-4">
+                  <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 sm:p-6 mb-6 text-left">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="min-w-0">
+                        <p className="text-sm text-gray-500">Booking ID</p>
+                        <p className="font-bold break-all">{bookingId}</p>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm text-gray-500">Transaction ID</p>
+                        <p className="font-bold break-all">{transactionId}</p>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm text-gray-500">Amount Paid</p>
+                        <p className="font-bold text-[#E8672A]">NPR {totalAmount.toLocaleString()}</p>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm text-gray-500">Payment Method</p>
+                        <p className="font-bold uppercase break-words">{paymentMethod}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
                     <Button
                       onClick={downloadReceipt}
                       variant="outline"
-                      className="flex-1"
+                      className="w-full sm:flex-1 h-auto py-4 sm:py-3"
                     >
                       <Download className="w-4 h-4 mr-2" />
                       Download Receipt
                     </Button>
                     <Button
                       onClick={() => navigate('/bookings')}
-                      className="flex-1 bg-[#E8672A] hover:bg-[#c85a22] text-white"
+                      className="w-full sm:flex-1 h-auto py-4 sm:py-3 bg-[#E8672A] hover:bg-[#c85a22] text-white"
                     >
                       View My Bookings
                     </Button>

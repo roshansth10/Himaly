@@ -121,7 +121,7 @@ Thank you for booking with Himaly!
   };
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen pt-24 pb-20 overflow-x-hidden bg-gray-50 dark:bg-gray-900">
       <SEO
         title="My Bookings | Himaly"
         description="Review and manage your Himaly Nepal tour and trekking bookings."
@@ -155,68 +155,69 @@ Thank you for booking with Himaly!
                   key={booking.id}
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: index * 0.1 }}
+                  transition={{ delay: Math.min(index, 6) * 0.05 }}
                   className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg overflow-hidden"
                 >
                   <div className="flex flex-col lg:flex-row">
                     {/* Image */}
-                    <div className="lg:w-48 h-48 lg:h-auto relative">
+                    <div className="lg:w-48 h-32 sm:h-48 lg:h-auto relative shrink-0">
                       <img
                         src={booking.destination.images[0]}
                         alt={`${booking.destination.name} in ${booking.destination.province}, Nepal`}
+                        loading="lazy"
                         className="w-full h-full object-cover"
                       />
-                      <div className="absolute top-4 left-4">
+                      <div className="absolute top-3 left-3 sm:top-4 sm:left-4">
                         {getStatusBadge(booking.status)}
                       </div>
                     </div>
 
                     {/* Content */}
-                    <div className="flex-1 p-6">
+                    <div className="flex-1 min-w-0 p-4 sm:p-6">
                       <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4">
-                        <div>
-                          <h3 className="text-xl font-bold mb-2">{booking.destination.name}</h3>
+                        <div className="min-w-0">
+                          <h3 className="text-lg sm:text-xl font-bold mb-2 break-words">{booking.destination.name}</h3>
                           <div className="flex items-center gap-2 text-gray-500 mb-4">
-                            <MapPin className="w-4 h-4" />
-                            <span>{booking.destination.location}</span>
+                            <MapPin className="w-4 h-4 flex-shrink-0" />
+                            <span className="truncate">{booking.destination.location}</span>
                           </div>
 
-                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-4">
-                            <div className="flex items-center gap-2">
-                              <Calendar className="w-4 h-4 text-[#E8672A]" />
-                              <div>
-                                <p className="text-xs text-gray-500">Travel Date</p>
-                                <p className="font-medium text-sm">
+                          <div className="grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 mb-4">
+                            <div className="flex items-center gap-2 min-w-0">
+                              <Calendar className="w-4 h-4 text-[#E8672A] flex-shrink-0" />
+                              <div className="min-w-0">
+                                <p className="text-[10px] sm:text-xs text-gray-500">Travel Date</p>
+                                <p className="font-medium text-xs sm:text-sm break-words">
                                   {new Date(booking.travelDate).toLocaleDateString()}
                                 </p>
                               </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                              <Users className="w-4 h-4 text-[#E8672A]" />
-                              <div>
-                                <p className="text-xs text-gray-500">People</p>
-                                <p className="font-medium text-sm">{booking.numberOfPeople}</p>
+                            <div className="flex items-center gap-2 min-w-0">
+                              <Users className="w-4 h-4 text-[#E8672A] flex-shrink-0" />
+                              <div className="min-w-0">
+                                <p className="text-[10px] sm:text-xs text-gray-500">People</p>
+                                <p className="font-medium text-xs sm:text-sm">{booking.numberOfPeople}</p>
                               </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                              <CreditCard className="w-4 h-4 text-[#E8672A]" />
-                              <div>
-                                <p className="text-xs text-gray-500">Payment</p>
-                                <p className="font-medium text-sm uppercase">{booking.paymentMethod}</p>
+                            <div className="flex items-center gap-2 min-w-0">
+                              <CreditCard className="w-4 h-4 text-[#E8672A] flex-shrink-0" />
+                              <div className="min-w-0">
+                                <p className="text-[10px] sm:text-xs text-gray-500">Payment</p>
+                                <p className="font-medium text-xs sm:text-sm uppercase break-words">{booking.paymentMethod}</p>
                               </div>
                             </div>
-                            <div className="flex items-center gap-2">
-                              <Package className="w-4 h-4 text-[#E8672A]" />
-                              <div>
-                                <p className="text-xs text-gray-500">Booking ID</p>
-                                <p className="font-medium text-sm">{booking.id}</p>
+                            <div className="flex items-center gap-2 min-w-0">
+                              <Package className="w-4 h-4 text-[#E8672A] flex-shrink-0" />
+                              <div className="min-w-0">
+                                <p className="text-[10px] sm:text-xs text-gray-500">Booking ID</p>
+                                <p className="font-medium text-xs sm:text-sm break-all">{booking.id}</p>
                               </div>
                             </div>
                           </div>
                         </div>
 
-                        <div className="text-right">
-                          <p className="text-2xl font-bold text-[#E8672A]">
+                        <div className="flex flex-wrap items-baseline justify-between gap-x-3 gap-y-1 shrink-0 lg:block lg:text-right">
+                          <p className="text-xl sm:text-2xl font-bold text-[#E8672A]">
                             NPR {booking.amount.toLocaleString()}
                           </p>
                           <p className="text-sm text-gray-500">
@@ -226,19 +227,20 @@ Thank you for booking with Himaly!
                       </div>
 
                       {/* Actions */}
-                      <div className="flex flex-wrap gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
+                      <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-wrap sm:gap-3 pt-4 border-t border-gray-200 dark:border-gray-700">
                         <Dialog>
                           <DialogTrigger asChild>
                             <Button 
                               variant="outline" 
                               size="sm"
+                              className="w-full sm:w-auto border-0 dark:border-0 shadow-none"
                               onClick={() => setSelectedBooking(booking)}
                             >
                               <Eye className="w-4 h-4 mr-2" />
                               View Details
                             </Button>
                           </DialogTrigger>
-                          <DialogContent className="max-w-2xl">
+                          <DialogContent className="max-w-2xl max-h-[85vh] overflow-y-auto p-4 sm:p-6">
                             <DialogHeader>
                               <DialogTitle>Booking Details</DialogTitle>
                               <DialogDescription>
@@ -251,11 +253,11 @@ Thank you for booking with Himaly!
                                   <img
                                     src={selectedBooking.destination.images[0]}
                                     alt={`${selectedBooking.destination.name} in ${selectedBooking.destination.province}, Nepal`}
-                                    className="w-32 h-32 rounded-xl object-cover"
+                                    className="w-24 h-24 sm:w-32 sm:h-32 rounded-xl object-cover flex-shrink-0"
                                   />
-                                  <div>
-                                    <h3 className="text-xl font-bold">{selectedBooking.destination.name}</h3>
-                                    <p className="text-gray-500">{selectedBooking.destination.location}</p>
+                                  <div className="min-w-0">
+                                    <h3 className="text-lg sm:text-xl font-bold break-words">{selectedBooking.destination.name}</h3>
+                                    <p className="text-gray-500 text-sm sm:text-base break-words">{selectedBooking.destination.location}</p>
                                     <div className="flex items-center gap-2 mt-2">
                                       {getStatusIcon(selectedBooking.status)}
                                       <span className="capitalize">{selectedBooking.status}</span>
@@ -263,49 +265,49 @@ Thank you for booking with Himaly!
                                   </div>
                                 </div>
 
-                                <div className="grid grid-cols-2 gap-4">
-                                  <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl">
-                                    <p className="text-sm text-gray-500">Booking ID</p>
-                                    <p className="font-bold">{selectedBooking.id}</p>
+                                <div className="grid grid-cols-2 gap-3 sm:gap-4">
+                                  <div className="bg-gray-50 dark:bg-gray-700 p-3 sm:p-4 rounded-xl min-w-0">
+                                    <p className="text-xs sm:text-sm text-gray-500">Booking ID</p>
+                                    <p className="font-bold text-sm sm:text-base break-all">{selectedBooking.id}</p>
                                   </div>
-                                  <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl">
-                                    <p className="text-sm text-gray-500">Transaction ID</p>
-                                    <p className="font-bold">{selectedBooking.paymentDetails?.transactionId || 'N/A'}</p>
+                                  <div className="bg-gray-50 dark:bg-gray-700 p-3 sm:p-4 rounded-xl min-w-0">
+                                    <p className="text-xs sm:text-sm text-gray-500">Transaction ID</p>
+                                    <p className="font-bold text-sm sm:text-base break-all">{selectedBooking.paymentDetails?.transactionId || 'N/A'}</p>
                                   </div>
-                                  <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl">
-                                    <p className="text-sm text-gray-500">Customer Name</p>
-                                    <p className="font-bold">{selectedBooking.userName}</p>
+                                  <div className="bg-gray-50 dark:bg-gray-700 p-3 sm:p-4 rounded-xl min-w-0">
+                                    <p className="text-xs sm:text-sm text-gray-500">Customer Name</p>
+                                    <p className="font-bold text-sm sm:text-base break-words">{selectedBooking.userName}</p>
                                   </div>
-                                  <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl">
-                                    <p className="text-sm text-gray-500">Email</p>
-                                    <p className="font-bold">{selectedBooking.userEmail}</p>
+                                  <div className="bg-gray-50 dark:bg-gray-700 p-3 sm:p-4 rounded-xl min-w-0">
+                                    <p className="text-xs sm:text-sm text-gray-500">Email</p>
+                                    <p className="font-bold text-sm sm:text-base break-all">{selectedBooking.userEmail}</p>
                                   </div>
-                                  <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl">
-                                    <p className="text-sm text-gray-500">Phone</p>
-                                    <p className="font-bold">{selectedBooking.userPhone}</p>
+                                  <div className="bg-gray-50 dark:bg-gray-700 p-3 sm:p-4 rounded-xl min-w-0">
+                                    <p className="text-xs sm:text-sm text-gray-500">Phone</p>
+                                    <p className="font-bold text-sm sm:text-base break-words">{selectedBooking.userPhone}</p>
                                   </div>
-                                  <div className="bg-gray-50 dark:bg-gray-700 p-4 rounded-xl">
-                                    <p className="text-sm text-gray-500">Travel Date</p>
-                                    <p className="font-bold">
+                                  <div className="bg-gray-50 dark:bg-gray-700 p-3 sm:p-4 rounded-xl min-w-0">
+                                    <p className="text-xs sm:text-sm text-gray-500">Travel Date</p>
+                                    <p className="font-bold text-sm sm:text-base break-words">
                                       {new Date(selectedBooking.travelDate).toLocaleDateString()}
                                     </p>
                                   </div>
                                 </div>
 
                                 <div className="border-t border-gray-200 dark:border-gray-700 pt-4">
-                                  <div className="flex justify-between items-center">
-                                    <span className="text-gray-500">Number of People</span>
+                                  <div className="flex justify-between items-center gap-4">
+                                    <span className="text-gray-500 text-sm sm:text-base">Number of People</span>
                                     <span className="font-bold">{selectedBooking.numberOfPeople}</span>
                                   </div>
-                                  <div className="flex justify-between items-center mt-2">
-                                    <span className="text-gray-500">Price per Person</span>
-                                    <span className="font-bold">
+                                  <div className="flex justify-between items-center gap-4 mt-2">
+                                    <span className="text-gray-500 text-sm sm:text-base">Price per Person</span>
+                                    <span className="font-bold text-right break-words">
                                       NPR {selectedBooking.destination.price.toLocaleString()}
                                     </span>
                                   </div>
-                                  <div className="flex justify-between items-center mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
-                                    <span className="text-lg font-bold">Total Amount</span>
-                                    <span className="text-2xl font-bold text-[#E8672A]">
+                                  <div className="flex justify-between items-center gap-4 mt-4 pt-4 border-t border-gray-200 dark:border-gray-700">
+                                    <span className="text-base sm:text-lg font-bold">Total Amount</span>
+                                    <span className="text-xl sm:text-2xl font-bold text-[#E8672A] text-right break-words">
                                       NPR {selectedBooking.amount.toLocaleString()}
                                     </span>
                                   </div>
@@ -318,14 +320,15 @@ Thank you for booking with Himaly!
                         <Button
                           variant="outline"
                           size="sm"
+                          className="w-full sm:w-auto border-0 dark:border-0 shadow-none"
                           onClick={() => downloadReceipt(booking)}
                         >
                           <Download className="w-4 h-4 mr-2" />
                           Receipt
                         </Button>
 
-                        <Link to={`/destination/${booking.destinationId}`}>
-                          <Button variant="outline" size="sm">
+                        <Link to={`/destination/${booking.destinationId}`} className="w-full sm:w-auto border-0 dark:border-0 shadow-none">
+                          <Button variant="outline" size="sm" className="w-full sm:w-auto border-0 dark:border-0 shadow-none">
                             <Compass className="w-4 h-4 mr-2" />
                             View Destination
                           </Button>
@@ -335,7 +338,7 @@ Thank you for booking with Himaly!
                           <Button
                             variant="outline"
                             size="sm"
-                            className="text-red-500 hover:bg-red-50 hover:text-red-600"
+                            className="w-full sm:w-auto border-0 dark:border-0 shadow-none text-red-500 hover:bg-red-50 hover:text-red-600"
                             onClick={() => handleDelete(booking.id)}
                           >
                             <Trash2 className="w-4 h-4 mr-2" />
