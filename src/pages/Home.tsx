@@ -22,14 +22,6 @@ import { getUserLocation, getDistance } from '@/utils/haversine';
 import { SEO } from '@/components/SEO';
 import heroImg from '/img/hero.jpeg';
 
-// Pre-defined static particle positions to preserve React purity during render
-const PARTICLES = Array.from({ length: 20 }, (_, i) => ({
-  id: i,
-  x: `${(i * 19 + 7) % 100}%`,
-  duration: 10 + (i % 5) * 2,
-  delay: (i * 0.4) % 5,
-}));
-
 export function Home() {
   const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number } | null>(null);
   const [nearestDestinations, setNearestDestinations] = useState<typeof destinations>([]);
@@ -103,30 +95,6 @@ export function Home() {
           </motion.div>
         ))}
 
-        {/* Animated Particles */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          {PARTICLES.map((p) => (
-            <motion.div
-              key={p.id}
-              className="absolute w-1 h-1 bg-white/30 rounded-full"
-              initial={{ 
-                x: p.x, 
-                y: '100%',
-                opacity: 0 
-              }}
-              animate={{ 
-                y: '-10%',
-                opacity: [0, 1, 0]
-              }}
-              transition={{ 
-                duration: p.duration,
-                repeat: Infinity,
-                delay: p.delay
-              }}
-            />
-          ))}
-        </div>
-
         {/* Hero Content */}
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-32 text-center">
           <motion.div
@@ -178,7 +146,7 @@ export function Home() {
             <Link to="/destinations">
               <Button 
                 size="lg"
-                className="bg-[#E8672A] hover:bg-[#c85a22] text-white px-6 sm:px-8 py-4 sm:py-6 rounded-full text-base sm:text-lg font-medium transition-all hover:shadow-xl hover:shadow-[#E8672A]/30 hover:-translate-y-1"
+                className="h-auto bg-[#E8672A] hover:bg-[#c85a22] text-white px-6 sm:px-8 has-[>svg]:px-6 sm:has-[>svg]:px-8 py-4 sm:py-6 rounded-full text-base sm:text-lg font-medium transition-all hover:shadow-xl hover:shadow-[#E8672A]/30 hover:-translate-y-1"
               >
                 Explore Destinations
                 <ArrowRight className="w-4 sm:w-5 h-4 sm:h-5 ml-2" />
@@ -187,7 +155,7 @@ export function Home() {
             <Button 
               size="lg"
               variant="outline"
-              className="border-white/30 text-white hover:bg-white/10 px-6 sm:px-8 py-4 sm:py-6 rounded-full text-base sm:text-lg font-medium backdrop-blur-sm"
+              className="h-auto border-2 border-white/40 text-white bg-transparent hover:bg-white hover:text-gray-900 dark:bg-transparent dark:border-white/40 dark:text-white dark:hover:bg-white dark:hover:text-gray-900 px-6 sm:px-8 has-[>svg]:px-6 sm:has-[>svg]:px-8 py-4 sm:py-6 rounded-full text-base sm:text-lg font-medium backdrop-blur-sm transition-colors"
             >
               <Play className="w-4 sm:w-5 h-4 sm:h-5 mr-2" />
               Watch Video
@@ -220,22 +188,6 @@ export function Home() {
             ))}
           </motion.div>
         </div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ delay: 2 }}
-          className="absolute bottom-8 left-1/2 -translate-x-1/2"
-        >
-          <motion.div
-            animate={{ y: [0, 10, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-            className="w-6 h-10 border-2 border-white/30 rounded-full flex justify-center pt-2"
-          >
-            <motion.div className="w-1.5 h-1.5 bg-white rounded-full" />
-          </motion.div>
-        </motion.div>
       </section>
 
       {/* Categories Section */}
@@ -362,23 +314,17 @@ export function Home() {
               viewport={{ once: true }}
               className="mb-12"
             >
-              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-6">
-                <div className="flex items-center gap-3">
-                  <div className="w-12 h-12 bg-[#E8672A] rounded-full flex items-center justify-center shadow-lg">
-                    <MapPin className="w-6 h-6 text-white" />
-                  </div>
-                  <div>
-                    <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
-                      Nearest to You
-                    </h2>
-                  </div>
+              <div className="flex items-center gap-3">
+                <div className="w-12 h-12 bg-[#E8672A] rounded-full flex items-center justify-center shadow-lg shrink-0">
+                  <MapPin className="w-6 h-6 text-white" />
                 </div>
-                <div className="flex-1">
-                  <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg leading-relaxed">
-                    Discover destinations closest to your current location for spontaneous adventures and weekend getaways
-                  </p>
-                </div>
+                <h2 className="text-3xl sm:text-4xl font-bold text-gray-900 dark:text-white">
+                  Nearest to You
+                </h2>
               </div>
+              <p className="text-gray-600 dark:text-gray-400 text-base sm:text-lg leading-relaxed mt-4 max-w-3xl">
+                Discover destinations closest to your current location for spontaneous adventures and weekend getaways
+              </p>
             </motion.div>
 
             <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -511,7 +457,7 @@ export function Home() {
               <Link to="/destinations">
                 <Button 
                   size="lg"
-                  className="bg-[#E8672A] hover:bg-[#c85a22] text-white px-8 py-6 rounded-full text-lg"
+                  className="h-auto bg-[#E8672A] hover:bg-[#c85a22] text-white px-8 has-[>svg]:px-8 py-6 rounded-full text-lg"
                 >
                   Book Now
                   <ArrowRight className="w-5 h-5 ml-2" />
@@ -521,7 +467,7 @@ export function Home() {
                 <Button 
                   size="lg"
                   variant="outline"
-                  className="border-2 border-white text-white bg-transparent hover:bg-white hover:text-gray-900 dark:bg-transparent dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-gray-900 px-8 py-6 rounded-full text-lg font-medium transition-all shadow-md"
+                  className="h-auto border-2 border-white text-white bg-transparent hover:bg-white hover:text-gray-900 dark:bg-transparent dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-gray-900 px-8 py-6 rounded-full text-lg font-medium transition-all shadow-md"
                 >
                   Contact Us
                 </Button>

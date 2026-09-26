@@ -75,7 +75,7 @@ export function SearchBar({ variant = 'page', onSearch }: SearchBarProps) {
                 : 'border-white/30 hover:border-white/50'
             }`}
           >
-            <div className="pl-5">
+            <div className="pl-5 pr-1">
               <Compass className="w-5 h-5 text-white/70" />
             </div>
             <Input
@@ -86,14 +86,14 @@ export function SearchBar({ variant = 'page', onSearch }: SearchBarProps) {
               onChange={(e) => setQuery(e.target.value)}
               onFocus={() => setIsFocused(true)}
               onBlur={() => setTimeout(() => setIsFocused(false), 200)}
-              className="flex-1 bg-transparent border-0 text-white placeholder:text-white/60 focus-visible:ring-0 focus-visible:ring-offset-0 py-6 text-lg"
+              className="flex-1 h-auto bg-transparent dark:bg-transparent border-0 shadow-none pl-0 pr-3 py-5 text-base md:text-lg text-white placeholder:text-white/60 focus-visible:ring-0 focus-visible:ring-offset-0 focus-visible:border-transparent"
             />
             {query && (
               <button
                 type="button"
                 onClick={clearSearch}
                 aria-label="Clear search"
-                className="p-2 hover:bg-white/10 rounded-full transition-colors"
+                className="p-2 -mr-1 hover:bg-white/10 rounded-full transition-colors shrink-0"
               >
                 <X className="w-5 h-5 text-white/70" />
               </button>
@@ -102,7 +102,7 @@ export function SearchBar({ variant = 'page', onSearch }: SearchBarProps) {
               type="submit"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="mr-2 px-6 py-3 bg-[#E8672A] hover:bg-[#c85a22] text-white rounded-xl font-medium transition-colors flex items-center gap-2"
+              className="mr-2 px-6 py-3 shrink-0 bg-[#E8672A] hover:bg-[#c85a22] text-white rounded-xl font-medium transition-colors flex items-center gap-2"
             >
               <Search className="w-5 h-5" />
               <span className="hidden sm:inline">Search</span>
@@ -187,7 +187,7 @@ export function SearchBar({ variant = 'page', onSearch }: SearchBarProps) {
             onChange={(e) => setQuery(e.target.value)}
             onFocus={() => setIsFocused(true)}
             onBlur={() => setTimeout(() => setIsFocused(false), 200)}
-            className="flex-1 pl-12 pr-12 py-4 bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
+            className="flex-1 h-auto pl-12 pr-12 py-4 bg-transparent border-0 focus-visible:ring-0 focus-visible:ring-offset-0"
           />
           {query && (
             <button

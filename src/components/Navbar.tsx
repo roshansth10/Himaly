@@ -155,7 +155,7 @@ export function Navbar() {
               {/* Book Now Button - Desktop */}
               <Button
                 onClick={() => navigate('/destinations')}
-                className="hidden md:flex bg-gradient-to-r from-[#E8672A] to-[#D4551A] hover:from-[#c85a22] hover:to-[#b04a18] text-white rounded-full px-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+                className="hidden md:flex h-auto py-2.5 bg-gradient-to-r from-[#E8672A] to-[#D4551A] hover:from-[#c85a22] hover:to-[#b04a18] text-white rounded-full px-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
               >
                 Book Now
               </Button>

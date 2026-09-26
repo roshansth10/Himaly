@@ -455,7 +455,7 @@ export function DestinationDetail() {
 
                   <Link to={`/booking/${destination.id}`}>
                     <Button 
-                      className="w-full bg-[#E8672A] hover:bg-[#c85a22] text-white py-6 rounded-xl text-lg font-medium mb-4"
+                      className="w-full h-auto bg-[#E8672A] hover:bg-[#c85a22] text-white py-6 rounded-xl text-lg font-medium mb-4"
                     >
                       Book Now
                     </Button>

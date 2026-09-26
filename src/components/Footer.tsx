@@ -258,22 +258,30 @@ export function Footer() {
               </p>
               <p className="text-gray-500 text-sm text-center flex items-center justify-center gap-2 whitespace-nowrap">
                 <span>Designed &amp; Developed by</span>
-                <img
-                  src="/img/dxlogo.png"
-                  alt="DX Studio"
-                  loading="lazy"
-                  className="h-5 w-auto object-contain"
-                />
+                <a
+                  href="https://dxcreativestudio.vercel.app/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label="DX Studio"
+                  className="inline-flex items-center transition-opacity duration-300 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8672A] focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 rounded"
+                >
+                  <img
+                    src="/img/dxlogo.png"
+                    alt="DX Studio"
+                    loading="lazy"
+                    className="h-5 w-auto object-contain"
+                  />
+                </a>
               </p>
               <motion.button
                 onClick={scrollToTop}
-                whileHover={{ scale: 1.1, y: -2 }}
+                whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 text-gray-400 hover:text-[#E8672A] transition-colors group justify-self-center md:justify-self-end"
+                className="flex items-center gap-2 text-gray-400 hover:text-[#E8672A] transition-colors duration-300 group justify-self-center md:justify-self-end"
               >
                 <span className="text-sm">Back to Top</span>
-                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#E8672A] transition-colors">
-                  <ArrowUp className="w-4 h-4" />
+                <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#E8672A] transition-colors duration-300">
+                  <ArrowUp className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors duration-300" />
                 </div>
               </motion.button>
             </div>
