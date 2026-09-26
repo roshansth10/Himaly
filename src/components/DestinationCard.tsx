@@ -81,7 +81,7 @@ export function DestinationCard({
             <div className="relative h-48 overflow-hidden">
               <motion.img
                 src={destination.images[0]}
-                alt={destination.name}
+                alt={`${destination.name}, ${destination.category} destination in ${destination.province}, Nepal`}
                 className="w-full h-full object-cover"
                 variants={imageVariants}
                 initial="rest"
@@ -145,7 +145,7 @@ export function DestinationCard({
             )}
             <motion.img
               src={destination.images[0]}
-              alt={destination.name}
+              alt={`${destination.name}, ${destination.category} destination in ${destination.province}, Nepal`}
               className="w-full h-full object-cover"
               variants={imageVariants}
               initial="rest"

@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { getDestinationById } from '@/data/destinations';
+import { SEO } from '@/components/SEO';
 import { saveBooking, generateBookingId, generateTransactionId } from '@/utils/storage';
 import { toast } from 'sonner';
 
@@ -152,6 +153,12 @@ Thank you for booking with Himaly!
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-gray-50 dark:bg-gray-900">
+      <SEO
+        title={`Book ${destination.name}, Nepal | Himaly`}
+        description={`Book the ${destination.name} ${destination.category.toLowerCase()} trip in ${destination.province}. ${destination.duration}, ${destination.difficulty} difficulty, from ${destination.currency} ${destination.price}.`}
+        canonicalPath={`/booking/${destination.id}`}
+        ogImage={destination.images[0]}
+      />
       <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Header */}
         <motion.div
@@ -512,7 +519,7 @@ Thank you for booking with Himaly!
               <div className="flex gap-4 mb-4">
                 <img
                   src={destination.images[0]}
-                  alt={destination.name}
+                  alt={`${destination.name} in ${destination.province}, Nepal`}
                   className="w-24 h-24 rounded-xl object-cover"
                 />
                 <div>

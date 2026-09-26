@@ -19,6 +19,7 @@ import { DestinationCard } from '@/components/DestinationCard';
 import { destinations, getTopRatedDestinations, categories } from '@/data/destinations';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 import { getUserLocation, getDistance } from '@/utils/haversine';
+import { SEO } from '@/components/SEO';
 import heroImg from '/img/hero.jpeg';
 
 // Pre-defined static particle positions to preserve React purity during render
@@ -77,6 +78,12 @@ export function Home() {
 
   return (
     <div className="min-h-screen">
+      <SEO
+        title="Himaly | Nepal Tour Packages, Himalayan Treks & Adventure Destinations"
+        description="Plan your Nepal trip with Himaly. Browse trekking routes, UNESCO heritage sites, wildlife safaris and mountain adventures across all seven provinces, with local guides and custom itineraries."
+        canonicalPath="/"
+        ogImage="/img/hero.jpeg"
+      />
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         {/* Background Images with Crossfade */}
@@ -276,7 +283,7 @@ export function Home() {
                       {category.image && (
                         <img
                           src={category.image}
-                          alt={category.name}
+                          alt={`${category.name} destinations in Nepal${category.tagline ? ` — ${category.tagline}` : ''}`}
                           className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-110"
                         />
                       )}
@@ -401,7 +408,7 @@ export function Home() {
               <div className="relative rounded-3xl overflow-hidden shadow-2xl">
                 <img
                   src="https://images.unsplash.com/photo-1605640840605-14ac1855827b?w=800"
-                  alt="Nepal Temple"
+                  alt="Ornate Newari temple with carved wooden windows and tiered pagoda roofs in the Kathmandu Valley, Nepal"
                   className="w-full h-[500px] object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-[#1B2A4A]/50 to-transparent" />

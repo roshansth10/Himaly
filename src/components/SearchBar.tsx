@@ -130,7 +130,7 @@ export function SearchBar({ variant = 'page', onSearch }: SearchBarProps) {
                 >
                   <img
                     src={dest.images[0]}
-                    alt={dest.name}
+                    alt={`${dest.name} in ${dest.province}, Nepal`}
                     className="w-12 h-12 rounded-lg object-cover"
                   />
                   <div className="flex-1">
@@ -222,7 +222,7 @@ export function SearchBar({ variant = 'page', onSearch }: SearchBarProps) {
               >
                 <img
                   src={dest.images[0]}
-                  alt={dest.name}
+                  alt={`${dest.name} in ${dest.province}, Nepal`}
                   className="w-10 h-10 rounded-lg object-cover"
                 />
                 <div className="flex-1">

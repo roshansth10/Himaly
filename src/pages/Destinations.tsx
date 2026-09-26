@@ -17,6 +17,7 @@ import { Slider } from '@/components/ui/slider';
 import { Badge } from '@/components/ui/badge';
 import { DestinationCard } from '@/components/DestinationCard';
 import { destinations, categories } from '@/data/destinations';
+import { SEO } from '@/components/SEO';
 import { getUserLocation, getDistance } from '@/utils/haversine';
 import { useScrollAnimation } from '@/hooks/useScrollAnimation';
 
@@ -112,8 +113,22 @@ export function Destinations() {
     priceRange[0] > 0 || priceRange[1] < 15000
   ].filter(Boolean).length;
 
+  const isCategoryFiltered = selectedCategory !== 'all';
+  const pageTitle = isCategoryFiltered
+    ? `${selectedCategory} Destinations in Nepal | Himaly`
+    : 'Nepal Destinations | Himalayan Treks, Heritage & Wildlife | Himaly';
+  const pageDescription = isCategoryFiltered
+    ? `Browse ${selectedCategory.toLowerCase()} destinations across Nepal with prices, ratings and local guide details. ${destinations.length} trips available across all seven provinces.`
+    : `Explore all ${destinations.length} Nepal destinations - Everest and Annapurna treks, Kathmandu Valley heritage sites, Chitwan wildlife safaris and more. Filter by category, price and rating.`;
+
   return (
     <div className="min-h-screen pt-24 pb-20 bg-gray-50 dark:bg-gray-900">
+      <SEO
+        title={pageTitle}
+        description={pageDescription}
+        canonicalPath={isCategoryFiltered ? `/destinations?category=${selectedCategory}` : '/destinations'}
+        ogImage="/img/hero.jpeg"
+      />
       {/* Header */}
       <section className="bg-gradient-to-b from-[#E8672A]/10 to-transparent py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -126,7 +141,7 @@ export function Destinations() {
               Explore <span className="text-[#E8672A]">Destinations</span>
             </h1>
             <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-              Discover Nepal's most incredible places, from towering peaks to ancient temples
+              Discover Nepal's most incredible places, from towering Himalayan peaks to ancient temples
             </p>
           </motion.div>
         </div>

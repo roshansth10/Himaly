@@ -22,6 +22,7 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { getDestinationById, type Destination } from '@/data/destinations';
+import { SEO } from '@/components/SEO';
 import { getUserLocation, getDistance, formatDistance } from '@/utils/haversine';
 import { MapContainer, TileLayer, Marker, Popup } from 'react-leaflet';
 import L from 'leaflet';
@@ -131,13 +132,20 @@ export function DestinationDetail() {
 
   return (
     <div className="min-h-screen pt-20 bg-gray-50 dark:bg-gray-900">
+      <SEO
+        title={`${destination.name} ${destination.category} Trip in ${destination.province}, Nepal | Himaly`}
+        description={destination.description}
+        canonicalPath={`/destination/${destination.id}`}
+        ogImage={destination.images[0]}
+        ogType="article"
+      />
       {/* Hero Gallery */}
       <section className="relative h-[60vh] lg:h-[70vh] overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.img
             key={currentImageIndex}
             src={destination.images[currentImageIndex]}
-            alt={destination.name}
+            alt={`${destination.name} in ${destination.province}, Nepal`}
             initial={{ opacity: 0, scale: 1.1 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0 }}
@@ -544,7 +552,7 @@ export function DestinationDetail() {
             <motion.img
               key={lightboxIndex}
               src={destination.images[lightboxIndex]}
-              alt={destination.name}
+              alt={`${destination.name} photo ${lightboxIndex + 1} of ${destination.location}, Nepal`}
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               exit={{ opacity: 0, scale: 0.9 }}

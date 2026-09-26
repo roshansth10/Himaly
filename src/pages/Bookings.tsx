@@ -18,6 +18,7 @@ import {
 } from 'lucide-react';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
+import { SEO } from '@/components/SEO';
 import { getBookings, deleteBooking, type Booking } from '@/utils/storage';
 import { toast } from 'sonner';
 import {
@@ -121,6 +122,11 @@ Thank you for booking with Himaly!
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-gray-50 dark:bg-gray-900">
+      <SEO
+        title="My Bookings | Himaly"
+        description="Review and manage your Himaly Nepal tour and trekking bookings."
+        canonicalPath="/bookings"
+      />
       {/* Header */}
       <section className="bg-gradient-to-b from-[#E8672A]/10 to-transparent py-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -133,7 +139,7 @@ Thank you for booking with Himaly!
               My <span className="text-[#E8672A]">Bookings</span>
             </h1>
             <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-              View and manage all your upcoming adventures
+              View and manage all your upcoming Nepal trekking and tour bookings
             </p>
           </motion.div>
         </div>
@@ -157,7 +163,7 @@ Thank you for booking with Himaly!
                     <div className="lg:w-48 h-48 lg:h-auto relative">
                       <img
                         src={booking.destination.images[0]}
-                        alt={booking.destination.name}
+                        alt={`${booking.destination.name} in ${booking.destination.province}, Nepal`}
                         className="w-full h-full object-cover"
                       />
                       <div className="absolute top-4 left-4">
@@ -244,7 +250,7 @@ Thank you for booking with Himaly!
                                 <div className="flex gap-4">
                                   <img
                                     src={selectedBooking.destination.images[0]}
-                                    alt={selectedBooking.destination.name}
+                                    alt={`${selectedBooking.destination.name} in ${selectedBooking.destination.province}, Nepal`}
                                     className="w-32 h-32 rounded-xl object-cover"
                                   />
                                   <div>

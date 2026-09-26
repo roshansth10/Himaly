@@ -6,6 +6,7 @@ import { MapContainer, TileLayer, Marker, Popup, useMap } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
 import { destinations } from '@/data/destinations';
+import { SEO } from '@/components/SEO';
 import { getUserLocation, getDistance, formatDistance } from '@/utils/haversine';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
@@ -103,6 +104,12 @@ export function MapView() {
 
   return (
     <div className="min-h-screen pt-20 bg-gray-50 dark:bg-gray-900">
+      <SEO
+        title="Map of Nepal Destinations | Himaly"
+        description="See where every Himaly trip is on the map. Plot trekking routes, heritage sites, lakes and national parks across Nepal and find destinations near you."
+        canonicalPath="/map"
+        ogImage="/img/hero.jpeg"
+      />
       {/* Header */}
       <section className="bg-gradient-to-b from-[#E8672A]/10 to-transparent py-8">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -115,7 +122,7 @@ export function MapView() {
               Explore <span className="text-[#E8672A]">Nepal Map</span>
             </h1>
             <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
-              Discover all destinations across Nepal. Find the nearest attractions to your location.
+              Discover all trekking routes, heritage sites and national parks across Nepal. Find the nearest attractions to your location.
             </p>
           </motion.div>
         </div>
@@ -197,7 +204,7 @@ export function MapView() {
                         <div className="flex items-start gap-3">
                           <img
                             src={dest.images[0]}
-                            alt={dest.name}
+                            alt={`${dest.name} in ${dest.province}, Nepal`}
                             className="w-16 h-16 rounded-lg object-cover flex-shrink-0"
                           />
                           <div className="flex-1 min-w-0">
@@ -306,7 +313,7 @@ export function MapView() {
                             <div className="min-w-[200px]">
                               <img
                                 src={dest.images[0]}
-                                alt={dest.name}
+                                alt={`${dest.name} in ${dest.province}, Nepal`}
                                 className="w-full h-32 object-cover rounded-lg mb-3"
                               />
                               <Badge className={`${categoryColors[dest.category]} text-white mb-2`}>

@@ -19,6 +19,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Textarea } from '@/components/ui/textarea';
+import { SEO } from '@/components/SEO';
 import { toast } from 'sonner';
 
 export function Contact() {
@@ -96,6 +97,12 @@ export function Contact() {
 
   return (
     <div className="min-h-screen pt-24 pb-20 bg-gray-50 dark:bg-gray-900">
+      <SEO
+        title="Contact Himaly | Plan Your Nepal Trip"
+        description="Talk to Himaly's Kathmandu-based travel experts about custom Nepal itineraries, trekking permits, guided tours and group bookings. We reply within one business day."
+        canonicalPath="/contact"
+        ogImage="/img/hero.jpeg"
+      />
       {/* Hero Section */}
       <section className="relative py-20 overflow-hidden">
         <div 
@@ -113,7 +120,7 @@ export function Contact() {
               Get in <span className="text-[#E8672A]">Touch</span>
             </h1>
             <p className="text-xl text-white/80 max-w-2xl mx-auto">
-              Have questions about your trip? We're here to help you plan the perfect Nepal adventure.
+              Have questions about your Nepal trip? Our Kathmandu-based team can plan your perfect trekking route, cultural tour or wildlife safari.
             </p>
           </motion.div>
         </div>
