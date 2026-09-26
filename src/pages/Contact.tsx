@@ -96,7 +96,7 @@ export function Contact() {
   ];
 
   return (
-    <div className="min-h-screen pt-24 pb-20 bg-gray-50 dark:bg-gray-900">
+    <div className="min-h-screen pt-24 bg-gray-50 dark:bg-gray-900">
       <SEO
         title="Contact Himaly | Plan Your Nepal Trip"
         description="Talk to Himaly's Kathmandu-based travel experts about custom Nepal itineraries, trekking permits, guided tours and group bookings. We reply within one business day."
@@ -128,8 +128,8 @@ export function Contact() {
 
       {/* Contact Info Cards */}
       <section className="py-16 -mt-10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-5">
             {contactInfo.map((item, index) => {
               const Icon = item.icon;
               return (
@@ -138,15 +138,17 @@ export function Contact() {
                   initial={{ opacity: 0, y: 30 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: index * 0.1 }}
-                  className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg hover:shadow-xl transition-shadow"
+                  className="bg-white dark:bg-gray-800 rounded-2xl p-5 shadow-lg hover:shadow-xl transition-shadow flex flex-col h-full min-h-[190px]"
                 >
-                  <div className={`w-14 h-14 ${item.color} rounded-xl flex items-center justify-center mb-4`}>
-                    <Icon className="w-7 h-7 text-white" />
+                  <div className={`w-11 h-11 ${item.color} rounded-xl flex items-center justify-center mb-4`}>
+                    <Icon className="w-5 h-5 text-white" />
                   </div>
-                  <h3 className="font-bold text-lg mb-2">{item.title}</h3>
-                  {item.details.map((detail, i) => (
-                    <p key={i} className="text-gray-600 dark:text-gray-400">{detail}</p>
-                  ))}
+                  <h3 className="font-bold text-base mb-1.5">{item.title}</h3>
+                  <div className="mt-auto">
+                    {item.details.map((detail, i) => (
+                      <p key={i} className="text-sm leading-relaxed text-gray-600 dark:text-gray-400">{detail}</p>
+                    ))}
+                  </div>
                 </motion.div>
               );
             })}
@@ -157,116 +159,118 @@ export function Contact() {
       {/* Contact Form & Map */}
       <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid lg:grid-cols-2 gap-12">
-            {/* Contact Form */}
-            <motion.div
-              initial={{ opacity: 0, x: -30 }}
-              animate={{ opacity: 1, x: 0 }}
-              className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg"
-            >
-              <h2 className="text-2xl font-bold mb-2">Send us a Message</h2>
-              <p className="text-gray-600 dark:text-gray-400 mb-8">
-                Fill out the form below and we'll get back to you as soon as possible.
-              </p>
+          <div className="grid lg:grid-cols-2 gap-12 items-start">
+            <div className="space-y-12">
+              {/* Contact Form */}
+              <motion.div
+                initial={{ opacity: 0, x: -30 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="bg-white dark:bg-gray-800 rounded-2xl p-8 shadow-lg self-start"
+              >
+                <h2 className="text-2xl font-bold mb-2">Send us a Message</h2>
+                <p className="text-gray-600 dark:text-gray-400 mb-8">
+                  Fill out the form below and we'll get back to you as soon as possible.
+                </p>
 
-              {isSubmitted ? (
-                <motion.div
-                  initial={{ opacity: 0, scale: 0.9 }}
-                  animate={{ opacity: 1, scale: 1 }}
-                  className="text-center py-12"
-                >
-                  <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                    <CheckCircle className="w-10 h-10 text-white" />
-                  </div>
-                  <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
-                  <p className="text-gray-600 dark:text-gray-400">
-                    Thank you for reaching out. We'll get back to you soon.
-                  </p>
-                </motion.div>
-              ) : (
-                <form onSubmit={handleSubmit} className="space-y-6">
-                  <div className="grid md:grid-cols-2 gap-6">
+                {isSubmitted ? (
+                  <motion.div
+                    initial={{ opacity: 0, scale: 0.9 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    className="text-center py-12"
+                  >
+                    <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto mb-6">
+                      <CheckCircle className="w-10 h-10 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold mb-2">Message Sent!</h3>
+                    <p className="text-gray-600 dark:text-gray-400">
+                      Thank you for reaching out. We'll get back to you soon.
+                      </p>
+                  </motion.div>
+                ) : (
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Full Name *</Label>
+                        <div className="relative">
+                          <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                          <Input
+                            id="name"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleInputChange}
+                            placeholder="Sujan Shrestha"
+                            className="pl-10"
+                            required
+                          />
+                        </div>
+                      </div>
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email Address *</Label>
+                        <div className="relative">
+                          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                          <Input
+                            id="email"
+                            name="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            placeholder="sujan@example.com"
+                            className="pl-10"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+
                     <div className="space-y-2">
-                      <Label htmlFor="name">Full Name *</Label>
+                      <Label htmlFor="subject">Subject</Label>
                       <div className="relative">
-                        <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <MessageSquare className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                         <Input
-                          id="name"
-                          name="name"
-                          value={formData.name}
+                          id="subject"
+                          name="subject"
+                          value={formData.subject}
                           onChange={handleInputChange}
-                          placeholder="Sujan Shrestha"
+                          placeholder="How can we help?"
                           className="pl-10"
-                          required
                         />
                       </div>
                     </div>
-                    <div className="space-y-2">
-                      <Label htmlFor="email">Email Address *</Label>
-                      <div className="relative">
-                        <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                        <Input
-                          id="email"
-                          name="email"
-                          type="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          placeholder="sujan@example.com"
-                          className="pl-10"
-                          required
-                        />
-                      </div>
-                    </div>
-                  </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="subject">Subject</Label>
-                    <div className="relative">
-                      <MessageSquare className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                      <Input
-                        id="subject"
-                        name="subject"
-                        value={formData.subject}
+                    <div className="space-y-2">
+                      <Label htmlFor="message">Message *</Label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
                         onChange={handleInputChange}
-                        placeholder="How can we help?"
-                        className="pl-10"
+                        placeholder="Tell us about your travel plans..."
+                        rows={5}
+                        required
                       />
                     </div>
-                  </div>
 
-                  <div className="space-y-2">
-                    <Label htmlFor="message">Message *</Label>
-                    <Textarea
-                      id="message"
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      placeholder="Tell us about your travel plans..."
-                      rows={5}
-                      required
-                    />
-                  </div>
-
-                  <Button
-                    type="submit"
-                    disabled={isSubmitting}
-                    className="w-full bg-[#E8672A] hover:bg-[#c85a22] text-white py-6"
-                  >
-                    {isSubmitting ? (
-                      <>
-                        <Loader2 className="w-5 h-5 mr-2 animate-spin" />
-                        Sending...
-                      </>
-                    ) : (
-                      <>
-                        <Send className="w-5 h-5 mr-2" />
-                        Send Message
-                      </>
-                    )}
-                  </Button>
-                </form>
-              )}
-            </motion.div>
+                    <Button
+                      type="submit"
+                      disabled={isSubmitting}
+                      className="w-full bg-[#E8672A] hover:bg-[#c85a22] text-white py-6"
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-5 h-5 mr-2 animate-spin" />
+                          Sending...
+                        </>
+                      ) : (
+                        <>
+                          <Send className="w-5 h-5 mr-2" />
+                          Send Message
+                        </>
+                      )}
+                    </Button>
+                  </form>
+                )}
+              </motion.div>
+            </div>
 
             {/* Map & Social */}
             <motion.div
@@ -312,30 +316,13 @@ export function Contact() {
                   })}
                 </div>
               </div>
-
-              {/* Quick Support */}
-              <div className="bg-gradient-to-r from-[#E8672A] to-[#D4551A] rounded-2xl p-8 text-white">
-                <h3 className="font-bold text-xl mb-2">Need Immediate Help?</h3>
-                <p className="text-white/80 mb-4">
-                  Our support team is available 24/7 for urgent inquiries.
-                </p>
-                <div className="flex items-center gap-4">
-                  <div className="w-12 h-12 bg-white/20 rounded-xl flex items-center justify-center">
-                    <Phone className="w-6 h-6" />
-                  </div>
-                  <div>
-                    <p className="text-sm text-white/70">Emergency Hotline</p>
-                    <p className="font-bold text-lg">+977 98XXXXXXXX</p>
-                  </div>
-                </div>
-              </div>
             </motion.div>
           </div>
         </div>
       </section>
 
       {/* FAQ Section */}
-      <section className="py-16 bg-white dark:bg-gray-800">
+      <section className="pt-16 pb-12 bg-white dark:bg-gray-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 20 }}

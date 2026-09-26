@@ -1,4 +1,4 @@
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { 
   Facebook, 
@@ -41,6 +41,8 @@ const socialLinks = [
 export function Footer() {
   const [email, setEmail] = useState('');
   const [subscribed, setSubscribed] = useState(false);
+  const { pathname } = useLocation();
+  const isHome = pathname === '/';
 
   const handleSubscribe = (e: React.FormEvent) => {
     e.preventDefault();
@@ -66,8 +68,17 @@ export function Footer() {
       {/* Main Footer Content */}
       <div className="relative z-10">
         {/* Newsletter Section */}
-        <div className="border-b border-white/10">
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="border-b border-white/10 relative overflow-hidden">
+          {!isHome && (
+            <>
+              <div
+                className="absolute inset-0 bg-cover bg-center"
+                style={{ backgroundImage: 'url(/img/Sarangkot.jpg)' }}
+              />
+              <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/85 to-[#1B2A4A]/70" />
+            </>
+          )}
+          <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-16">
             <div className="grid lg:grid-cols-2 gap-12 items-center">
               <motion.div
                 initial={{ opacity: 0, x: -30 }}
@@ -241,15 +252,24 @@ export function Footer() {
         {/* Bottom Bar */}
         <div className="border-t border-white/10">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div className="flex flex-col md:flex-row items-center justify-between gap-4">
-              <p className="text-gray-500 text-sm text-center md:text-left">
-                © {new Date().getFullYear()} Himaly. All rights reserved. 
+            <div className="grid grid-cols-1 md:grid-cols-3 items-center gap-4">
+              <p className="text-gray-500 text-sm text-center md:text-left md:justify-self-start">
+                © {new Date().getFullYear()} Himaly. All rights reserved.
+              </p>
+              <p className="text-gray-500 text-sm text-center flex items-center justify-center gap-2 whitespace-nowrap">
+                <span>Designed &amp; Developed by</span>
+                <img
+                  src="/img/dxlogo.png"
+                  alt="DX Studio"
+                  loading="lazy"
+                  className="h-5 w-auto object-contain"
+                />
               </p>
               <motion.button
                 onClick={scrollToTop}
                 whileHover={{ scale: 1.1, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="flex items-center gap-2 text-gray-400 hover:text-[#E8672A] transition-colors group"
+                className="flex items-center gap-2 text-gray-400 hover:text-[#E8672A] transition-colors group justify-self-center md:justify-self-end"
               >
                 <span className="text-sm">Back to Top</span>
                 <div className="w-8 h-8 rounded-full bg-white/10 flex items-center justify-center group-hover:bg-[#E8672A] transition-colors">
