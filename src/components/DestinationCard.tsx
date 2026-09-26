@@ -42,8 +42,9 @@ export function DestinationCard({
       y: 0,
       rotateX: 0,
       transition: {
-        duration: 0.7,
-        delay: index * 0.1,
+        duration: 0.5,
+        // Cap the stagger so cards far down the list don't wait seconds to appear
+        delay: Math.min(index, 8) * 0.05,
         ease: [0.16, 1, 0.3, 1] as const
       }
     }
@@ -82,6 +83,8 @@ export function DestinationCard({
               <motion.img
                 src={destination.images[0]}
                 alt={`${destination.name}, ${destination.category} destination in ${destination.province}, Nepal`}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover"
                 variants={imageVariants}
                 initial="rest"
@@ -146,6 +149,8 @@ export function DestinationCard({
             <motion.img
               src={destination.images[0]}
               alt={`${destination.name}, ${destination.category} destination in ${destination.province}, Nepal`}
+              loading="lazy"
+              decoding="async"
               className="w-full h-full object-cover"
               variants={imageVariants}
               initial="rest"
