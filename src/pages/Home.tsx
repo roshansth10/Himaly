@@ -199,7 +199,7 @@ export function Home() {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <h2 className="text-4xl md:text-5xl font-bold mb-4">
+            <h2 className="text-3xl md:text-5xl font-bold mb-4">
               Explore by <span className="text-[#E8672A]">Category</span>
             </h2>
             <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
@@ -229,7 +229,7 @@ export function Home() {
                     <motion.div
                       whileHover={{ y: -6, scale: 1.02 }}
                       whileTap={{ scale: 0.98 }}
-                      className="group relative h-48 sm:h-52 w-full rounded-2xl overflow-hidden p-5 flex flex-col justify-end text-center shadow-lg hover:shadow-2xl border border-white/10 dark:border-gray-700/50 cursor-pointer transition-all duration-300"
+                      className="group relative h-40 sm:h-52 w-full rounded-2xl overflow-hidden p-4 sm:p-5 flex flex-col justify-end text-center shadow-lg hover:shadow-2xl border border-white/10 dark:border-gray-700/50 cursor-pointer transition-all duration-300"
                     >
                       {/* Category Image strictly within this rectangle */}
                       {category.image && (
@@ -245,12 +245,12 @@ export function Home() {
 
                       {/* Content within rectangle */}
                       <div className="relative z-10 flex flex-col items-center">
-                        <Icon className="w-8 h-8 mb-2 text-white group-hover:text-[#E8672A] group-hover:scale-110 transition-all duration-300 drop-shadow-md" />
-                        <h3 className="font-bold text-lg text-white group-hover:text-[#E8672A] transition-colors drop-shadow-sm">
+                        <Icon className="w-7 h-7 sm:w-8 sm:h-8 mb-2 text-white group-hover:text-[#E8672A] group-hover:scale-110 transition-all duration-300 drop-shadow-md" />
+                        <h3 className="font-bold text-base sm:text-lg text-white group-hover:text-[#E8672A] transition-colors drop-shadow-sm">
                           {category.name}
                         </h3>
                         {category.tagline && (
-                          <span className="text-xs text-gray-200/90 font-medium group-hover:text-white transition-colors mt-0.5 line-clamp-1">
+                          <span className="text-[11px] sm:text-xs text-gray-200/90 font-medium group-hover:text-white transition-colors mt-0.5 line-clamp-1">
                             {category.tagline}
                           </span>
                         )}
@@ -274,7 +274,7 @@ export function Home() {
             className="flex flex-col md:flex-row md:items-end md:justify-between mb-12"
           >
             <div>
-              <h2 className="text-4xl md:text-5xl font-bold mb-4">
+              <h2 className="text-3xl md:text-5xl font-bold mb-4">
                 Popular <span className="text-[#E8672A]">Destinations</span>
               </h2>
               <p className="text-gray-600 dark:text-gray-400 text-lg max-w-xl">
@@ -385,7 +385,7 @@ export function Home() {
               whileInView={{ opacity: 1, x: 0 }}
               viewport={{ once: true }}
             >
-              <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <h2 className="text-3xl md:text-5xl font-bold mb-6">
                 Why Choose <span className="text-[#E8672A]">Nepal Travel</span>
               </h2>
               <p className="text-gray-600 dark:text-gray-400 text-lg mb-8">
@@ -422,7 +422,7 @@ export function Home() {
 
               <Link to="/destinations">
                 <Button 
-                  className="mt-8 h-auto bg-[#E8672A] hover:bg-[#c85a22] text-white rounded-full px-8 has-[>svg]:px-8 py-6"
+                  className="mt-8 h-auto bg-[#E8672A] hover:bg-[#c85a22] text-white rounded-full px-6 sm:px-8 has-[>svg]:px-6 sm:has-[>svg]:px-8 py-4 sm:py-6"
                 >
                   Learn More About Us
                   <ArrowRight className="w-5 h-5 ml-2" />
@@ -447,7 +447,7 @@ export function Home() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
+            <h2 className="text-3xl md:text-5xl font-bold text-white mb-6">
               Ready to Start Your <span className="text-[#E8672A]">Adventure?</span>
             </h2>
             <p className="text-white/80 text-xl mb-8 max-w-2xl mx-auto">
@@ -467,7 +467,7 @@ export function Home() {
                 <Button 
                   size="lg"
                   variant="outline"
-                  className="h-auto border-2 border-white text-white bg-transparent hover:bg-white hover:text-gray-900 dark:bg-transparent dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-gray-900 px-8 py-6 rounded-full text-lg font-medium transition-all shadow-md"
+                  className="h-auto border-2 border-white text-white bg-transparent hover:bg-white hover:text-gray-900 dark:bg-transparent dark:border-white dark:text-white dark:hover:bg-white dark:hover:text-gray-900 px-6 sm:px-8 py-4 sm:py-6 rounded-full text-base sm:text-lg font-medium transition-all shadow-md"
                 >
                   Contact Us
                 </Button>

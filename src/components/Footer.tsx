@@ -108,12 +108,12 @@ export function Footer() {
                       placeholder="Enter your email"
                       value={email}
                       onChange={(e) => setEmail(e.target.value)}
-                      className="pl-12 py-6 bg-white/10 border-white/20 text-white placeholder:text-gray-500 rounded-xl focus:border-[#E8672A] focus:ring-[#E8672A]/20"
+                      className="h-auto pl-12 py-4 sm:py-6 bg-white/10 border-white/20 text-white placeholder:text-gray-500 rounded-xl focus:border-[#E8672A] focus:ring-[#E8672A]/20"
                     />
                   </div>
                   <Button
                     type="submit"
-                    className="bg-gradient-to-r from-[#E8672A] to-[#D4551A] hover:from-[#c85a22] hover:to-[#b04a18] text-white px-8 py-6 rounded-xl font-medium transition-all hover:shadow-lg hover:shadow-[#E8672A]/25"
+                    className="h-auto shrink-0 bg-gradient-to-r from-[#E8672A] to-[#D4551A] hover:from-[#c85a22] hover:to-[#b04a18] text-white px-6 sm:px-8 py-4 sm:py-6 rounded-xl font-medium transition-all hover:shadow-lg hover:shadow-[#E8672A]/25"
                   >
                     <Send className="w-5 h-5" />
                   </Button>

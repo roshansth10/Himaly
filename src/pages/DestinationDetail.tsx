@@ -217,7 +217,7 @@ export function DestinationDetail() {
               <Badge className={`${categoryColors[destination.category]} text-white mb-4`}>
                 {destination.category}
               </Badge>
-              <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+              <h1 className="text-3xl md:text-6xl font-bold text-white mb-4">
                 {destination.name}
               </h1>
               <div className="flex flex-wrap items-center gap-6 text-white/80">
@@ -455,7 +455,7 @@ export function DestinationDetail() {
 
                   <Link to={`/booking/${destination.id}`}>
                     <Button 
-                      className="w-full h-auto bg-[#E8672A] hover:bg-[#c85a22] text-white py-6 rounded-xl text-lg font-medium mb-4"
+                      className="w-full h-auto bg-[#E8672A] hover:bg-[#c85a22] text-white py-4 sm:py-6 rounded-xl text-base sm:text-lg font-medium mb-4"
                     >
                       Book Now
                     </Button>

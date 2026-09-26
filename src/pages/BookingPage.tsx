@@ -314,7 +314,7 @@ Thank you for booking with Himaly!
 
                     <Button 
                       type="submit"
-                      className="w-full bg-[#E8672A] hover:bg-[#c85a22] text-white py-6"
+                      className="w-full h-auto bg-[#E8672A] hover:bg-[#c85a22] text-white py-4 sm:py-6"
                     >
                       Continue to Payment
                     </Button>

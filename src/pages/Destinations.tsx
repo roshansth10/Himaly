@@ -15,6 +15,13 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Slider } from '@/components/ui/slider';
 import { Badge } from '@/components/ui/badge';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
 import { DestinationCard } from '@/components/DestinationCard';
 import { destinations, categories } from '@/data/destinations';
 import { SEO } from '@/components/SEO';
@@ -137,7 +144,7 @@ export function Destinations() {
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+            <h1 className="text-3xl md:text-5xl lg:text-6xl font-bold mb-4">
               Explore <span className="text-[#E8672A]">Destinations</span>
             </h1>
             <p className="text-gray-600 dark:text-gray-400 text-lg max-w-2xl mx-auto">
@@ -156,50 +163,48 @@ export function Destinations() {
             animate={{ opacity: 1, y: 0 }}
             className="bg-white dark:bg-gray-800 rounded-2xl shadow-lg p-4 mb-8"
           >
-            <div className="flex flex-col lg:flex-row gap-4">
+            <div className="flex flex-col gap-4">
               {/* Search */}
-              <div className="flex-1 relative">
+              <div className="relative">
                 <MapPin className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
                 <Input
                   type="text"
                   placeholder="Search destinations..."
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
-                  className="pl-12 py-6 bg-gray-50 dark:bg-gray-700 border-0 rounded-xl"
+                  className="h-auto pl-12 py-5 sm:py-6 bg-gray-50 dark:bg-gray-700 border-0 rounded-xl"
                 />
               </div>
 
-              {/* Category Select */}
-              <div className="flex gap-2 overflow-x-auto pb-2 lg:pb-0">
-                {categories.map((cat) => (
-                  <button
-                    key={cat.id}
-                    onClick={() => setSelectedCategory(cat.id)}
-                    className={`px-4 py-3 rounded-xl whitespace-nowrap transition-all ${
-                      selectedCategory === cat.id
-                        ? 'bg-[#E8672A] text-white'
-                        : 'bg-gray-100 dark:bg-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-600'
-                    }`}
-                  >
-                    {cat.name}
-                  </button>
-                ))}
-              </div>
+              {/* Category Dropdown + Filters */}
+              <div className="grid grid-cols-2 gap-3">
+                <Select value={selectedCategory} onValueChange={setSelectedCategory}>
+                  <SelectTrigger className="w-full rounded-xl bg-gray-50 dark:bg-gray-700 border-0 px-4 text-sm sm:text-base data-[size=default]:h-12 sm:data-[size=default]:h-14">
+                    <SelectValue placeholder="Category" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    {categories.map((cat) => (
+                      <SelectItem key={cat.id} value={cat.id} className="text-sm sm:text-base">
+                        {cat.name}
+                      </SelectItem>
+                    ))}
+                  </SelectContent>
+                </Select>
 
-              {/* Filter Toggle */}
-              <Button
-                variant="outline"
-                onClick={() => setShowFilters(!showFilters)}
-                className="relative"
-              >
-                <SlidersHorizontal className="w-5 h-5 mr-2" />
-                Filters
-                {activeFiltersCount > 0 && (
-                  <Badge className="absolute -top-2 -right-2 bg-[#E8672A] text-white">
-                    {activeFiltersCount}
-                  </Badge>
-                )}
-              </Button>
+                <Button
+                  variant="outline"
+                  onClick={() => setShowFilters(!showFilters)}
+                  className="relative w-full h-12 sm:h-14 rounded-xl"
+                >
+                  <SlidersHorizontal className="w-5 h-5 mr-2" />
+                  Filters
+                  {activeFiltersCount > 0 && (
+                    <Badge className="absolute -top-2 -right-2 bg-[#E8672A] text-white">
+                      {activeFiltersCount}
+                    </Badge>
+                  )}
+                </Button>
+              </div>
             </div>
 
             {/* Expanded Filters */}

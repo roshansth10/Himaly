@@ -116,7 +116,7 @@ export function Contact() {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold text-white mb-4">
+            <h1 className="text-3xl md:text-6xl font-bold text-white mb-4">
               Get in <span className="text-[#E8672A]">Touch</span>
             </h1>
             <p className="text-xl text-white/80 max-w-2xl mx-auto">
@@ -253,7 +253,7 @@ export function Contact() {
                     <Button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full bg-[#E8672A] hover:bg-[#c85a22] text-white py-6"
+                      className="w-full h-auto bg-[#E8672A] hover:bg-[#c85a22] text-white py-4 sm:py-6"
                     >
                       {isSubmitting ? (
                         <>

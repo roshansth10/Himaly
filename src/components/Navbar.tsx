@@ -233,7 +233,7 @@ export function Navbar() {
                       setIsMobileMenuOpen(false);
                       navigate('/destinations');
                     }}
-                    className="w-full bg-gradient-to-r from-[#E8672A] to-[#D4551A] text-white rounded-xl py-6"
+                    className="w-full h-auto bg-gradient-to-r from-[#E8672A] to-[#D4551A] text-white rounded-xl py-4"
                   >
                     Book Your Adventure
                   </Button>
