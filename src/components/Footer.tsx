@@ -267,7 +267,7 @@ export function Footer() {
                   className="inline-flex items-center transition-opacity duration-300 hover:opacity-70 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#E8672A] focus-visible:ring-offset-2 focus-visible:ring-offset-gray-900 rounded"
                 >
                   <img
-                    src="/img/dxlogo.png"
+                    src="/img/logo-white.png"
                     alt="DX Studio"
                     loading="lazy"
                     className="h-5 w-auto object-contain"
