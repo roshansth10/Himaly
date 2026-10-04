@@ -143,7 +143,7 @@ export function Footer() {
               transition={{ duration: 0.6 }}
               className="col-span-2 lg:col-span-1 flex flex-col items-center text-center lg:items-start lg:text-left"
             >
-              <Link to="/" className="flex items-center gap-3 mb-6">
+              <Link to="/" className="flex items-center gap-3 mb-6" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}>
                 <div className="h-16 flex items-center justify-center">
                   <img
                     src={logoUrl}

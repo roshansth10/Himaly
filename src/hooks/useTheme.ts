@@ -14,9 +14,10 @@ export function useTheme() {
     if (stored) {
       setTheme(stored);
       document.documentElement.classList.toggle('dark', stored === 'dark');
-    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
-      setTheme('dark');
-      document.documentElement.classList.add('dark');
+    } else {
+      // Default to light theme
+      setTheme('light');
+      document.documentElement.classList.remove('dark');
     }
   }, []);
 
