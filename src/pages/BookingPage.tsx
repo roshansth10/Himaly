@@ -1,0 +1,609 @@
+import { useState, useEffect } from 'react';
+import { useParams, useNavigate, Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  ArrowLeft, 
+  Calendar, 
+  Users, 
+  Phone, 
+  Mail, 
+  User, 
+  CreditCard,
+  Check,
+  Loader2,
+  Download,
+  MapPin,
+  Star
+} from 'lucide-react';
+import { Button } from '@/components/ui/button';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
+import { getDestinationById } from '@/data/destinations';
+import { SEO } from '@/components/SEO';
+import { saveBooking, generateBookingId, generateTransactionId } from '@/utils/storage';
+import { toast } from 'sonner';
+
+type PaymentMethod = 'esewa' | 'khalti' | 'cash';
+type BookingStep = 'details' | 'payment' | 'processing' | 'success';
+
+export function BookingPage() {
+  const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
+  const destination = id ? getDestinationById(id) : null;
+
+  const [step, setStep] = useState<BookingStep>('details');
+  const [paymentMethod, setPaymentMethod] = useState<PaymentMethod>('esewa');
+  
+  // Form states
+  const [formData, setFormData] = useState({
+    name: '',
+    email: '',
+    phone: '',
+    travelDate: '',
+    numberOfPeople: 1,
+  });
+  
+  const [bookingId, setBookingId] = useState('');
+  const [transactionId, setTransactionId] = useState('');
+
+  useEffect(() => {
+    if (!destination) {
+      navigate('/destinations');
+    }
+  }, [destination, navigate]);
+
+  if (!destination) return null;
+
+  const totalAmount = destination.price * formData.numberOfPeople;
+
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const { name, value } = e.target;
+    setFormData(prev => ({ ...prev, [name]: value }));
+  };
+
+  const handleSubmitDetails = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!formData.name || !formData.email || !formData.phone || !formData.travelDate) {
+      toast.error('Please fill in all required fields');
+      return;
+    }
+    setStep('payment');
+  };
+
+  const handlePayment = async () => {
+    setStep('processing');
+    
+    // Simulate payment processing
+    await new Promise(resolve => setTimeout(resolve, 3000));
+    
+    const newBookingId = generateBookingId();
+    const newTransactionId = generateTransactionId();
+    
+    setBookingId(newBookingId);
+    setTransactionId(newTransactionId);
+    
+    // Save booking
+    saveBooking({
+      id: newBookingId,
+      destinationId: destination.id,
+      destination,
+      userName: formData.name,
+      userEmail: formData.email,
+      userPhone: formData.phone,
+      numberOfPeople: formData.numberOfPeople,
+      bookingDate: new Date().toISOString(),
+      travelDate: formData.travelDate,
+      paymentMethod,
+      amount: totalAmount,
+      status: 'confirmed',
+      createdAt: new Date().toISOString(),
+      paymentDetails: {
+        transactionId: newTransactionId,
+        paidAt: new Date().toISOString(),
+      },
+    });
+    
+    setStep('success');
+    toast.success('Booking confirmed successfully!');
+  };
+
+  const downloadReceipt = () => {
+    const receiptData = `
+BOOKING RECEIPT
+===============
+
+Booking ID: ${bookingId}
+Transaction ID: ${transactionId}
+Date: ${new Date().toLocaleDateString()}
+
+DESTINATION
+-----------
+Name: ${destination.name}
+Location: ${destination.location}
+Duration: ${destination.duration}
+
+CUSTOMER DETAILS
+----------------
+Name: ${formData.name}
+Email: ${formData.email}
+Phone: ${formData.phone}
+
+BOOKING DETAILS
+---------------
+Travel Date: ${formData.travelDate}
+Number of People: ${formData.numberOfPeople}
+Payment Method: ${paymentMethod.toUpperCase()}
+
+PAYMENT
+-------
+Amount per person: NPR ${destination.price.toLocaleString()}
+Total Amount: NPR ${totalAmount.toLocaleString()}
+
+Thank you for booking with Himaly!
+    `;
+    
+    const blob = new Blob([receiptData], { type: 'text/plain' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `receipt-${bookingId}.txt`;
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
+  return (
+    <div className="min-h-screen pt-24 pb-20 bg-gray-50 dark:bg-gray-900">
+      <SEO
+        title={`Book ${destination.name}, Nepal | Himaly`}
+        description={`Book the ${destination.name} ${destination.category.toLowerCase()} trip in ${destination.province}. ${destination.duration}, ${destination.difficulty} difficulty, from ${destination.currency} ${destination.price}.`}
+        canonicalPath={`/booking/${destination.id}`}
+        ogImage={destination.images[0]}
+      />
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Header */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          className="mb-8"
+        >
+          <Link to={`/destination/${id}`} className="inline-flex items-center text-gray-500 hover:text-[#E8672A] mb-4">
+            <ArrowLeft className="w-4 h-4 mr-2" />
+            Back to Destination
+          </Link>
+          <h1 className="text-3xl md:text-4xl font-bold">Book Your Adventure</h1>
+        </motion.div>
+
+        {/* Progress Steps */}
+        <div className="mb-8">
+          <div className="flex items-center justify-between">
+            {['Details', 'Payment', 'Confirmation'].map((s, index) => {
+              const stepNum = index + 1;
+              const currentStepNum = step === 'details' ? 1 : step === 'payment' ? 2 : 3;
+              const isActive = stepNum <= currentStepNum;
+              const isCurrent = stepNum === currentStepNum;
+              
+              return (
+                <div key={s} className="flex items-center">
+                  <div className={`w-10 h-10 rounded-full flex items-center justify-center font-bold ${
+                    isCurrent 
+                      ? 'bg-[#E8672A] text-white' 
+                      : isActive 
+                        ? 'bg-green-500 text-white' 
+                        : 'bg-gray-200 dark:bg-gray-700 text-gray-500'
+                  }`}>
+                    {isActive && stepNum < currentStepNum ? <Check className="w-5 h-5" /> : stepNum}
+                  </div>
+                  <span className={`ml-2 font-medium hidden sm:block ${
+                    isCurrent ? 'text-[#E8672A]' : isActive ? 'text-green-500' : 'text-gray-400'
+                  }`}>
+                    {s}
+                  </span>
+                  {index < 2 && (
+                    <div className={`w-16 sm:w-24 h-1 mx-4 ${
+                      stepNum < currentStepNum ? 'bg-green-500' : 'bg-gray-200 dark:bg-gray-700'
+                    }`} />
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="grid lg:grid-cols-3 gap-8">
+          {/* Main Content */}
+          <div className="lg:col-span-2">
+            <AnimatePresence mode="wait">
+              {/* Step 1: Details */}
+              {step === 'details' && (
+                <motion.div
+                  key="details"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg"
+                >
+                  <h2 className="text-xl font-bold mb-6">Enter Your Details</h2>
+                  
+                  <form onSubmit={handleSubmitDetails} className="space-y-6">
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <Label htmlFor="name">Full Name *</Label>
+                        <div className="relative">
+                          <User className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                          <Input
+                            id="name"
+                            name="name"
+                            value={formData.name}
+                            onChange={handleInputChange}
+                            placeholder="Sujan Shrestha"
+                            className="pl-10"
+                            required
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <Label htmlFor="email">Email *</Label>
+                        <div className="relative">
+                          <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                          <Input
+                            id="email"
+                            name="email"
+                            type="email"
+                            value={formData.email}
+                            onChange={handleInputChange}
+                            placeholder="sujan@example.com"
+                            className="pl-10"
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="grid md:grid-cols-2 gap-6">
+                      <div className="space-y-2">
+                        <Label htmlFor="phone">Phone Number *</Label>
+                        <div className="relative">
+                          <Phone className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                          <Input
+                            id="phone"
+                            name="phone"
+                            value={formData.phone}
+                            onChange={handleInputChange}
+                            placeholder="+977 98XXXXXXXX"
+                            className="pl-10"
+                            required
+                          />
+                        </div>
+                      </div>
+                      
+                      <div className="space-y-2">
+                        <Label htmlFor="travelDate">Travel Date *</Label>
+                        <div className="relative">
+                          <Calendar className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                          <Input
+                            id="travelDate"
+                            name="travelDate"
+                            type="date"
+                            value={formData.travelDate}
+                            onChange={handleInputChange}
+                            className="pl-10"
+                            min={new Date().toISOString().split('T')[0]}
+                            required
+                          />
+                        </div>
+                      </div>
+                    </div>
+
+                    <div className="space-y-2">
+                      <Label htmlFor="numberOfPeople">Number of People</Label>
+                      <div className="relative">
+                        <Users className="absolute left-3 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
+                        <Input
+                          id="numberOfPeople"
+                          name="numberOfPeople"
+                          type="number"
+                          min={1}
+                          max={20}
+                          value={formData.numberOfPeople}
+                          onChange={handleInputChange}
+                          className="pl-10"
+                        />
+                      </div>
+                    </div>
+
+                    <Button 
+                      type="submit"
+                      className="w-full h-auto bg-[#E8672A] hover:bg-[#c85a22] text-white py-4 sm:py-6"
+                    >
+                      Continue to Payment
+                    </Button>
+                  </form>
+                </motion.div>
+              )}
+
+              {/* Step 2: Payment */}
+              {step === 'payment' && (
+                <motion.div
+                  key="payment"
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  exit={{ opacity: 0, x: -20 }}
+                  className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg"
+                >
+                  <h2 className="text-xl font-bold mb-6">Select Payment Method</h2>
+                  
+                  <div className="space-y-4 mb-8">
+                    {/* eSewa */}
+                    <button
+                      onClick={() => setPaymentMethod('esewa')}
+                      className={`w-full p-4 rounded-xl border-2 transition-all flex items-center gap-4 ${
+                        paymentMethod === 'esewa'
+                          ? 'border-[#E8672A] bg-[#E8672A]/5'
+                          : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
+                      }`}
+                    >
+                      <div className="w-14 h-14 bg-green-500 rounded-xl flex items-center justify-center">
+                        <span className="text-white font-bold text-lg">e</span>
+                      </div>
+                      <div className="flex-1 text-left">
+                        <p className="font-bold">eSewa</p>
+                        <p className="text-sm text-gray-500">Pay with eSewa wallet</p>
+                      </div>
+                      {paymentMethod === 'esewa' && (
+                        <div className="w-6 h-6 bg-[#E8672A] rounded-full flex items-center justify-center">
+                          <Check className="w-4 h-4 text-white" />
+                        </div>
+                      )}
+                    </button>
+
+                    {/* Khalti */}
+                    <button
+                      onClick={() => setPaymentMethod('khalti')}
+                      className={`w-full p-4 rounded-xl border-2 transition-all flex items-center gap-4 ${
+                        paymentMethod === 'khalti'
+                          ? 'border-[#E8672A] bg-[#E8672A]/5'
+                          : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
+                      }`}
+                    >
+                      <div className="w-14 h-14 bg-purple-600 rounded-xl flex items-center justify-center">
+                        <span className="text-white font-bold text-lg">K</span>
+                      </div>
+                      <div className="flex-1 text-left">
+                        <p className="font-bold">Khalti</p>
+                        <p className="text-sm text-gray-500">Pay with Khalti wallet</p>
+                      </div>
+                      {paymentMethod === 'khalti' && (
+                        <div className="w-6 h-6 bg-[#E8672A] rounded-full flex items-center justify-center">
+                          <Check className="w-4 h-4 text-white" />
+                        </div>
+                      )}
+                    </button>
+
+                    {/* Cash */}
+                    <button
+                      onClick={() => setPaymentMethod('cash')}
+                      className={`w-full p-4 rounded-xl border-2 transition-all flex items-center gap-4 ${
+                        paymentMethod === 'cash'
+                          ? 'border-[#E8672A] bg-[#E8672A]/5'
+                          : 'border-gray-200 dark:border-gray-700 hover:border-gray-300'
+                      }`}
+                    >
+                      <div className="w-14 h-14 bg-gray-600 rounded-xl flex items-center justify-center">
+                        <CreditCard className="w-7 h-7 text-white" />
+                      </div>
+                      <div className="flex-1 text-left">
+                        <p className="font-bold">Pay on Arrival</p>
+                        <p className="text-sm text-gray-500">Pay cash when you arrive</p>
+                      </div>
+                      {paymentMethod === 'cash' && (
+                        <div className="w-6 h-6 bg-[#E8672A] rounded-full flex items-center justify-center">
+                          <Check className="w-4 h-4 text-white" />
+                        </div>
+                      )}
+                    </button>
+                  </div>
+
+                  <div className="flex gap-4">
+                    <Button
+                      variant="outline"
+                      onClick={() => setStep('details')}
+                      className="flex-1"
+                    >
+                      Back
+                    </Button>
+                    <Button
+                      onClick={handlePayment}
+                      className="flex-1 bg-[#E8672A] hover:bg-[#c85a22] text-white"
+                    >
+                      Pay NPR {totalAmount.toLocaleString()}
+                    </Button>
+                  </div>
+                </motion.div>
+              )}
+
+              {/* Step 3: Processing */}
+              {step === 'processing' && (
+                <motion.div
+                  key="processing"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  className="bg-white dark:bg-gray-800 rounded-2xl p-12 shadow-lg text-center"
+                >
+                  <div className="w-20 h-20 mx-auto mb-6 relative">
+                    <motion.div
+                      animate={{ rotate: 360 }}
+                      transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                      className="w-full h-full"
+                    >
+                      <Loader2 className="w-20 h-20 text-[#E8672A]" />
+                    </motion.div>
+                  </div>
+                  <h2 className="text-2xl font-bold mb-2">Processing Payment...</h2>
+                  <p className="text-gray-500">Please wait while we confirm your booking</p>
+                </motion.div>
+              )}
+
+              {/* Step 4: Success */}
+              {step === 'success' && (
+                <motion.div
+                  key="success"
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  className="bg-white dark:bg-gray-800 rounded-2xl p-5 sm:p-8 shadow-lg text-center"
+                >
+                  <motion.div
+                    initial={{ scale: 0 }}
+                    animate={{ scale: 1 }}
+                    transition={{ type: 'spring', delay: 0.2 }}
+                    className="relative w-20 h-20 mx-auto mb-5"
+                  >
+                    <div className="absolute inset-0 rounded-full bg-green-500/20 animate-ping" />
+                    <div className="relative w-20 h-20 bg-green-500 rounded-full flex items-center justify-center ring-4 ring-green-500/15">
+                      <Check className="w-10 h-10 text-white" />
+                    </div>
+                  </motion.div>
+                  
+                  <h2 className="text-2xl sm:text-3xl font-bold mb-2">Booking Confirmed!</h2>
+                  <p className="text-gray-500 mb-6 text-sm sm:text-base">
+                    Your adventure awaits. A confirmation has been sent to{' '}
+                    <span className="font-medium text-gray-700 dark:text-gray-300 break-words">{formData.email}</span>.
+                  </p>
+
+                  {/* Trip recap */}
+                  <div className="flex items-center gap-3 sm:gap-4 text-left bg-gray-50 dark:bg-gray-700 rounded-xl p-3 sm:p-4 mb-4">
+                    <img
+                      src={destination.images[0]}
+                      alt={`${destination.name} in ${destination.province}, Nepal`}
+                      className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover flex-shrink-0"
+                    />
+                    <div className="min-w-0">
+                      <h3 className="font-bold text-sm sm:text-base break-words">{destination.name}</h3>
+                      <p className="flex items-center gap-1 text-xs sm:text-sm text-gray-500 mb-1">
+                        <MapPin className="w-3.5 h-3.5 flex-shrink-0" />
+                        <span className="truncate">{destination.location}</span>
+                      </p>
+                      <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs sm:text-sm">
+                        <span className="flex items-center gap-1 text-gray-500">
+                          <Calendar className="w-3.5 h-3.5 text-[#E8672A] flex-shrink-0" />
+                          {formData.travelDate
+                            ? new Date(formData.travelDate).toLocaleDateString()
+                            : 'Flexible'}
+                        </span>
+                        <span className="flex items-center gap-1 text-gray-500">
+                          <Users className="w-3.5 h-3.5 text-[#E8672A] flex-shrink-0" />
+                          {formData.numberOfPeople}{' '}
+                          {formData.numberOfPeople === 1 ? 'person' : 'people'}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="bg-gray-50 dark:bg-gray-700 rounded-xl p-4 sm:p-6 mb-6 text-left">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                      <div className="min-w-0">
+                        <p className="text-sm text-gray-500">Booking ID</p>
+                        <p className="font-bold break-all">{bookingId}</p>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm text-gray-500">Transaction ID</p>
+                        <p className="font-bold break-all">{transactionId}</p>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm text-gray-500">Amount Paid</p>
+                        <p className="font-bold text-[#E8672A]">NPR {totalAmount.toLocaleString()}</p>
+                      </div>
+                      <div className="min-w-0">
+                        <p className="text-sm text-gray-500">Payment Method</p>
+                        <p className="font-bold uppercase break-words">{paymentMethod}</p>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col sm:flex-row gap-3 sm:gap-4">
+                    <Button
+                      onClick={downloadReceipt}
+                      variant="outline"
+                      className="w-full sm:flex-1 h-auto py-4 sm:py-3"
+                    >
+                      <Download className="w-4 h-4 mr-2" />
+                      Download Receipt
+                    </Button>
+                    <Button
+                      onClick={() => navigate('/bookings')}
+                      className="w-full sm:flex-1 h-auto py-4 sm:py-3 bg-[#E8672A] hover:bg-[#c85a22] text-white"
+                    >
+                      View My Bookings
+                    </Button>
+                  </div>
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </div>
+
+          {/* Sidebar - Booking Summary */}
+          <div className="lg:col-span-1">
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              className="bg-white dark:bg-gray-800 rounded-2xl p-6 shadow-lg sticky top-24"
+            >
+              <h3 className="font-bold mb-4">Booking Summary</h3>
+              
+              <div className="flex gap-4 mb-4">
+                <img
+                  src={destination.images[0]}
+                  alt={`${destination.name} in ${destination.province}, Nepal`}
+                  className="w-24 h-24 rounded-xl object-cover"
+                />
+                <div>
+                  <h4 className="font-bold">{destination.name}</h4>
+                  <div className="flex items-center gap-1 text-sm text-gray-500">
+                    <MapPin className="w-4 h-4" />
+                    {destination.location}
+                  </div>
+                  <div className="flex items-center gap-1 text-sm">
+                    <Star className="w-4 h-4 fill-amber-400 text-amber-400" />
+                    {destination.rating}
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-t border-gray-200 dark:border-gray-700 pt-4 space-y-3">
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Price per person</span>
+                  <span>NPR {destination.price.toLocaleString()}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Number of people</span>
+                  <span>x {formData.numberOfPeople}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-gray-500">Duration</span>
+                  <span>{destination.duration}</span>
+                </div>
+                <div className="border-t border-gray-200 dark:border-gray-700 pt-3">
+                  <div className="flex justify-between text-lg font-bold">
+                    <span>Total</span>
+                    <span className="text-[#E8672A]">NPR {totalAmount.toLocaleString()}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="mt-6 p-4 bg-green-50 dark:bg-green-900/20 rounded-xl">
+                <div className="flex items-center gap-2 text-green-600 dark:text-green-400">
+                  <Check className="w-5 h-5" />
+                  <span className="font-medium">Free cancellation</span>
+                </div>
+                <p className="text-sm text-gray-500 mt-1">
+                  Cancel up to 24 hours before for a full refund
+                </p>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+}

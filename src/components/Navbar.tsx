@@ -1,0 +1,248 @@
+import { useState, useEffect } from 'react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  Menu, 
+  X, 
+  Sun, 
+  Moon, 
+  MapPin, 
+  Compass, 
+  Phone, 
+  Calendar,
+  Mountain
+} from 'lucide-react';
+import { useTheme } from '@/hooks/useTheme';
+import { Button } from '@/components/ui/button';
+import logoUrl from '/img/himaly.jpg';
+import logoDarkUrl from '/img/himaly-dark.png';
+
+const navLinks = [
+  { name: 'Home', path: '/', icon: Compass },
+  { name: 'Destinations', path: '/destinations', icon: MapPin },
+  { name: 'Map View', path: '/map', icon: Mountain },
+  { name: 'My Bookings', path: '/bookings', icon: Calendar },
+  { name: 'Contact', path: '/contact', icon: Phone },
+];
+
+export function Navbar() {
+  const [isScrolled, setIsScrolled] = useState(false);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const { theme, toggleTheme, mounted } = useTheme();
+  const location = useLocation();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 50);
+    };
+
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const isActive = (path: string) => location.pathname === path;
+
+  if (!mounted) return null;
+
+  // The home page has a dark hero section when not scrolled; other pages have light backgrounds
+  const isHomePage = location.pathname === '/';
+  const isTransparentOnDark = isHomePage && !isScrolled;
+  const isDarkMode = theme === 'dark' || isTransparentOnDark;
+
+  return (
+    <>
+      <motion.nav
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          isScrolled
+            ? 'bg-white/90 dark:bg-gray-900/90 backdrop-blur-lg shadow-lg'
+            : isHomePage
+            ? 'bg-transparent'
+            : 'bg-white/80 dark:bg-gray-900/80 backdrop-blur-md border-b border-gray-200/50 dark:border-gray-800/50'
+        }`}
+      >
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex items-center justify-between h-20">
+            {/* Logo */}
+            <Link to="/" className="flex items-center gap-3 group">
+              <motion.div
+                whileHover={{ rotate: 5, scale: 1.05 }}
+                className="h-14 flex items-center justify-center"
+              >
+                <img
+                  src={isDarkMode ? logoDarkUrl : logoUrl}
+                  alt="Himaly logo"
+                  loading="lazy"
+                  className="h-12 w-auto max-w-[80px] object-contain"
+                />
+              </motion.div>
+            </Link>
+
+            {/* Desktop Navigation */}
+            <div className="hidden lg:flex items-center gap-1">
+              {navLinks.map((link) => {
+                const Icon = link.icon;
+                return (
+                  <Link
+                    key={link.path}
+                    to={link.path}
+                    className={`relative px-4 py-2 rounded-lg text-sm font-medium transition-all duration-300 group ${
+                      isActive(link.path)
+                        ? isTransparentOnDark
+                          ? 'text-white bg-white/20'
+                          : 'text-[#E8672A] bg-[#E8672A]/10'
+                        : isTransparentOnDark
+                        ? 'text-white/90 hover:text-white hover:bg-white/10'
+                        : 'text-gray-700 dark:text-gray-300 hover:text-[#E8672A] hover:bg-gray-100 dark:hover:bg-gray-800'
+                    }`}
+                  >
+                    <span className="flex items-center gap-2">
+                      <Icon className="w-4 h-4" />
+                      {link.name}
+                    </span>
+                    {isActive(link.path) && (
+                      <motion.div
+                        layoutId="activeNav"
+                        className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 rounded-full bg-[#E8672A]"
+                      />
+                    )}
+                  </Link>
+                );
+              })}
+            </div>
+
+            {/* Right Side Actions */}
+            <div className="flex items-center gap-3">
+              {/* Theme Toggle */}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={toggleTheme}
+                className={`rounded-full transition-all ${
+                  isTransparentOnDark
+                    ? 'text-white hover:bg-white/20'
+                    : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                }`}
+              >
+                <AnimatePresence mode="wait">
+                  {theme === 'dark' ? (
+                    <motion.div
+                      key="sun"
+                      initial={{ rotate: -90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: 90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Sun className="w-5 h-5" />
+                    </motion.div>
+                  ) : (
+                    <motion.div
+                      key="moon"
+                      initial={{ rotate: 90, opacity: 0 }}
+                      animate={{ rotate: 0, opacity: 1 }}
+                      exit={{ rotate: -90, opacity: 0 }}
+                      transition={{ duration: 0.2 }}
+                    >
+                      <Moon className="w-5 h-5" />
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </Button>
+
+              {/* Book Now Button - Desktop */}
+              <Button
+                onClick={() => navigate('/destinations')}
+                className="hidden md:flex h-auto py-2.5 bg-gradient-to-r from-[#E8672A] to-[#D4551A] hover:from-[#c85a22] hover:to-[#b04a18] text-white rounded-full px-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-0.5"
+              >
+                Book Now
+              </Button>
+
+              {/* Mobile Menu Button */}
+              <Button
+                variant="ghost"
+                size="icon"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                className={`lg:hidden rounded-full ${
+                  isTransparentOnDark
+                    ? 'text-white'
+                    : 'text-gray-700 dark:text-gray-300'
+                }`}
+              >
+                {isMobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              </Button>
+            </div>
+          </div>
+        </div>
+      </motion.nav>
+
+      {/* Mobile Menu */}
+      <AnimatePresence>
+        {isMobileMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.3 }}
+            className="fixed inset-0 z-40 lg:hidden"
+          >
+            <div 
+              className="absolute inset-0 bg-black/50 backdrop-blur-sm"
+              onClick={() => setIsMobileMenuOpen(false)}
+            />
+            <motion.div
+              initial={{ x: '-100%' }}
+              animate={{ x: 0 }}
+              exit={{ x: '-100%' }}
+              transition={{ type: 'spring', damping: 25, stiffness: 200 }}
+              className="absolute left-0 top-0 h-full w-80 bg-white dark:bg-gray-900 shadow-2xl border-r border-gray-200 dark:border-gray-700"
+            >
+              <div className="p-6 pt-24">
+                <div className="space-y-2">
+                  {navLinks.map((link, index) => {
+                    const Icon = link.icon;
+                    return (
+                      <motion.div
+                        key={link.path}
+                        initial={{ opacity: 0, x: 20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.1 }}
+                      >
+                        <Link
+                          to={link.path}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className={`flex items-center gap-3 px-4 py-3 rounded-xl transition-all ${
+                            isActive(link.path)
+                              ? 'bg-[#E8672A]/10 text-[#E8672A]'
+                              : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100 dark:hover:bg-gray-800'
+                          }`}
+                        >
+                          <Icon className="w-5 h-5" />
+                          <span className="font-medium">{link.name}</span>
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+
+                <div className="mt-8 pt-8 border-t border-gray-200 dark:border-gray-700">
+                  <Button
+                    onClick={() => {
+                      setIsMobileMenuOpen(false);
+                      navigate('/destinations');
+                    }}
+                    className="w-full h-auto bg-gradient-to-r from-[#E8672A] to-[#D4551A] text-white rounded-xl py-4"
+                  >
+                    Book Your Adventure
+                  </Button>
+                </div>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+}
