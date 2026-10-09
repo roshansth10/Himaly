@@ -35,7 +35,7 @@ export function Destinations() {
   const [searchQuery, setSearchQuery] = useState(searchParams.get('search') || '');
   const [selectedCategory, setSelectedCategory] = useState(searchParams.get('category') || 'all');
   const [sortBy, setSortBy] = useState<SortOption>('popular');
-  const [priceRange, setPriceRange] = useState([0, 15000]);
+  const [priceRange, setPriceRange] = useState([0, 500000]);
   const [userLocation, setUserLocation] = useState<{ latitude: number; longitude: number } | null>(null);
   const [viewMode, setViewMode] = useState<'grid' | 'compact'>('grid');
   const [showFilters, setShowFilters] = useState(false);
@@ -109,7 +109,7 @@ export function Destinations() {
   const clearFilters = () => {
     setSearchQuery('');
     setSelectedCategory('all');
-    setPriceRange([0, 15000]);
+    setPriceRange([0, 500000]);
     setSortBy('popular');
     setSearchParams({});
   };
@@ -117,7 +117,7 @@ export function Destinations() {
   const activeFiltersCount = [
     searchQuery,
     selectedCategory !== 'all',
-    priceRange[0] > 0 || priceRange[1] < 15000
+    priceRange[0] > 0 || priceRange[1] < 500000
   ].filter(Boolean).length;
 
   const isCategoryFiltered = selectedCategory !== 'all';
@@ -255,8 +255,8 @@ export function Destinations() {
                         <Slider
                           value={priceRange}
                           onValueChange={setPriceRange}
-                          max={15000}
-                          step={500}
+                          max={500000}
+                          step={5000}
                           className="w-full"
                         />
                       </div>
